@@ -1,0 +1,9 @@
+name	hrname
+iname
+desc
+QB
+QBI
+PNG
+ilevel	ilvl
+damage	dmg
+reach	

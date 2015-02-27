@@ -1,0 +1,19 @@
+﻿List of Tabs
+Armor
+Bush
+Crop
+Decoration
+Enemy
+Farm Animal
+Flower
+Shield
+Tree
+Weapon
+Wild Animal
+
+FAR OFF
+Biome
+Dimension
+Event/Holiday
+Faction
+Job

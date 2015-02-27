@@ -1,0 +1,21 @@
+c:\users\david\documents\visual studio 2015\Projects\SHModMaker\SHModMaker\bin\Debug\SHModMaker.exe.config
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\bin\Debug\SHModMaker.exe
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\bin\Debug\SHModMaker.pdb
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\obj\Debug\SHModMaker.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\obj\Debug\SHModMaker.Form1.resources
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\obj\Debug\SHModMaker.Properties.Resources.resources
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\obj\Debug\SHModMaker.csproj.GenerateResource.Cache
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\obj\Debug\SHModMaker.exe
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\obj\Debug\SHModMaker.pdb
+C:\Users\David\Documents\Visual Studio 2015\Projects\SHModMaker\SHModMaker\bin\Debug\JSONs\Weapon\Weapon.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\SHModMaker.exe.config
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.exe
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.pdb
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Weapon\Weapon.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\SHModMaker.exe
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\SHModMaker.pdb
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.Form1.resources
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.Properties.Resources.resources
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.csproj.GenerateResource.Cache
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Weapon\weapon_iconic.json
