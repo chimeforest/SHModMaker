@@ -50,19 +50,25 @@
             this.txt_weap_qb = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.txt_weap_qbi = new System.Windows.Forms.TextBox();
-            this.txt_weap_iname = new System.Windows.Forms.TextBox();
             this.txt_weap_name = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_weapon = new System.Windows.Forms.Button();
+            this.tab_recipe = new System.Windows.Forms.TabPage();
+            this.btn_recipe = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_mod_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_api_version = new System.Windows.Forms.TextBox();
+            this.newModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportsmodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tab_armor.SuspendLayout();
             this.tab_crop.SuspendLayout();
@@ -70,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_ilevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_reach)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_damage)).BeginInit();
+            this.tab_recipe.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,6 +89,7 @@
             this.tabControl1.Controls.Add(this.tab_armor);
             this.tabControl1.Controls.Add(this.tab_crop);
             this.tabControl1.Controls.Add(this.tab_weapon);
+            this.tabControl1.Controls.Add(this.tab_recipe);
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.ItemSize = new System.Drawing.Size(20, 50);
             this.tabControl1.Location = new System.Drawing.Point(12, 54);
@@ -89,7 +97,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(464, 230);
+            this.tabControl1.Size = new System.Drawing.Size(469, 318);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
@@ -99,7 +107,7 @@
             this.tab_armor.Location = new System.Drawing.Point(54, 4);
             this.tab_armor.Name = "tab_armor";
             this.tab_armor.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_armor.Size = new System.Drawing.Size(406, 238);
+            this.tab_armor.Size = new System.Drawing.Size(411, 310);
             this.tab_armor.TabIndex = 0;
             this.tab_armor.Text = "Armor";
             this.tab_armor.UseVisualStyleBackColor = true;
@@ -108,9 +116,9 @@
             // 
             this.btn_armor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_armor.Location = new System.Drawing.Point(6, 212);
+            this.btn_armor.Location = new System.Drawing.Point(6, 281);
             this.btn_armor.Name = "btn_armor";
-            this.btn_armor.Size = new System.Drawing.Size(397, 23);
+            this.btn_armor.Size = new System.Drawing.Size(402, 23);
             this.btn_armor.TabIndex = 1;
             this.btn_armor.Text = "Add Armor";
             this.btn_armor.UseVisualStyleBackColor = true;
@@ -121,7 +129,7 @@
             this.tab_crop.Location = new System.Drawing.Point(54, 4);
             this.tab_crop.Name = "tab_crop";
             this.tab_crop.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_crop.Size = new System.Drawing.Size(406, 238);
+            this.tab_crop.Size = new System.Drawing.Size(411, 310);
             this.tab_crop.TabIndex = 2;
             this.tab_crop.Text = "Crop";
             this.tab_crop.UseVisualStyleBackColor = true;
@@ -130,9 +138,9 @@
             // 
             this.btn_crop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_crop.Location = new System.Drawing.Point(6, 212);
+            this.btn_crop.Location = new System.Drawing.Point(6, 281);
             this.btn_crop.Name = "btn_crop";
-            this.btn_crop.Size = new System.Drawing.Size(397, 23);
+            this.btn_crop.Size = new System.Drawing.Size(402, 23);
             this.btn_crop.TabIndex = 1;
             this.btn_crop.Text = "Add Crop";
             this.btn_crop.UseVisualStyleBackColor = true;
@@ -155,16 +163,14 @@
             this.tab_weapon.Controls.Add(this.txt_weap_qb);
             this.tab_weapon.Controls.Add(this.label6);
             this.tab_weapon.Controls.Add(this.label5);
-            this.tab_weapon.Controls.Add(this.label4);
             this.tab_weapon.Controls.Add(this.txt_weap_qbi);
-            this.tab_weapon.Controls.Add(this.txt_weap_iname);
             this.tab_weapon.Controls.Add(this.txt_weap_name);
             this.tab_weapon.Controls.Add(this.label3);
             this.tab_weapon.Controls.Add(this.btn_weapon);
             this.tab_weapon.Location = new System.Drawing.Point(54, 4);
             this.tab_weapon.Name = "tab_weapon";
             this.tab_weapon.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_weapon.Size = new System.Drawing.Size(406, 222);
+            this.tab_weapon.Size = new System.Drawing.Size(411, 310);
             this.tab_weapon.TabIndex = 1;
             this.tab_weapon.Text = "Weapon";
             this.tab_weapon.UseVisualStyleBackColor = true;
@@ -333,15 +339,6 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "QB Equip:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "name:";
-            // 
             // txt_weap_qbi
             // 
             this.txt_weap_qbi.Location = new System.Drawing.Point(219, 34);
@@ -350,14 +347,6 @@
             this.txt_weap_qbi.TabIndex = 4;
             this.txt_weap_qbi.Text = "OBICONICHERE";
             // 
-            // txt_weap_iname
-            // 
-            this.txt_weap_iname.Location = new System.Drawing.Point(50, 34);
-            this.txt_weap_iname.Name = "txt_weap_iname";
-            this.txt_weap_iname.Size = new System.Drawing.Size(100, 20);
-            this.txt_weap_iname.TabIndex = 3;
-            this.txt_weap_iname.Text = "AWESOME_SWORD";
-            // 
             // txt_weap_name
             // 
             this.txt_weap_name.Location = new System.Drawing.Point(50, 7);
@@ -365,6 +354,7 @@
             this.txt_weap_name.Size = new System.Drawing.Size(100, 20);
             this.txt_weap_name.TabIndex = 2;
             this.txt_weap_name.Text = "SWORD OF AWESOME";
+            this.txt_weap_name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress_NoSpecChar);
             // 
             // label3
             // 
@@ -379,13 +369,33 @@
             // 
             this.btn_weapon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_weapon.Location = new System.Drawing.Point(6, 196);
+            this.btn_weapon.Location = new System.Drawing.Point(6, 284);
             this.btn_weapon.Name = "btn_weapon";
-            this.btn_weapon.Size = new System.Drawing.Size(397, 23);
+            this.btn_weapon.Size = new System.Drawing.Size(402, 23);
             this.btn_weapon.TabIndex = 0;
             this.btn_weapon.Text = "Add Weapon";
             this.btn_weapon.UseVisualStyleBackColor = true;
             this.btn_weapon.Click += new System.EventHandler(this.btn_weapon_Click);
+            // 
+            // tab_recipe
+            // 
+            this.tab_recipe.Controls.Add(this.btn_recipe);
+            this.tab_recipe.Location = new System.Drawing.Point(54, 4);
+            this.tab_recipe.Name = "tab_recipe";
+            this.tab_recipe.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_recipe.Size = new System.Drawing.Size(411, 310);
+            this.tab_recipe.TabIndex = 3;
+            this.tab_recipe.Text = "Recipe";
+            this.tab_recipe.UseVisualStyleBackColor = true;
+            // 
+            // btn_recipe
+            // 
+            this.btn_recipe.Location = new System.Drawing.Point(6, 281);
+            this.btn_recipe.Name = "btn_recipe";
+            this.btn_recipe.Size = new System.Drawing.Size(399, 23);
+            this.btn_recipe.TabIndex = 0;
+            this.btn_recipe.Text = "Add Recipe";
+            this.btn_recipe.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -394,18 +404,26 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(488, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(493, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newModToolStripMenuItem,
+            this.loadModToolStripMenuItem,
+            this.saveModToolStripMenuItem,
+            this.exportsmodToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "File";
             // 
             // editToolStripMenuItem
             // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modManagerToolStripMenuItem,
+            this.optionsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -415,16 +433,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Mod Name: ";
+            this.label1.Text = "mod name: ";
             // 
-            // textBox1
+            // txt_mod_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(221, 20);
-            this.textBox1.TabIndex = 3;
+            this.txt_mod_name.Location = new System.Drawing.Point(84, 28);
+            this.txt_mod_name.Name = "txt_mod_name";
+            this.txt_mod_name.Size = new System.Drawing.Size(221, 20);
+            this.txt_mod_name.TabIndex = 3;
+            this.txt_mod_name.Text = "MOD_OF_AWESOME";
+            this.txt_mod_name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress_NoSpecChar);
             // 
             // label2
             // 
@@ -435,27 +455,67 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "API Version:";
             // 
-            // textBox2
+            // txt_api_version
             // 
-            this.textBox2.Location = new System.Drawing.Point(382, 28);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 5;
+            this.txt_api_version.Location = new System.Drawing.Point(382, 28);
+            this.txt_api_version.Name = "txt_api_version";
+            this.txt_api_version.Size = new System.Drawing.Size(100, 20);
+            this.txt_api_version.TabIndex = 5;
+            this.txt_api_version.Text = "1";
+            // 
+            // newModToolStripMenuItem
+            // 
+            this.newModToolStripMenuItem.Name = "newModToolStripMenuItem";
+            this.newModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newModToolStripMenuItem.Text = "New Mod";
+            // 
+            // loadModToolStripMenuItem
+            // 
+            this.loadModToolStripMenuItem.Name = "loadModToolStripMenuItem";
+            this.loadModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadModToolStripMenuItem.Text = "Load Mod";
+            // 
+            // saveModToolStripMenuItem
+            // 
+            this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
+            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveModToolStripMenuItem.Text = "Save Mod";
+            // 
+            // exportsmodToolStripMenuItem
+            // 
+            this.exportsmodToolStripMenuItem.Name = "exportsmodToolStripMenuItem";
+            this.exportsmodToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportsmodToolStripMenuItem.Text = "Export .smod";
+            // 
+            // modManagerToolStripMenuItem
+            // 
+            this.modManagerToolStripMenuItem.Name = "modManagerToolStripMenuItem";
+            this.modManagerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modManagerToolStripMenuItem.Text = "Mod Manager";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Text = "Options";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(488, 296);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(493, 384);
+            this.Controls.Add(this.txt_api_version);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_mod_name);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SHModMaker";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tab_armor.ResumeLayout(false);
             this.tab_crop.ResumeLayout(false);
@@ -464,6 +524,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_ilevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_reach)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_damage)).EndInit();
+            this.tab_recipe.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -489,15 +550,13 @@
         private System.Windows.Forms.TextBox txt_weap_qb;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_weap_qbi;
-        private System.Windows.Forms.TextBox txt_weap_iname;
         private System.Windows.Forms.TextBox txt_weap_name;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_mod_name;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_api_version;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown nud_weap_ilevel;
         private System.Windows.Forms.NumericUpDown nud_weap_reach;
@@ -508,6 +567,14 @@
         private System.Windows.Forms.TextBox txt_weap_desc;
         private System.Windows.Forms.Button btn_armor;
         private System.Windows.Forms.Button btn_crop;
+        private System.Windows.Forms.TabPage tab_recipe;
+        private System.Windows.Forms.Button btn_recipe;
+        private System.Windows.Forms.ToolStripMenuItem newModToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadModToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveModToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportsmodToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
     }
 }
 

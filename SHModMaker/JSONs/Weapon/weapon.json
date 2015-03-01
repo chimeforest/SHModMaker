@@ -5,12 +5,12 @@
        "model_variants": {
          "default" : {
             "models": [
-               "file(~QB~)"
+               "file(~iname~.qb)"
             ]
          }
       },
       "stonehearth:entity_forms" : {
-         "iconic_form" : "file(~QBI~)"
+         "iconic_form" : "file(~iname~_iconic.json)"
       },
       "stonehearth:equipment_piece" : {
          "slot" : "mainhand",
@@ -24,7 +24,7 @@
       "unit_info": {
          "name": "~name~",
          "description": "~desc~",
-         "icon" : "file(~PNG~)"
+         "icon" : "file(~iname~.png)"
       },
       "stonehearth:material" : {
          "tags" : "short melee_weapon"

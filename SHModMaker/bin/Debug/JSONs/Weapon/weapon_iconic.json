@@ -1,4 +1,4 @@
-{
+﻿{
    "mixins": "stonehearth:mixins:item_properties",
    "type": "entity",
    "components": {
@@ -8,14 +8,14 @@
        "model_variants": {
          "default": {
             "models": [
-               "file(~QBI~)"
+               "file(sword_of_awesome_iconic.qb)"
             ]
          }
       },
       "unit_info": {
-         "name": "~name~",
-         "description": "~desc~",
-         "icon" : "file(~PNG~)"
+         "name": "SWORD OF AWESOME",
+         "description": "THIS SWORD IS THE MOST EPIC SWORD EVAR!!",
+         "icon" : "file(sword_of_awesome.png)"
       },
       "stonehearth:material" : {
          "tags" : "short melee_weapon crafted"

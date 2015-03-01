@@ -8,14 +8,14 @@
        "model_variants": {
          "default": {
             "models": [
-               "file(~QBI~)"
+               "file(~iname~_iconic.qb)"
             ]
          }
       },
       "unit_info": {
          "name": "~name~",
          "description": "~desc~",
-         "icon" : "file(~PNG~)"
+         "icon" : "file(~iname~.png)"
       },
       "stonehearth:material" : {
          "tags" : "short melee_weapon crafted"

@@ -1,0 +1,12 @@
+﻿TODO
+
+Recipes
+	Add Tab
+	Add Gui
+		get list of craftable items from ManifestJson manifest;
+		get list of crafters from config.json
+		add "add crafter" button
+		//Eventually get crafters from stonehearth.smod
+
+Open and Save Mod data
+	//Evantually import .smods?? maybe??
