@@ -19,3 +19,5 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.Form1
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.Properties.Resources.resources
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.csproj.GenerateResource.Cache
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Weapon\weapon_iconic.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Newtonsoft.Json.xml

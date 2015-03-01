@@ -58,17 +58,18 @@
             this.btn_recipe = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_mod_name = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txt_api_version = new System.Windows.Forms.TextBox();
             this.newModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportsmodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_mod_name = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_api_version = new System.Windows.Forms.TextBox();
+            this.exportFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tab_armor.SuspendLayout();
             this.tab_crop.SuspendLayout();
@@ -414,10 +415,35 @@
             this.newModToolStripMenuItem,
             this.loadModToolStripMenuItem,
             this.saveModToolStripMenuItem,
-            this.exportsmodToolStripMenuItem});
+            this.exportsmodToolStripMenuItem,
+            this.exportFolderToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "File";
+            // 
+            // newModToolStripMenuItem
+            // 
+            this.newModToolStripMenuItem.Name = "newModToolStripMenuItem";
+            this.newModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newModToolStripMenuItem.Text = "New Mod";
+            // 
+            // loadModToolStripMenuItem
+            // 
+            this.loadModToolStripMenuItem.Name = "loadModToolStripMenuItem";
+            this.loadModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadModToolStripMenuItem.Text = "Load .shmm";
+            // 
+            // saveModToolStripMenuItem
+            // 
+            this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
+            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveModToolStripMenuItem.Text = "Save .shmm";
+            // 
+            // exportsmodToolStripMenuItem
+            // 
+            this.exportsmodToolStripMenuItem.Name = "exportsmodToolStripMenuItem";
+            this.exportsmodToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportsmodToolStripMenuItem.Text = "Export .smod";
             // 
             // editToolStripMenuItem
             // 
@@ -427,6 +453,18 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // modManagerToolStripMenuItem
+            // 
+            this.modManagerToolStripMenuItem.Name = "modManagerToolStripMenuItem";
+            this.modManagerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modManagerToolStripMenuItem.Text = "Mod Manager";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Text = "Options";
             // 
             // label1
             // 
@@ -463,41 +501,11 @@
             this.txt_api_version.TabIndex = 5;
             this.txt_api_version.Text = "1";
             // 
-            // newModToolStripMenuItem
+            // exportFolderToolStripMenuItem
             // 
-            this.newModToolStripMenuItem.Name = "newModToolStripMenuItem";
-            this.newModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newModToolStripMenuItem.Text = "New Mod";
-            // 
-            // loadModToolStripMenuItem
-            // 
-            this.loadModToolStripMenuItem.Name = "loadModToolStripMenuItem";
-            this.loadModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.loadModToolStripMenuItem.Text = "Load Mod";
-            // 
-            // saveModToolStripMenuItem
-            // 
-            this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
-            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveModToolStripMenuItem.Text = "Save Mod";
-            // 
-            // exportsmodToolStripMenuItem
-            // 
-            this.exportsmodToolStripMenuItem.Name = "exportsmodToolStripMenuItem";
-            this.exportsmodToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exportsmodToolStripMenuItem.Text = "Export .smod";
-            // 
-            // modManagerToolStripMenuItem
-            // 
-            this.modManagerToolStripMenuItem.Name = "modManagerToolStripMenuItem";
-            this.modManagerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.modManagerToolStripMenuItem.Text = "Mod Manager";
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.optionsToolStripMenuItem.Text = "Options";
+            this.exportFolderToolStripMenuItem.Name = "exportFolderToolStripMenuItem";
+            this.exportFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportFolderToolStripMenuItem.Text = "Export Folder";
             // 
             // Form1
             // 
@@ -575,6 +583,7 @@
         private System.Windows.Forms.ToolStripMenuItem exportsmodToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportFolderToolStripMenuItem;
     }
 }
 

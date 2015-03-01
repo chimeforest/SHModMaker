@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -161,6 +162,7 @@ namespace SHModMaker
 
             //Build MOD .. remove this later
             mod.BuildMod(localPath + "\\");
+            mod.SaveMod(localPath + "\\");
         }
 
         private void btn_weap_QBBrowse_Click(object sender, EventArgs e)
@@ -539,7 +541,11 @@ namespace SHModMaker
             //write mod to .smod
         }
 
-        public void SaveMod(String path) { }
+        public void SaveMod(String path)
+        {
+            string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+            System.IO.File.WriteAllText(path + name + ".shmm",json,Encoding.ASCII);
+        }
         public void LoadMod(String path) { }
     }
 }
