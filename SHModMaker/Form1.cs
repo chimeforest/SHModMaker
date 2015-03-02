@@ -69,17 +69,24 @@ namespace SHModMaker
 
         private void btn_weapon_Click(object sender, EventArgs e)
         {
-            String iname = utils.LowerNoSpaces(txt_weap_name.Text);
+            //String iname = utils.LowerNoSpaces(txt_weap_name.Text);
             //String localPath = System.IO.Directory.GetCurrentDirectory();
 
-            currentWeapon = new Weapon(txt_weap_name.Text, txt_weap_desc.Text, (int)nud_weap_ilevel.Value, (int)nud_weap_damage.Value, (float)nud_weap_reach.Value);
+            //currentWeapon = new Weapon(txt_weap_name.Text, txt_weap_desc.Text, (int)nud_weap_ilevel.Value, (int)nud_weap_damage.Value, (float)nud_weap_reach.Value);
 
             //Add weapon to MOD
-            mod.AddWeapon(currentWeapon);
+            if (currentWeapon.name != "")
+            {
+                mod.AddWeapon(currentWeapon);
+                tabcontrol.SelectedIndex = 0;
+                lbl_status.Text = "Weapon " + currentWeapon.name + " has been added/updated.";
+            }
+            else
+            {
+                lbl_status.Text = "Weapon has no name! Could not add/update weapon.";
+            }
 
-            tabcontrol.SelectedIndex = 0;
-
-            lbl_status.Text = "Weapon " + currentWeapon.name + " has been added/updated.";
+            
         }
 
         private void txt_KeyPress_NoSpecChar(object sender, KeyPressEventArgs e)
@@ -301,6 +308,16 @@ namespace SHModMaker
                 lbl_status.Text = "CAN NOT EXPORT! MOD HAS NO NAME!!";
             }
         }
+
+        private void txt_weap_changed(object sender, EventArgs e)
+        {
+            currentWeapon.name = txt_weap_name.Text;
+            currentWeapon.iname = utils.LowerNoSpaces(currentWeapon.name);
+            currentWeapon.desc = txt_weap_desc.Text;
+            currentWeapon.ilevel = (int)nud_weap_ilevel.Value;
+            currentWeapon.damage = (int)nud_weap_damage.Value;
+            currentWeapon.reach = (float)nud_weap_reach.Value;
+        }
     }
 
     public class utils
@@ -360,7 +377,7 @@ namespace SHModMaker
         public ManifestJSON()
         {
             name = "";
-            apiVersion = "";
+            apiVersion = "1";
         }
         public ManifestJSON(String n, String v)
         {
@@ -477,11 +494,11 @@ namespace SHModMaker
         public String custom3;
 
         public Weapon()
-            : this("", "", 0, 0, 0.0f, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+            : this("", "", 0, 0, 0.0f, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
         { }
 
         public Weapon(String nam, String des, int ilvl, int dam, float rea)
-            : this(nam, des, ilvl, dam, rea, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+            : this(nam, des, ilvl, dam, rea, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
         { }
 
         public Weapon(String nam, String des, int ilvl, int dam, float rea, Byte[] q, Byte[] qi, Byte[] p, Byte[] qbIC, Byte[] qbiIC)

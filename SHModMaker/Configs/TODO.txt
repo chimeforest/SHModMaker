@@ -4,9 +4,8 @@
 when HAL gives me the QBthumbnail library add it to the qb/png selectors
 
 
-CHECK WEAPON BEFORE SAVING AND SHOW ERRORS IN lbl_status
-
 Add custom txtfields
+
 
 Recipes
 	Add Tab
@@ -15,6 +14,7 @@ Recipes
 		get list of crafters from config.json
 		add "add crafter" button
 		//Eventually get crafters from stonehearth.smod
+
 
 Open and Save Mod data
 

@@ -24,3 +24,4 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Newtonsoft.Json.
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Configs\blank.png
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Ionic.Zip.dll
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Ionic.Zip.xml
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Configs\blank.qb

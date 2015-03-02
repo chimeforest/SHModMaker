@@ -68,7 +68,6 @@
             this.lst_weap = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pic_weapon = new System.Windows.Forms.PictureBox();
@@ -284,12 +283,8 @@
             0});
             this.nud_weap_ilevel.Name = "nud_weap_ilevel";
             this.nud_weap_ilevel.Size = new System.Drawing.Size(57, 20);
-            this.nud_weap_ilevel.TabIndex = 22;
-            this.nud_weap_ilevel.Value = new decimal(new int[] {
-            9001,
-            0,
-            0,
-            0});
+            this.nud_weap_ilevel.TabIndex = 15;
+            this.nud_weap_ilevel.ValueChanged += new System.EventHandler(this.txt_weap_changed);
             // 
             // nud_weap_reach
             // 
@@ -298,11 +293,7 @@
             this.nud_weap_reach.Name = "nud_weap_reach";
             this.nud_weap_reach.Size = new System.Drawing.Size(57, 20);
             this.nud_weap_reach.TabIndex = 21;
-            this.nud_weap_reach.Value = new decimal(new int[] {
-            25,
-            0,
-            0,
-            65536});
+            this.nud_weap_reach.ValueChanged += new System.EventHandler(this.txt_weap_changed);
             // 
             // nud_weap_damage
             // 
@@ -315,11 +306,7 @@
             this.nud_weap_damage.Name = "nud_weap_damage";
             this.nud_weap_damage.Size = new System.Drawing.Size(57, 20);
             this.nud_weap_damage.TabIndex = 20;
-            this.nud_weap_damage.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
+            this.nud_weap_damage.ValueChanged += new System.EventHandler(this.txt_weap_changed);
             // 
             // label10
             // 
@@ -354,7 +341,7 @@
             this.txt_weap_desc.Name = "txt_weap_desc";
             this.txt_weap_desc.Size = new System.Drawing.Size(261, 20);
             this.txt_weap_desc.TabIndex = 14;
-            this.txt_weap_desc.Text = "THIS SWORD IS THE MOST EPIC SWORD EVAR!!";
+            this.txt_weap_desc.TextChanged += new System.EventHandler(this.txt_weap_changed);
             // 
             // txt_weap_png
             // 
@@ -389,7 +376,7 @@
             this.txt_weap_name.Name = "txt_weap_name";
             this.txt_weap_name.Size = new System.Drawing.Size(123, 20);
             this.txt_weap_name.TabIndex = 2;
-            this.txt_weap_name.Text = "SWORD OF AWESOME";
+            this.txt_weap_name.TextChanged += new System.EventHandler(this.txt_weap_changed);
             this.txt_weap_name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress_NoSpecChar);
             // 
             // label7
@@ -435,7 +422,7 @@
             this.btn_weapon.Location = new System.Drawing.Point(6, 295);
             this.btn_weapon.Name = "btn_weapon";
             this.btn_weapon.Size = new System.Drawing.Size(475, 23);
-            this.btn_weapon.TabIndex = 0;
+            this.btn_weapon.TabIndex = 50;
             this.btn_weapon.Text = "Save Weapon";
             this.btn_weapon.UseVisualStyleBackColor = true;
             this.btn_weapon.Click += new System.EventHandler(this.btn_weapon_Click);
@@ -485,11 +472,10 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
-            this.copyToolStripMenuItem,
             this.editToolStripMenuItem1,
             this.deleteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 70);
             // 
             // newToolStripMenuItem
             // 
@@ -497,12 +483,6 @@
             this.newToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
             // 
             // editToolStripMenuItem1
             // 
@@ -703,7 +683,6 @@
         private System.Windows.Forms.TabControl tabcontrol;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsModToolStripMenuItem;
