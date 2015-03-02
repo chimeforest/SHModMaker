@@ -1,0 +1,10 @@
+{
+	"info" : {
+		"name" : "MOD_OF_AWESOME",
+		"version" : 1
+	},
+
+	"aliases" : {
+		"weapon:sword_of_awesome" : "file(entities/weapons/sword_of_awesome)"
+	}
+}

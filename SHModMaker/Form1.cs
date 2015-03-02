@@ -17,10 +17,13 @@ namespace SHModMaker
     {
         public static String fileDialogPath = "c:\\";
         public static MOD mod = new MOD();
+        public static String localPath = System.IO.Directory.GetCurrentDirectory();
+        public static Weapon currentWeapon = new Weapon();
+        public static String SHMMPath = "";
         public Form1()
         {
             InitializeComponent();
-            tabControl1.DrawItem += new DrawItemEventHandler(tabControl1_DrawItem);
+            tabcontrol.DrawItem += new DrawItemEventHandler(tabControl1_DrawItem);
         }
         private void tabControl1_DrawItem(Object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
@@ -28,10 +31,10 @@ namespace SHModMaker
             Brush _textBrush;
 
             // Get the item from the collection.
-            TabPage _tabPage = tabControl1.TabPages[e.Index];
+            TabPage _tabPage = tabcontrol.TabPages[e.Index];
 
             // Get the real bounds for the tab rectangle.
-            Rectangle _tabBounds = tabControl1.GetTabRect(e.Index);
+            Rectangle _tabBounds = tabcontrol.GetTabRect(e.Index);
 
             if (e.State == DrawItemState.Selected)
             {
@@ -42,6 +45,7 @@ namespace SHModMaker
             }
             else
             {
+                
                 _textBrush = new System.Drawing.SolidBrush(e.ForeColor);
                 e.DrawBackground();
             }
@@ -59,125 +63,25 @@ namespace SHModMaker
         private void Form1_Load(object sender, EventArgs e)
         {
             mod.manifest = new ManifestJSON();
+            lbl_status.Text = "Welcome to the Stonehearth Mod Maker by Chimeforest";
         }
 
         private void btn_weapon_Click(object sender, EventArgs e)
         {
             String iname = utils.LowerNoSpaces(txt_weap_name.Text);
-            string localPath = System.IO.Directory.GetCurrentDirectory();
+            //String localPath = System.IO.Directory.GetCurrentDirectory();
 
-            String[] filesAll;
-            List<String[]> filesJsonLua = new List<string[]>();
-
-            Weapon weapon = new Weapon(txt_weap_name.Text, txt_weap_desc.Text, (int)nud_weap_ilevel.Value, (int)nud_weap_damage.Value, (float)nud_weap_reach.Value);
-
-            //Get ByteArrays from QBs and PNG
-            if (System.IO.File.Exists(txt_weap_qb.Text))
-            {
-                weapon.qb = File.ReadAllBytes(txt_weap_qb.Text);
-            }
-            else { Console.WriteLine(txt_weap_qb.Text + " Does not exsist"); }
-            if (System.IO.File.Exists(txt_weap_qbi.Text))
-            {
-                weapon.qbi = File.ReadAllBytes(txt_weap_qbi.Text);
-            }
-            else { Console.WriteLine(txt_weap_qbi.Text + " Does not exsist"); }
-            if (System.IO.File.Exists(txt_weap_png.Text))
-            {
-                weapon.png = File.ReadAllBytes(txt_weap_png.Text);
-            }
-            else { Console.WriteLine(txt_weap_png.Text + " Does not exsist"); }
-
-
-            //Build parse references
-            //including locations of files
-            //List<String[]> refList = new List<string[]>();
-            //refList.Add(new String[] { "name", txt_weap_name.Text });
-            //refList.Add(new String[] { "iname", iname });
-            //refList.Add(new String[] { "desc", txt_weap_desc.Text });
-            //refList.Add(new String[] { "ilevel", nud_weap_ilevel.Value.ToString() });
-            //refList.Add(new String[] { "damage", nud_weap_damage.Value.ToString() });
-            //refList.Add(new String[] { "reach", nud_weap_reach.Value.ToString() });
-
-            //Open config
-
-            //Get JSONs and LUA files
-            //filesAll = System.IO.Directory.GetFiles(localPath + "\\JSONs\\Weapon\\");
-            //foreach (String str in filesAll)
-            //{
-            //    if (str.EndsWith(".json") || str.EndsWith(".lua") || str.EndsWith(".luac"))
-            //    {
-            //        //Parse files
-            //        System.IO.StreamReader filepath = new System.IO.StreamReader(str);
-            //        filesJsonLua.Add(new String[] { System.IO.Path.GetFileName(str), utils.Parse(filepath.ReadToEnd(), refList) });
-            //        filepath.Close();// But now I don't know which files are which =/ FIX
-            //    }
-            //}
-
-            //Make folder
-            //if (!System.IO.Directory.Exists(localPath + "\\" + txt_mod_name.Text + "\\entities\\weapons\\" + iname))
-            //{
-            //    System.IO.Directory.CreateDirectory(localPath + "\\" + txt_mod_name.Text + "\\entities\\weapons\\" + iname);
-            //    Console.WriteLine(localPath + "\\" + txt_mod_name.Text + "\\entities\\weapons\\" + iname);
-            //}
-
-            ////Copy QBs & PNG
-            //if (System.IO.File.Exists(txt_weap_qb.Text))
-            //{
-            //    System.IO.File.Copy(txt_weap_qb.Text, localPath + "\\" + txt_mod_name.Text + "\\entities\\weapons\\" + iname + "\\" + iname + ".qb", true);
-            //}
-            //else { Console.WriteLine(txt_weap_qb.Text + " Does not exsist"); }
-            //if (System.IO.File.Exists(txt_weap_qbi.Text))
-            //{
-            //    System.IO.File.Copy(txt_weap_qbi.Text, localPath + "\\" + txt_mod_name.Text + "\\entities\\weapons\\" + iname + "\\" + iname + "_iconic.qb", true);
-            //}
-            //else { Console.WriteLine(txt_weap_qbi.Text + " Does not exsist"); }
-            //if (System.IO.File.Exists(txt_weap_png.Text))
-            //{
-            //    System.IO.File.Copy(txt_weap_png.Text, localPath + "\\" + txt_mod_name.Text + "\\entities\\weapons\\" + iname + "\\" + iname + ".png", true);
-            //}
-            //else { Console.WriteLine(txt_weap_png.Text + " Does not exsist"); }
-
-            ////Save JSON and LUA Files
-            //foreach (String[] str in filesJsonLua)
-            //{
-            //    String name = str[0];
-            //    if (name.ToLower().Contains("weapon"))
-            //    {
-            //        name = name.ToLower().Replace("weapon", iname);
-            //    }
-            //    System.IO.File.WriteAllText(localPath + "\\" + txt_mod_name.Text + "\\entities\\weapons\\" + iname + "\\" + name, str[1], Encoding.ASCII);
-            //}
-
-
-            //Update Manifest
-            mod.name = txt_mod_name.Text;
-            mod.manifest.version = txt_api_version.Text;
+            currentWeapon = new Weapon(txt_weap_name.Text, txt_weap_desc.Text, (int)nud_weap_ilevel.Value, (int)nud_weap_damage.Value, (float)nud_weap_reach.Value);
 
             //Add weapon to MOD
-            mod.AddWeapon(weapon);
-            //mod.manifest.AddAlias("weapon:" + iname, "file(entities/weapons/" + iname + ")");
-            //Save Manifest
-            //System.IO.File.WriteAllText(localPath + "\\" + txt_mod_name.Text + "\\" + "manifest.json", mod.manifest.Get(), Encoding.ASCII);
+            mod.AddWeapon(currentWeapon);
 
-            //Build MOD .. remove this later
-            mod.BuildMod(localPath + "\\");
-            mod.SaveMod(localPath + "\\");
-        }
+            tabcontrol.SelectedIndex = 0;
 
-        private void btn_weap_QBBrowse_Click(object sender, EventArgs e)
-        {
-            txt_weap_qb.Text = utils.getDialogPath("qb", fileDialogPath);
-        }
-
-        private void btn_weap_QBIBrowse_Click(object sender, EventArgs e)
-        {
-            txt_weap_qbi.Text = utils.getDialogPath("qb", fileDialogPath);
-        }
-
-        private void btn_weap_PNGBrowse_Click(object sender, EventArgs e)
-        {
-            txt_weap_png.Text = utils.getDialogPath("png", fileDialogPath);
+            lbl_status.Text = "Weapon " + currentWeapon.name + " has been added/updated.";
+            //Build MOD .. remove this later FIX
+            //mod.BuildMod(localPath + "\\");
+            //mod.SaveMod(localPath + "\\" + mod.name +"\\" + mod.name + ".shmm");
         }
 
         private void txt_KeyPress_NoSpecChar(object sender, KeyPressEventArgs e)
@@ -185,7 +89,163 @@ namespace SHModMaker
             e.Handled = utils.NoSpecChar(e);
         }
 
-        
+        private void saveModToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mod.SaveMod(SHMMPath);
+            lbl_status.Text = mod.name + " saved to: " + SHMMPath;
+        }
+        private void saveAsModToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                mod.SaveMod(saveFileDialog1.FileName);
+                SHMMPath = openFileDialogSHMM.FileName;
+                lbl_status.Text = mod.name + " saved to: " + SHMMPath;
+                //Console.WriteLine(mod.name + " saved to: " + openFileDialog1.FileName);
+            }
+        }
+        private void loadModToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogSHMM.ShowDialog() == DialogResult.OK)
+            {
+                mod = mod.LoadMod(openFileDialogSHMM.FileName);
+                SHMMPath = openFileDialogSHMM.FileName;
+                lbl_status.Text = mod.name + " loaded from: " + SHMMPath;
+                //Console.WriteLine(mod.name + " loaded from: " + openFileDialog1.FileName);
+                updateMODtab();
+            }
+        }
+        private void newModToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mod = new MOD();
+            lbl_status.Text = "Blank mod established.";
+            updateMODtab();
+        }
+
+        private void updateMODtab()
+        {
+            //update mod/manifest info
+            txt_mod_name.Text = mod.name;
+            txt_api_version.Text = mod.manifest.apiVersion;
+
+            //update weapons list
+            lst_weap.Items.Clear();
+            foreach (Weapon weap in mod.weapons)
+            {
+                lst_weap.Items.Add(weap.name);
+            }
+        }
+
+        private void tab_MOD_Enter(object sender, EventArgs e)
+        {
+            updateMODtab();
+        }
+
+        private void btn_edit_weapon_Click(object sender, EventArgs e)
+        {
+            tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
+        }
+
+        private void txt_mod_name_TextChanged(object sender, EventArgs e)
+        {
+            mod.name = txt_mod_name.Text;
+            mod.manifest.name = txt_mod_name.Text;
+        }
+
+        private void txt_api_version_TextChanged(object sender, EventArgs e)
+        {
+            mod.manifest.apiVersion = txt_api_version.Text;
+        }
+
+        private void listBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            lst_weap.SelectedIndex = lst_weap.IndexFromPoint(e.X, e.Y);
+        }
+
+        private void tab_weapon_Enter(object sender, EventArgs e)
+        {
+            txt_weap_name.Text = currentWeapon.name;
+            txt_weap_desc.Text = currentWeapon.desc;
+            nud_weap_ilevel.Value = currentWeapon.ilevel;
+            nud_weap_damage.Value = currentWeapon.damage;
+            nud_weap_reach.Value = (decimal)currentWeapon.reach;
+
+            pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
+            pic_weap_qb.Refresh();
+
+            pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
+            pic_weap_qbi.Refresh();
+
+            pic_weap_png.Image = Image.FromStream(new MemoryStream(currentWeapon.png));
+            pic_weap_png.Refresh();
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            currentWeapon = new Weapon();
+            tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
+        }
+
+        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (Weapon weap in mod.weapons)
+            {
+                if (weap.name == lst_weap.SelectedItem.ToString())
+                {
+                    currentWeapon = weap;
+                    break;
+                }
+            }
+            tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
+        }
+
+        private void lst_weap_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lst_weap.SelectedItem != null)
+            {
+                foreach (Weapon weap in mod.weapons)
+                {
+                    if (weap.name == lst_weap.SelectedItem.ToString())
+                    {
+                        pic_weapon.Image = Image.FromStream(new MemoryStream(weap.png));
+                        pic_weapon.Refresh();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pic_weapon.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
+            }
+        }
+
+        private void pic_weap_qb_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentWeapon.qb = File.ReadAllBytes(openFileDialogQB.FileName);
+                //pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
+                //pic_weap_qb.Refresh();
+            }
+        }
+        private void pic_weap_qbi_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentWeapon.qbi = File.ReadAllBytes(openFileDialogQB.FileName);
+                //pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
+                //pic_weap_qbi.Refresh();
+            }
+        }
+        private void pic_weap_png_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogPNG.ShowDialog() == DialogResult.OK)
+            {
+                currentWeapon.png = File.ReadAllBytes(openFileDialogPNG.FileName);
+                pic_weap_png.Image = Image.FromStream(new MemoryStream(currentWeapon.png));
+                pic_weap_png.Refresh();
+            }
+        }
     }
 
     public class utils
@@ -216,28 +276,6 @@ namespace SHModMaker
             return newLine;
         }
 
-        public static String getDialogPath(String fileType)
-        {
-            return getDialogPath(fileType, "c:\\");
-        }
-        public static String getDialogPath(String fileType, String dir)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.InitialDirectory = dir;
-            openFileDialog1.Filter = fileType + " files(*." + fileType + ")|*." + fileType + "|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                Form1.fileDialogPath = openFileDialog1.FileName;
-                return openFileDialog1.FileName;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
         public static bool NoSpecChar(KeyPressEventArgs e)
         {
             bool b = false;
@@ -256,28 +294,23 @@ namespace SHModMaker
             newStr = newStr.ToLower();
             return newStr;
         }
-
-        public static void Debug()
-        {
-
-        }
     }
 
     public class ManifestJSON
     {
         public String name;
-        public String version;
+        public String apiVersion;
         public List<String[]> aliases = new List<string[]>();
 
         public ManifestJSON()
         {
             name = "";
-            version = "";
+            apiVersion = "";
         }
         public ManifestJSON(String n, String v)
         {
             name = n;
-            version = v;
+            apiVersion = v;
         }
 
         public String Get()
@@ -285,7 +318,7 @@ namespace SHModMaker
             String maniFile = "";
 
             //Add info section
-            maniFile = "{\n\t\"info\" : {\n\t\t\"name\" : \"" + name + "\",\n\t\t\"version\" : " + version + "\n\t}";
+            maniFile = "{\n\t\"info\" : {\n\t\t\"name\" : \"" + name + "\",\n\t\t\"version\" : " + apiVersion + "\n\t}";
 
             //Add aliases
             if (aliases.Count != 0)
@@ -377,20 +410,26 @@ namespace SHModMaker
         public int ilevel;
         public int damage;
         public float reach;
+
         public byte[] qb;
         public byte[] qbi;
         public byte[] png;
+        public byte[] qbICON;
+        public byte[] qbiICON;
+
         public String custom1;
         public String custom2;
         public String custom3;
 
         public Weapon()
-            : this("", "", 0, 0, 0.0f, new Byte[1], new Byte[1], new Byte[1]){ }
+            : this("", "", 0, 0, 0.0f, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+        { }
 
         public Weapon(String nam, String des, int ilvl, int dam, float rea)
-            : this(nam, des, ilvl, dam, rea, new Byte[1], new Byte[1], new Byte[1]){ }
+            : this(nam, des, ilvl, dam, rea, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+        { }
 
-        public Weapon(String nam, String des, int ilvl, int dam, float rea, Byte[] q, Byte[] qi, Byte[] p)
+        public Weapon(String nam, String des, int ilvl, int dam, float rea, Byte[] q, Byte[] qi, Byte[] p, Byte[] qbIC, Byte[] qbiIC)
         {
             name = nam;
             iname = utils.LowerNoSpaces(nam);
@@ -401,6 +440,8 @@ namespace SHModMaker
             qb = q;
             qbi = qi;
             png = p;
+            qbICON = qbIC;
+            qbiICON = qbiIC;
             custom1 = "";
             custom2 = "";
             custom3 = "";
@@ -458,6 +499,7 @@ namespace SHModMaker
             System.IO.File.WriteAllBytes(modPath + "\\entities\\weapons\\" + iname + "\\" + iname + ".png", png);
         }
     }
+
     public class MOD
     {
         public String name;
@@ -469,6 +511,14 @@ namespace SHModMaker
         public MOD()
         {
             name = "";
+            manifest = new ManifestJSON();
+            crafters = new List<string>();
+            recipes = new List<Recipe>();
+            weapons = new List<Weapon>();
+        }
+        public MOD(string nam)
+        {
+            name = nam;
             manifest = new ManifestJSON();
             crafters = new List<string>();
             recipes = new List<Recipe>();
@@ -505,9 +555,7 @@ namespace SHModMaker
 
         public void BuildManifest()
         {
-            //Add mod name to manifest
             manifest.name = name;
-
             //Add weapons to manifest
             foreach (Weapon weap in weapons)
             {
@@ -541,12 +589,15 @@ namespace SHModMaker
             //write mod to .smod
         }
 
-        public void SaveMod(String path)
+        public void SaveMod(String filePath)
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            System.IO.File.WriteAllText(path + name + ".shmm",json,Encoding.ASCII);
+            System.IO.File.WriteAllText(filePath,json,Encoding.ASCII);
         }
-        public void LoadMod(String path) { }
+        public MOD LoadMod(String filePath)
+        {
+            return JsonConvert.DeserializeObject<MOD>(System.IO.File.ReadAllText(filePath));
+        }
     }
 }
 

@@ -1,5 +1,18 @@
 ﻿TODO
 
+export.smod	-> requires DotNetZip and .smod fileDialog
+export folder -> requires folderDialog
+
+when HAL gives me the QBthumbnail library add it to the qb/png selectors
+
+
+CHECK WEAPON BEFORE SAVING AND SHOW ERRORS IN lbl_status
+
+
+Streamline the open/save/browse dialogs so they all open to the same spot
+
+Add custom txtfields
+
 Recipes
 	Add Tab
 	Add Gui
@@ -9,4 +22,11 @@ Recipes
 		//Eventually get crafters from stonehearth.smod
 
 Open and Save Mod data
+
 	//Evantually import .smods?? maybe??
+	//eventually set qb setting and force qbs to comply.
+
+ADVANCED MODDING
+	//eventually let people add their own lua files.
+	//also add stuff to the manifest
+	//Let people make their own JSON/LUA templates
