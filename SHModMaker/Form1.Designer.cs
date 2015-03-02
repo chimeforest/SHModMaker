@@ -82,7 +82,6 @@
             this.lbl_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialogQB = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogPNG = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialogSMOD = new System.Windows.Forms.SaveFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1.SuspendLayout();
             this.tab_weapon.SuspendLayout();
@@ -622,10 +621,6 @@
             // 
             this.openFileDialogPNG.Filter = "PNG|*.png";
             // 
-            // saveFileDialogSMOD
-            // 
-            this.saveFileDialogSMOD.Filter = "SMOD|*.smod";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -719,7 +714,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lbl_status;
         private System.Windows.Forms.OpenFileDialog openFileDialogQB;
         private System.Windows.Forms.OpenFileDialog openFileDialogPNG;
-        private System.Windows.Forms.SaveFileDialog saveFileDialogSMOD;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

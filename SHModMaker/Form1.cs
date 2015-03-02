@@ -647,7 +647,7 @@ namespace SHModMaker
 
             using (ZipFile zip = new ZipFile())
             {
-                zip.AddDirectory(Form1.localPath + "\\" + name);
+                zip.AddDirectory(Form1.localPath + "\\" + name, name);
                 zip.Save(smodPath);
             }
 
