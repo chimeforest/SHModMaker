@@ -41,7 +41,7 @@
             this.modManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogSHMM = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialogSHMM = new System.Windows.Forms.SaveFileDialog();
             this.tab_weapon = new System.Windows.Forms.TabPage();
             this.pic_weap_png = new System.Windows.Forms.PictureBox();
             this.pic_weap_qbi = new System.Windows.Forms.PictureBox();
@@ -82,6 +82,8 @@
             this.lbl_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialogQB = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogPNG = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogSMOD = new System.Windows.Forms.SaveFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1.SuspendLayout();
             this.tab_weapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_weap_png)).BeginInit();
@@ -156,12 +158,14 @@
             this.exportsmodToolStripMenuItem.Name = "exportsmodToolStripMenuItem";
             this.exportsmodToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportsmodToolStripMenuItem.Text = "Export .smod";
+            this.exportsmodToolStripMenuItem.Click += new System.EventHandler(this.exportsmodToolStripMenuItem_Click);
             // 
             // exportFolderToolStripMenuItem
             // 
             this.exportFolderToolStripMenuItem.Name = "exportFolderToolStripMenuItem";
             this.exportFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportFolderToolStripMenuItem.Text = "Export Folder";
+            this.exportFolderToolStripMenuItem.Click += new System.EventHandler(this.exportFolderToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -188,9 +192,9 @@
             // 
             this.openFileDialogSHMM.Filter = "SHMM files|*.shmm";
             // 
-            // saveFileDialog1
+            // saveFileDialogSHMM
             // 
-            this.saveFileDialog1.Filter = "SHMM files|*.shmm";
+            this.saveFileDialogSHMM.Filter = "SHMM files|*.shmm";
             // 
             // tab_weapon
             // 
@@ -618,6 +622,10 @@
             // 
             this.openFileDialogPNG.Filter = "PNG|*.png";
             // 
+            // saveFileDialogSMOD
+            // 
+            this.saveFileDialogSMOD.Filter = "SMOD|*.smod";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -669,7 +677,7 @@
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportFolderToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialogSHMM;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogSHMM;
         private System.Windows.Forms.TabPage tab_weapon;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown nud_weap_ilevel;
@@ -711,6 +719,8 @@
         private System.Windows.Forms.ToolStripStatusLabel lbl_status;
         private System.Windows.Forms.OpenFileDialog openFileDialogQB;
         private System.Windows.Forms.OpenFileDialog openFileDialogPNG;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogSMOD;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

@@ -1,30 +1,30 @@
-﻿{
+{
    "mixins": "stonehearth:mixins:item_properties",
    "type": "entity",
    "components": {
        "model_variants": {
          "default" : {
             "models": [
-               "file(sword_of_awesome.qb)"
+               "file(~iname~.qb)"
             ]
          }
       },
       "stonehearth:entity_forms" : {
-         "iconic_form" : "file(sword_of_awesome_iconic.json)"
+         "iconic_form" : "file(~iname~_iconic.json)"
       },
       "stonehearth:equipment_piece" : {
          "slot" : "mainhand",
          "render_type" : "attach_to_bone",
          "postures" : [ "stonehearth:combat", "stonehearth:patrol" ],
-         "ilevel" : 9001,
+         "ilevel" : ~ilevel~,
          "roles" : "combat",
          "equip_effect" : "/stonehearth/data/effects/weapon_level_up"
       },
 
       "unit_info": {
-         "name": "SWORD OF AWESOME",
-         "description": "THIS SWORD IS THE MOST EPIC SWORD EVAR!!",
-         "icon" : "file(sword_of_awesome.png)"
+         "name": "~name~",
+         "description": "~desc~",
+         "icon" : "file(~iname~.png)"
       },
       "stonehearth:material" : {
          "tags" : "short melee_weapon"
@@ -32,8 +32,8 @@
    },
    "entity_data" : {
       "stonehearth:combat:weapon_data" : {
-         "base_damage" : 100,
-         "reach" : 2.5
+         "base_damage" : ~damage~,
+         "reach" : ~reach~
       },
       "stonehearth:combat:melee_attacks" : [
          {

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Ionic.Zip;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,9 +80,6 @@ namespace SHModMaker
             tabcontrol.SelectedIndex = 0;
 
             lbl_status.Text = "Weapon " + currentWeapon.name + " has been added/updated.";
-            //Build MOD .. remove this later FIX
-            //mod.BuildMod(localPath + "\\");
-            //mod.SaveMod(localPath + "\\" + mod.name +"\\" + mod.name + ".shmm");
         }
 
         private void txt_KeyPress_NoSpecChar(object sender, KeyPressEventArgs e)
@@ -91,18 +89,45 @@ namespace SHModMaker
 
         private void saveModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mod.SaveMod(SHMMPath);
-            lbl_status.Text = mod.name + " saved to: " + SHMMPath;
+            if (mod.name != "")
+            {
+                if (SHMMPath != "")
+                {
+                    mod.SaveMod(SHMMPath);
+                    lbl_status.Text = mod.name + " saved to: " + SHMMPath;
+                }
+                else
+                {
+                    if (saveFileDialogSHMM.ShowDialog() == DialogResult.OK)
+                    {
+                        mod.SaveMod(saveFileDialogSHMM.FileName);
+                        SHMMPath = openFileDialogSHMM.FileName;
+                        lbl_status.Text = mod.name + " saved to: " + SHMMPath;
+                    }
+                }
+            }
+            else
+            {
+                lbl_status.Text = "CAN NOT SAVE! MOD HAS NO NAME!!";
+            }
         }
         private void saveAsModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (mod.name != "")
             {
-                mod.SaveMod(saveFileDialog1.FileName);
-                SHMMPath = openFileDialogSHMM.FileName;
-                lbl_status.Text = mod.name + " saved to: " + SHMMPath;
-                //Console.WriteLine(mod.name + " saved to: " + openFileDialog1.FileName);
+                if (saveFileDialogSHMM.ShowDialog() == DialogResult.OK)
+                {
+                    mod.SaveMod(saveFileDialogSHMM.FileName);
+                    SHMMPath = openFileDialogSHMM.FileName;
+                    lbl_status.Text = mod.name + " saved to: " + SHMMPath;
+                    //Console.WriteLine(mod.name + " saved to: " + openFileDialog1.FileName);
+                }
             }
+            else
+            {
+                lbl_status.Text = "CAN NOT SAVE! MOD HAS NO NAME!!";
+            }
+            
         }
         private void loadModToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -244,6 +269,36 @@ namespace SHModMaker
                 currentWeapon.png = File.ReadAllBytes(openFileDialogPNG.FileName);
                 pic_weap_png.Image = Image.FromStream(new MemoryStream(currentWeapon.png));
                 pic_weap_png.Refresh();
+            }
+        }
+
+        private void exportsmodToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mod.name != "")
+            {
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    mod.SaveSMOD(folderBrowserDialog1.SelectedPath + "\\" + mod.name + ".smod");
+                }
+            }
+            else
+            {
+                lbl_status.Text = "CAN NOT EXPORT! MOD HAS NO NAME!!";
+            }
+        }
+
+        private void exportFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mod.name != "")
+            {
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    mod.BuildMod(folderBrowserDialog1.SelectedPath + "\\");
+                }
+            }
+            else
+            {
+                lbl_status.Text = "CAN NOT EXPORT! MOD HAS NO NAME!!";
             }
         }
     }
@@ -584,15 +639,25 @@ namespace SHModMaker
             //write manifest
             manifest.Write(modPath + name + "\\");
 
-            //???
+        }
 
-            //write mod to .smod
+        public void SaveSMOD(String smodPath)
+        {
+            BuildMod(Form1.localPath + "\\");
+
+            using (ZipFile zip = new ZipFile())
+            {
+                zip.AddDirectory(Form1.localPath + "\\" + name);
+                zip.Save(smodPath);
+            }
+
+            System.IO.Directory.Delete(Form1.localPath + "\\" + name, true);
         }
 
         public void SaveMod(String filePath)
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            System.IO.File.WriteAllText(filePath,json,Encoding.ASCII);
+            System.IO.File.WriteAllText(filePath, json, Encoding.ASCII);
         }
         public MOD LoadMod(String filePath)
         {

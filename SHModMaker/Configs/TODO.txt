@@ -1,15 +1,10 @@
 ﻿TODO
 
-export.smod	-> requires DotNetZip and .smod fileDialog
-export folder -> requires folderDialog
 
 when HAL gives me the QBthumbnail library add it to the qb/png selectors
 
 
 CHECK WEAPON BEFORE SAVING AND SHOW ERRORS IN lbl_status
-
-
-Streamline the open/save/browse dialogs so they all open to the same spot
 
 Add custom txtfields
 
