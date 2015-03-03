@@ -1,10 +1,12 @@
 ﻿using Ionic.Zip;
 using Newtonsoft.Json;
+using QbBreeze;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,7 @@ namespace SHModMaker
 
         //Config Variable
         public static CONFIG config = new CONFIG();//FIX change to LOADCONFIG after loadconfig method is written
+        public static bool canRenderQB = false;
 
         //Current Item variables
         public static MOD mod = new MOD();
@@ -75,6 +78,17 @@ namespace SHModMaker
             config = config.LOADCONFIG();
             mod.manifest = new ManifestJSON();
             lbl_status.Text = "Welcome to the Stonehearth Mod Maker by Chimeforest";
+
+            if (Breeze.Initialize())
+            {
+                // opengl is ready to go...
+                // simple way to return a thumbnail...
+                //using (Bitmap thumbnail = Breeze.GetThumbnail(@"C:\users\david\desktop\Templar.qb"))
+                //{
+                //    thumbnail.Save(@"C:\users\david\desktop\templar.png");
+                //}
+                canRenderQB = true;
+            }
 
         }
 
@@ -162,6 +176,7 @@ namespace SHModMaker
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 {
                     mod.SaveSMOD(folderBrowserDialog1.SelectedPath + "\\" + mod.name + ".smod");
+                    lbl_status.Text = mod.name + " exported to: " + folderBrowserDialog1.SelectedPath + "\\" + mod.name + ".smod";
                 }
             }
             else
@@ -176,6 +191,7 @@ namespace SHModMaker
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 {
                     mod.BuildMod(folderBrowserDialog1.SelectedPath + "\\");
+                    lbl_status.Text = mod.name + " exported to: " + folderBrowserDialog1.SelectedPath + "\\" + mod.name;
                 }
             }
             else
@@ -365,9 +381,19 @@ namespace SHModMaker
             if (openFileDialogQB.ShowDialog() == DialogResult.OK)
             {
                 currentWeapon.qb = File.ReadAllBytes(openFileDialogQB.FileName);
-                //currentWeapon.qbICON = HAL.thumbnailer(openFileDialogQB.FileName);
-                //pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
-                //pic_weap_qb.Refresh();
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentWeapon.qb))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentWeapon.qbICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
+                pic_weap_qb.Refresh();
             }
         }
         private void pic_weap_qbi_Click(object sender, EventArgs e)
@@ -375,9 +401,19 @@ namespace SHModMaker
             if (openFileDialogQB.ShowDialog() == DialogResult.OK)
             {
                 currentWeapon.qbi = File.ReadAllBytes(openFileDialogQB.FileName);
-                //currentWeapon.qbiICON = HAL.thumbnailer(openFileDialogQB.FileName);
-                //pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
-                //pic_weap_qbi.Refresh();
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentWeapon.qbi))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentWeapon.qbiICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
+                pic_weap_qbi.Refresh();
             }
         }
         private void pic_weap_png_Click(object sender, EventArgs e)
@@ -432,6 +468,8 @@ namespace SHModMaker
             //produces
             //ingredients
             //image
+            //FIX
+
         }
 
         private void chk_recipe_lockimg_CheckedChanged(object sender, EventArgs e)
