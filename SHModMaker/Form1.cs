@@ -16,11 +16,21 @@ namespace SHModMaker
 {
     public partial class Form1 : Form
     {
-        public static String fileDialogPath = "c:\\";
-        public static MOD mod = new MOD();
+        //Directory variables
         public static String localPath = System.IO.Directory.GetCurrentDirectory();
-        public static Weapon currentWeapon = new Weapon();
         public static String SHMMPath = "";
+
+        //Config Variable
+        public static CONFIG config = new CONFIG();//FIX change to LOADCONFIG after loadconfig method is written
+
+        //Current Item variables
+        public static MOD mod = new MOD();
+        public static Recipe currentRecipe = new Recipe();
+        public static Weapon currentWeapon = new Weapon();
+
+        private static String currentListBox = "";
+
+        //__________Form and FormLoad stuff__________
         public Form1()
         {
             InitializeComponent();
@@ -60,40 +70,28 @@ namespace SHModMaker
             _stringFlags.LineAlignment = StringAlignment.Center;
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
+            config = config.LOADCONFIG();
             mod.manifest = new ManifestJSON();
             lbl_status.Text = "Welcome to the Stonehearth Mod Maker by Chimeforest";
+
         }
 
-        private void btn_weapon_Click(object sender, EventArgs e)
-        {
-            //String iname = utils.LowerNoSpaces(txt_weap_name.Text);
-            //String localPath = System.IO.Directory.GetCurrentDirectory();
-
-            //currentWeapon = new Weapon(txt_weap_name.Text, txt_weap_desc.Text, (int)nud_weap_ilevel.Value, (int)nud_weap_damage.Value, (float)nud_weap_reach.Value);
-
-            //Add weapon to MOD
-            if (currentWeapon.name != "")
-            {
-                mod.AddWeapon(currentWeapon);
-                tabcontrol.SelectedIndex = 0;
-                lbl_status.Text = "Weapon " + currentWeapon.name + " has been added/updated.";
-            }
-            else
-            {
-                lbl_status.Text = "Weapon has no name! Could not add/update weapon.";
-            }
-
-            
-        }
-
+        //restricts characters for name fields.
         private void txt_KeyPress_NoSpecChar(object sender, KeyPressEventArgs e)
         {
             e.Handled = utils.NoSpecChar(e);
         }
 
+
+        //__________MAIN MENU ITEMS__________
+        private void newModToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mod = new MOD();
+            lbl_status.Text = "Blank mod established.";
+            updateMODtab();
+        }
         private void saveModToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mod.name != "")
@@ -145,20 +143,57 @@ namespace SHModMaker
                 lbl_status.Text = mod.name + " loaded from: " + SHMMPath;
                 //Console.WriteLine(mod.name + " loaded from: " + openFileDialog1.FileName);
                 updateMODtab();
+
+                //if weaponlist != empty then set selected index to 0.. same for recipe
+                if (lst_weap.Items.Count > 0)
+                {
+                    lst_weap.SelectedIndex = 0;
+                }
+                if (lst_recipe.Items.Count > 0)
+                {
+                    lst_recipe.SelectedIndex = 0;
+                }
             }
         }
-        private void newModToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportsmodToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mod = new MOD();
-            lbl_status.Text = "Blank mod established.";
-            updateMODtab();
+            if (mod.name != "")
+            {
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    mod.SaveSMOD(folderBrowserDialog1.SelectedPath + "\\" + mod.name + ".smod");
+                }
+            }
+            else
+            {
+                lbl_status.Text = "CAN NOT EXPORT! MOD HAS NO NAME!!";
+            }
+        }
+        private void exportFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mod.name != "")
+            {
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    mod.BuildMod(folderBrowserDialog1.SelectedPath + "\\");
+                }
+            }
+            else
+            {
+                lbl_status.Text = "CAN NOT EXPORT! MOD HAS NO NAME!!";
+            }
         }
 
+        //__________MOD TAB__________
+        private void tab_MOD_Enter(object sender, EventArgs e)
+        {
+            updateMODtab();
+        }
         private void updateMODtab()
         {
             //update mod/manifest info
             txt_mod_name.Text = mod.name;
-            txt_api_version.Text = mod.manifest.apiVersion;
+            txt_api_version.Text = mod.apiVersion;
 
             //update weapons list
             lst_weap.Items.Clear();
@@ -166,34 +201,147 @@ namespace SHModMaker
             {
                 lst_weap.Items.Add(weap.name);
             }
+            //update recipe list
+            lst_recipe.Items.Clear();
+            foreach (Recipe recp in mod.recipes)
+            {
+                lst_recipe.Items.Add(recp.name);
+            }
         }
-
-        private void tab_MOD_Enter(object sender, EventArgs e)
-        {
-            updateMODtab();
-        }
-
-        private void btn_edit_weapon_Click(object sender, EventArgs e)
-        {
-            tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
-        }
-
         private void txt_mod_name_TextChanged(object sender, EventArgs e)
         {
             mod.name = txt_mod_name.Text;
             mod.manifest.name = txt_mod_name.Text;
         }
-
         private void txt_api_version_TextChanged(object sender, EventArgs e)
         {
-            mod.manifest.apiVersion = txt_api_version.Text;
+            mod.apiVersion = txt_api_version.Text;
         }
 
-        private void listBox1_MouseDown(object sender, MouseEventArgs e)
+        //lst_weapon stuff
+        private void lst_weap_MouseDown(object sender, MouseEventArgs e)
         {
             lst_weap.SelectedIndex = lst_weap.IndexFromPoint(e.X, e.Y);
+            currentListBox = "weapons";
+        }
+        private void lst_weap_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lst_weap.SelectedItem != null)
+            {
+                foreach (Weapon weap in mod.weapons)
+                {
+                    if (weap.name == lst_weap.SelectedItem.ToString())
+                    {
+                        pic_mod_weapon.Image = Image.FromStream(new MemoryStream(weap.png));
+                        pic_mod_weapon.Refresh();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pic_mod_weapon.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
+            }
         }
 
+        //lst_recipe stuff
+        private void lst_recipe_MouseDown(object sender, MouseEventArgs e)
+        {
+            lst_recipe.SelectedIndex = lst_recipe.IndexFromPoint(e.X, e.Y);
+            currentListBox = "recipes";
+        }
+        private void lst_recipe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lst_recipe.SelectedItem != null)
+            {
+                foreach (Recipe recp in mod.recipes)
+                {
+                    if (recp.name == lst_recipe.SelectedItem.ToString())
+                    {
+                        //FIX : figure out how to do recipe icon...
+                        //pic_recipe.Image = Image.FromStream(new MemoryStream(recp.png));
+                        //pic_recipe.Refresh();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pic_mod_recipe.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
+            }
+        }
+
+        //context menu for listboxs
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (currentListBox == "weapons")
+            {
+                currentWeapon = new Weapon();
+                tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
+            }
+            if (currentListBox == "recipes")
+            {
+                currentRecipe = new Recipe();
+                tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_recipe");
+            }
+            
+        }
+        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (currentListBox == "weapons")
+            {
+                foreach (Weapon weap in mod.weapons)
+                {
+                    if (weap.name == lst_weap.SelectedItem.ToString())
+                    {
+                        currentWeapon = weap;
+                        break;
+                    }
+                }
+                tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
+            }
+            if (currentListBox == "recipes")
+            {
+                foreach (Recipe recp in mod.recipes)
+                {
+                    if (recp.name == lst_recipe.SelectedItem.ToString())
+                    {
+                        currentRecipe = recp;
+                        break;
+                    }
+                }
+                tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_recipe");
+            }
+        }
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (currentListBox == "weapons")
+            {
+                foreach (Weapon weap in mod.weapons)
+                {
+                    if (weap.name == lst_weap.SelectedItem.ToString())
+                    {
+                        mod.weapons.Remove(weap);
+                        break;
+                    }
+                }
+                updateMODtab();
+            }
+            if (currentListBox == "recipes")
+            {
+                foreach (Recipe recp in mod.recipes)
+                {
+                    if (recp.name == lst_recipe.SelectedItem.ToString())
+                    {
+                        mod.recipes.Remove(recp);
+                        break;
+                    }
+                }
+                updateMODtab();
+            }
+        }
+
+        //__________Weapon Tab Stuff__________
         private void tab_weapon_Enter(object sender, EventArgs e)
         {
             txt_weap_name.Text = currentWeapon.name;
@@ -212,50 +360,12 @@ namespace SHModMaker
             pic_weap_png.Refresh();
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            currentWeapon = new Weapon();
-            tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
-        }
-
-        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            foreach (Weapon weap in mod.weapons)
-            {
-                if (weap.name == lst_weap.SelectedItem.ToString())
-                {
-                    currentWeapon = weap;
-                    break;
-                }
-            }
-            tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
-        }
-
-        private void lst_weap_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lst_weap.SelectedItem != null)
-            {
-                foreach (Weapon weap in mod.weapons)
-                {
-                    if (weap.name == lst_weap.SelectedItem.ToString())
-                    {
-                        pic_weapon.Image = Image.FromStream(new MemoryStream(weap.png));
-                        pic_weapon.Refresh();
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                pic_weapon.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
-            }
-        }
-
         private void pic_weap_qb_Click(object sender, EventArgs e)
         {
             if (openFileDialogQB.ShowDialog() == DialogResult.OK)
             {
                 currentWeapon.qb = File.ReadAllBytes(openFileDialogQB.FileName);
+                //currentWeapon.qbICON = HAL.thumbnailer(openFileDialogQB.FileName);
                 //pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
                 //pic_weap_qb.Refresh();
             }
@@ -265,6 +375,7 @@ namespace SHModMaker
             if (openFileDialogQB.ShowDialog() == DialogResult.OK)
             {
                 currentWeapon.qbi = File.ReadAllBytes(openFileDialogQB.FileName);
+                //currentWeapon.qbiICON = HAL.thumbnailer(openFileDialogQB.FileName);
                 //pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
                 //pic_weap_qbi.Refresh();
             }
@@ -278,37 +389,6 @@ namespace SHModMaker
                 pic_weap_png.Refresh();
             }
         }
-
-        private void exportsmodToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mod.name != "")
-            {
-                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    mod.SaveSMOD(folderBrowserDialog1.SelectedPath + "\\" + mod.name + ".smod");
-                }
-            }
-            else
-            {
-                lbl_status.Text = "CAN NOT EXPORT! MOD HAS NO NAME!!";
-            }
-        }
-
-        private void exportFolderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mod.name != "")
-            {
-                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    mod.BuildMod(folderBrowserDialog1.SelectedPath + "\\");
-                }
-            }
-            else
-            {
-                lbl_status.Text = "CAN NOT EXPORT! MOD HAS NO NAME!!";
-            }
-        }
-
         private void txt_weap_changed(object sender, EventArgs e)
         {
             currentWeapon.name = txt_weap_name.Text;
@@ -317,6 +397,51 @@ namespace SHModMaker
             currentWeapon.ilevel = (int)nud_weap_ilevel.Value;
             currentWeapon.damage = (int)nud_weap_damage.Value;
             currentWeapon.reach = (float)nud_weap_reach.Value;
+        }
+        private void btn_weapon_Click(object sender, EventArgs e)
+        {
+            //String iname = utils.LowerNoSpaces(txt_weap_name.Text);
+            //String localPath = System.IO.Directory.GetCurrentDirectory();
+
+            //currentWeapon = new Weapon(txt_weap_name.Text, txt_weap_desc.Text, (int)nud_weap_ilevel.Value, (int)nud_weap_damage.Value, (float)nud_weap_reach.Value);
+
+            //Add weapon to MOD
+            if (currentWeapon.name != "")
+            {
+                mod.AddWeapon(currentWeapon);
+                tabcontrol.SelectedIndex = 0;
+                lbl_status.Text = "Weapon " + currentWeapon.name + " has been added/updated.";
+            }
+            else
+            {
+                lbl_status.Text = "Weapon has no name! Could not add/update weapon.";
+            }
+
+
+        }
+
+        //__________Recipe Tab Stuff__________
+        private void tab_recipe_Enter(object sender, EventArgs e)
+        {
+            txt_recp_name.Text = currentRecipe.name;
+            txt_recp_desc.Text = currentRecipe.Desc;
+            txt_recp_flavor.Text = currentRecipe.Flavor;
+            nud_recipe_level.Value = currentRecipe.level;
+            nud_recipe_work.Value = currentRecipe.workTime;
+            //crafter
+            //produces
+            //ingredients
+            //image
+        }
+
+        private void chk_recipe_lockimg_CheckedChanged(object sender, EventArgs e)
+        {
+            pic_recipe.Enabled = !chk_recipe_lockimg.Checked;
+        }
+
+        private void pic_recipe_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
@@ -467,10 +592,59 @@ namespace SHModMaker
     public class Recipe
     {
         public String name;
+        public int workTime;
+        public int level;
+        public String crafter;
+        public String Desc;
+        public String Flavor;
+        public byte[] png;
+        public List<AmountOfItem> Ingredients;
+        public List<AmountOfItem> Produces;
 
         public Recipe()
         {
             name = "";
+            workTime = 2;
+            level = 0;
+            crafter = "";
+            Desc = "";
+            Flavor = "";
+            png = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+            Ingredients = new List<AmountOfItem>();
+            Produces = new List<AmountOfItem>();
+        }
+    }
+
+    public class Crafter
+    {
+        public String mod;
+        public String name;
+        public List<Recipe> recipes;//????
+    }
+
+    public class AmountOfItem
+    {
+        public String name;
+        public int amount;
+
+        AmountOfItem()
+        {
+            name = "";
+            amount = 1;
+        }
+        AmountOfItem(String nam, int amt)
+        {
+            name = nam;
+            amount = amt;
+        }
+
+        public String GetString()
+        {
+            return (amount.ToString() + "," + name);
+        }
+        public AmountOfItem FromString(String str)
+        {
+            return new AmountOfItem(str.Split(',')[1],int.Parse(str.Split(',')[1]));
         }
     }
 
@@ -494,7 +668,11 @@ namespace SHModMaker
         public String custom3;
 
         public Weapon()
-            : this("", "", 0, 0, 0.0f, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+            : this("", "", 0, 0, 0.0f, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), 
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), 
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), 
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), 
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
         { }
 
         public Weapon(String nam, String des, int ilvl, int dam, float rea)
@@ -575,6 +753,7 @@ namespace SHModMaker
     public class MOD
     {
         public String name;
+        public String apiVersion;
         public ManifestJSON manifest;
         public List<String> crafters;
         public List<Recipe> recipes;
@@ -583,6 +762,7 @@ namespace SHModMaker
         public MOD()
         {
             name = "";
+            apiVersion = "1";
             manifest = new ManifestJSON();
             crafters = new List<string>();
             recipes = new List<Recipe>();
@@ -591,6 +771,7 @@ namespace SHModMaker
         public MOD(string nam)
         {
             name = nam;
+            apiVersion = "1";
             manifest = new ManifestJSON();
             crafters = new List<string>();
             recipes = new List<Recipe>();
@@ -616,18 +797,13 @@ namespace SHModMaker
         }
         public void RemoveWeapon(Weapon weap)
         {
-            //Searches for a weapon, if it finds it, then it rmoves it from the list
-            RemoveWeapon(weap.name);
-        }
-        public void RemoveWeapon(String weapName)
-        {
-            //Searches for a weapon, if it finds it, then it rmoves it from the list
-            //FIX
+            weapons.Remove(weap);
         }
 
         public void BuildManifest()
         {
             manifest.name = name;
+            manifest.apiVersion = apiVersion;
             //Add weapons to manifest
             foreach (Weapon weap in weapons)
             {
@@ -635,7 +811,6 @@ namespace SHModMaker
             }
             //Add blah to maifest
         }
-
         public void BuildMod(String modPath)
         {
             BuildManifest();
@@ -657,7 +832,6 @@ namespace SHModMaker
             manifest.Write(modPath + name + "\\");
 
         }
-
         public void SaveSMOD(String smodPath)
         {
             BuildMod(Form1.localPath + "\\");
@@ -670,7 +844,6 @@ namespace SHModMaker
 
             System.IO.Directory.Delete(Form1.localPath + "\\" + name, true);
         }
-
         public void SaveMod(String filePath)
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
@@ -680,6 +853,32 @@ namespace SHModMaker
         {
             return JsonConvert.DeserializeObject<MOD>(System.IO.File.ReadAllText(filePath));
         }
+
+    }
+
+    public class CONFIG
+    {
+        public string SHsmodPath;
+
+        public CONFIG()
+        {
+            if (System.IO.Directory.Exists("C:\\Program Files (x86)"))
+            {
+                SHsmodPath = "C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod";
+            }
+            else
+            {
+                SHsmodPath = "C:\\Program Files\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod";
+            }
+        }
+        public void SAVECONFIG()
+        {
+            string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+            System.IO.File.WriteAllText(Form1.localPath + "\\Configs\\config.json", json, Encoding.ASCII);
+        }
+        public CONFIG LOADCONFIG()
+        {
+            return JsonConvert.DeserializeObject<CONFIG>(System.IO.File.ReadAllText(Form1.localPath + "\\Configs\\config.json"));
+        }
     }
 }
-

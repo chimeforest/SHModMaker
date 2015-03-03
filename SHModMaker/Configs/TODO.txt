@@ -1,19 +1,17 @@
 ﻿TODO
 
+Weapons
+	when HAL gives me the QBthumbnail library add it to the qb/png selectors
+	Add custom txtfields
 
-when HAL gives me the QBthumbnail library add it to the qb/png selectors
-
-
-Add custom txtfields
-
+Config
+	make config form
+	??put blank.png and blank.qb into config file as byte[]s??
 
 Recipes
-	Add Tab
-	Add Gui
-		get list of craftable items from ManifestJson manifest;
-		get list of crafters from config.json
-		add "add crafter" button
-		//Eventually get crafters from stonehearth.smod
+	get list of craftable items from MOD
+	make the add recipe button work
+	rethink recipe
 
 
 Open and Save Mod data
