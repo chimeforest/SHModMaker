@@ -38,6 +38,13 @@ namespace SHModMaker
                 if (str != "") { currentConfig.CommonMaterialTags.Add(str); }
             }
 
+            //add skip words
+            currentConfig.AliasSkipWords.Clear();
+            foreach (String str in txt_alias_skip_words.Lines)
+            {
+                if (str != "") { currentConfig.AliasSkipWords.Add(str); }
+            }
+
             //tell form1 that the config was just updated
             Form1.configJustUpdated = true;
 
@@ -83,6 +90,16 @@ namespace SHModMaker
                     txt_material_tags.AppendText("\n");
                 }
                 txt_material_tags.AppendText(str);
+            }
+
+            txt_alias_skip_words.Clear();
+            foreach (string str in currentConfig.AliasSkipWords)
+            {
+                if (txt_alias_skip_words.Text != "")
+                {
+                    txt_alias_skip_words.AppendText("\n");
+                }
+                txt_alias_skip_words.AppendText(str);
             }
         }
 

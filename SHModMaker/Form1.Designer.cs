@@ -220,7 +220,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.optionsToolStripMenuItem.Text = "Config";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
@@ -451,6 +451,7 @@
             this.lst_recipe.Name = "lst_recipe";
             this.lst_recipe.Size = new System.Drawing.Size(100, 95);
             this.lst_recipe.TabIndex = 6;
+            this.lst_recipe.SelectedIndexChanged += new System.EventHandler(this.lst_recipe_SelectedIndexChanged);
             this.lst_recipe.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_recipe_MouseDown);
             // 
             // contextMenuStrip1
@@ -631,7 +632,7 @@
             this.groupBox4.Location = new System.Drawing.Point(313, 85);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(166, 204);
-            this.groupBox4.TabIndex = 22;
+            this.groupBox4.TabIndex = 29;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Produces";
             // 
@@ -643,7 +644,8 @@
             this.cmb_recipe_prod.Location = new System.Drawing.Point(6, 19);
             this.cmb_recipe_prod.Name = "cmb_recipe_prod";
             this.cmb_recipe_prod.Size = new System.Drawing.Size(154, 21);
-            this.cmb_recipe_prod.TabIndex = 5;
+            this.cmb_recipe_prod.TabIndex = 30;
+            this.cmb_recipe_prod.SelectedIndexChanged += new System.EventHandler(this.cmb_recipe_prod_SelectedIndexChanged);
             // 
             // chk_recipe_lockimg
             // 
@@ -651,7 +653,7 @@
             this.chk_recipe_lockimg.Location = new System.Drawing.Point(38, 181);
             this.chk_recipe_lockimg.Name = "chk_recipe_lockimg";
             this.chk_recipe_lockimg.Size = new System.Drawing.Size(82, 17);
-            this.chk_recipe_lockimg.TabIndex = 17;
+            this.chk_recipe_lockimg.TabIndex = 35;
             this.chk_recipe_lockimg.Text = "Lock Image";
             this.chk_recipe_lockimg.UseVisualStyleBackColor = true;
             this.chk_recipe_lockimg.CheckedChanged += new System.EventHandler(this.chk_recipe_lockimg_CheckedChanged);
@@ -677,7 +679,7 @@
             this.groupBox3.Location = new System.Drawing.Point(9, 112);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(298, 177);
-            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabIndex = 25;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ingredients";
             // 
@@ -686,7 +688,7 @@
             this.btn_recipe_add_ingredient.Location = new System.Drawing.Point(253, 19);
             this.btn_recipe_add_ingredient.Name = "btn_recipe_add_ingredient";
             this.btn_recipe_add_ingredient.Size = new System.Drawing.Size(39, 23);
-            this.btn_recipe_add_ingredient.TabIndex = 22;
+            this.btn_recipe_add_ingredient.TabIndex = 28;
             this.btn_recipe_add_ingredient.Text = "Add";
             this.btn_recipe_add_ingredient.UseVisualStyleBackColor = true;
             this.btn_recipe_add_ingredient.Click += new System.EventHandler(this.btn_recipe_add_ingredient_Click);
@@ -701,7 +703,7 @@
             0});
             this.nud_recipe_ingredients.Name = "nud_recipe_ingredients";
             this.nud_recipe_ingredients.Size = new System.Drawing.Size(36, 20);
-            this.nud_recipe_ingredients.TabIndex = 21;
+            this.nud_recipe_ingredients.TabIndex = 27;
             this.nud_recipe_ingredients.Value = new decimal(new int[] {
             1,
             0,
@@ -721,7 +723,7 @@
             this.cmb_recipe_ingredients.Location = new System.Drawing.Point(6, 19);
             this.cmb_recipe_ingredients.Name = "cmb_recipe_ingredients";
             this.cmb_recipe_ingredients.Size = new System.Drawing.Size(199, 21);
-            this.cmb_recipe_ingredients.TabIndex = 20;
+            this.cmb_recipe_ingredients.TabIndex = 26;
             // 
             // txt_recp_ingr
             // 
@@ -729,7 +731,8 @@
             this.txt_recp_ingr.Multiline = true;
             this.txt_recp_ingr.Name = "txt_recp_ingr";
             this.txt_recp_ingr.Size = new System.Drawing.Size(286, 125);
-            this.txt_recp_ingr.TabIndex = 18;
+            this.txt_recp_ingr.TabIndex = 50;
+            this.txt_recp_ingr.TabStop = false;
             // 
             // label17
             // 
@@ -746,6 +749,7 @@
             this.txt_recp_flavor.Name = "txt_recp_flavor";
             this.txt_recp_flavor.Size = new System.Drawing.Size(429, 20);
             this.txt_recp_flavor.TabIndex = 15;
+            this.txt_recp_flavor.TextChanged += new System.EventHandler(this.txt_recp_TextChanged);
             // 
             // label16
             // 
@@ -770,7 +774,8 @@
             this.txt_recp_desc.Location = new System.Drawing.Point(50, 32);
             this.txt_recp_desc.Name = "txt_recp_desc";
             this.txt_recp_desc.Size = new System.Drawing.Size(429, 20);
-            this.txt_recp_desc.TabIndex = 12;
+            this.txt_recp_desc.TabIndex = 13;
+            this.txt_recp_desc.TextChanged += new System.EventHandler(this.txt_recp_TextChanged);
             // 
             // txt_recp_name
             // 
@@ -778,6 +783,7 @@
             this.txt_recp_name.Name = "txt_recp_name";
             this.txt_recp_name.Size = new System.Drawing.Size(216, 20);
             this.txt_recp_name.TabIndex = 11;
+            this.txt_recp_name.TextChanged += new System.EventHandler(this.txt_recp_TextChanged);
             // 
             // label14
             // 
@@ -802,23 +808,26 @@
             this.nud_recipe_level.Location = new System.Drawing.Point(187, 86);
             this.nud_recipe_level.Name = "nud_recipe_level";
             this.nud_recipe_level.Size = new System.Drawing.Size(45, 20);
-            this.nud_recipe_level.TabIndex = 8;
+            this.nud_recipe_level.TabIndex = 21;
+            this.nud_recipe_level.ValueChanged += new System.EventHandler(this.txt_recp_TextChanged);
             // 
             // nud_recipe_work
             // 
             this.nud_recipe_work.Location = new System.Drawing.Point(71, 86);
             this.nud_recipe_work.Name = "nud_recipe_work";
             this.nud_recipe_work.Size = new System.Drawing.Size(45, 20);
-            this.nud_recipe_work.TabIndex = 7;
+            this.nud_recipe_work.TabIndex = 20;
+            this.nud_recipe_work.ValueChanged += new System.EventHandler(this.txt_recp_TextChanged);
             // 
             // btn_recipe
             // 
             this.btn_recipe.Location = new System.Drawing.Point(6, 295);
             this.btn_recipe.Name = "btn_recipe";
             this.btn_recipe.Size = new System.Drawing.Size(475, 23);
-            this.btn_recipe.TabIndex = 3;
+            this.btn_recipe.TabIndex = 50;
             this.btn_recipe.Text = "Save Recipe";
             this.btn_recipe.UseVisualStyleBackColor = true;
+            this.btn_recipe.Click += new System.EventHandler(this.btn_recipe_Click);
             // 
             // label4
             // 
@@ -837,7 +846,7 @@
             this.cmb_recipe_Crafters.Location = new System.Drawing.Point(319, 6);
             this.cmb_recipe_Crafters.Name = "cmb_recipe_Crafters";
             this.cmb_recipe_Crafters.Size = new System.Drawing.Size(160, 21);
-            this.cmb_recipe_Crafters.TabIndex = 0;
+            this.cmb_recipe_Crafters.TabIndex = 12;
             // 
             // statusStrip1
             // 
@@ -878,6 +887,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SHModMaker";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);

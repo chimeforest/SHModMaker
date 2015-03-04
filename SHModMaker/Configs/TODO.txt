@@ -7,9 +7,7 @@ Config
 	??put blank.png and blank.qb into config file as byte[]s??
 
 Recipes
-	get list of ingredients from stonehearth.smod
-		//including some common material tags.. perhaps store these in CONFIG??
-	make the add recipe button work
+	//recipe->edit does not work properly
 
 Open and Save Mod data
 

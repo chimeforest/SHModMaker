@@ -32,3 +32,4 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\OpenTK.pdb
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\OpenTK.xml
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\QbBreeze.pdb
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.ConfigForm.resources
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\QbBreeze.xml

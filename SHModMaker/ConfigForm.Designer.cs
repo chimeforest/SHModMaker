@@ -41,12 +41,14 @@
             this.txt_material_tags = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.bnt_getSHcrafters = new System.Windows.Forms.Button();
+            this.txt_alias_skip_words = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_default
             // 
             this.btn_default.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_default.Location = new System.Drawing.Point(185, 170);
+            this.btn_default.Location = new System.Drawing.Point(185, 276);
             this.btn_default.Name = "btn_default";
             this.btn_default.Size = new System.Drawing.Size(80, 23);
             this.btn_default.TabIndex = 1;
@@ -58,7 +60,7 @@
             // 
             this.btn_save.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_save.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_save.Location = new System.Drawing.Point(12, 170);
+            this.btn_save.Location = new System.Drawing.Point(12, 276);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(80, 23);
             this.btn_save.TabIndex = 2;
@@ -69,7 +71,7 @@
             // btn_load
             // 
             this.btn_load.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_load.Location = new System.Drawing.Point(98, 170);
+            this.btn_load.Location = new System.Drawing.Point(98, 276);
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(80, 23);
             this.btn_load.TabIndex = 3;
@@ -98,7 +100,7 @@
             // btn_cancel
             // 
             this.btn_cancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_cancel.Location = new System.Drawing.Point(271, 170);
+            this.btn_cancel.Location = new System.Drawing.Point(271, 276);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(80, 23);
             this.btn_cancel.TabIndex = 6;
@@ -109,7 +111,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 52);
+            this.label2.Location = new System.Drawing.Point(9, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 8;
@@ -150,20 +152,40 @@
             // bnt_getSHcrafters
             // 
             this.bnt_getSHcrafters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bnt_getSHcrafters.Location = new System.Drawing.Point(79, 48);
+            this.bnt_getSHcrafters.Location = new System.Drawing.Point(76, 48);
             this.bnt_getSHcrafters.Name = "bnt_getSHcrafters";
-            this.bnt_getSHcrafters.Size = new System.Drawing.Size(97, 21);
+            this.bnt_getSHcrafters.Size = new System.Drawing.Size(100, 21);
             this.bnt_getSHcrafters.TabIndex = 14;
             this.bnt_getSHcrafters.Text = "Get";
             this.bnt_getSHcrafters.UseVisualStyleBackColor = true;
             this.bnt_getSHcrafters.Click += new System.EventHandler(this.bnt_getSHcrafters_Click);
             // 
+            // txt_alias_skip_words
+            // 
+            this.txt_alias_skip_words.Location = new System.Drawing.Point(12, 181);
+            this.txt_alias_skip_words.Multiline = true;
+            this.txt_alias_skip_words.Name = "txt_alias_skip_words";
+            this.txt_alias_skip_words.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_alias_skip_words.Size = new System.Drawing.Size(166, 87);
+            this.txt_alias_skip_words.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 165);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "SH alias skip words";
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 205);
+            this.ClientSize = new System.Drawing.Size(363, 311);
             this.ControlBox = false;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txt_alias_skip_words);
             this.Controls.Add(this.bnt_getSHcrafters);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txt_material_tags);
@@ -201,5 +223,7 @@
         private System.Windows.Forms.TextBox txt_material_tags;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button bnt_getSHcrafters;
+        private System.Windows.Forms.TextBox txt_alias_skip_words;
+        private System.Windows.Forms.Label label4;
     }
 }

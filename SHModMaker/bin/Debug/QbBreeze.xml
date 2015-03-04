@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QbBreeze</name>
+    </assembly>
+    <members>
+        <member name="T:QbBreeze.OwnerFixedCallBack">
+            <summary>
+            Delagate use to repositon the camera durring rendering
+            </summary>
+            <param name="bounds">Largest matrix bounds</param>
+            <param name="position">View Position of the camera</param>
+            <param name="direction">View Direction of the camera</param>
+        </member>
+        <member name="T:QbBreeze.ThumbnailCallBack">
+            <summary>
+            Simple callback delagate containing a thumbnailed bitmap
+            </summary>
+            <param name="_return"></param>
+        </member>
+        <member name="T:QbBreeze.Breeze">
+            <summary>
+            Easy Breezy
+            </summary>
+        </member>
+        <member name="M:QbBreeze.Breeze.Initialize">
+            <summary>
+            Call this before anything else. Sets up the OpenGL context and a few useless things right now (without it you can't render anything)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QbBreeze.Breeze.Initialize(System.Int32,System.Int32)">
+            <summary>
+            Call this before anything else. Sets up the OpenGL context and a few useless things right now (without it you can't render anything).
+            </summary>
+            <param name="width">Width of the "renderer"</param>
+            <param name="height">Height of the "renderer"</param>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetRenderSize">
+            <summary>
+            Returns the current renderer size
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QbBreeze.Breeze.MoveCameraToDefaultPosition">
+            <summary>
+            Positions the camera at what Breezes alignment code calcs.
+            </summary>
+        </member>
+        <member name="M:QbBreeze.Breeze.setSize(System.Int32,System.Int32)">
+            <summary>
+            Sets the rendering size. This is not the size of the image returned to you, but the actual size of the renderer.
+            </summary>
+            <param name="width">Width of the renderer</param>
+            <param name="height">Height of the renderer</param>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.String)">
+            <summary>
+            Returns a image of the specified qb file at the specified deminsions. This is ideal for one shot rendering.
+            </summary>
+            <param name="filepath">Path to file</param>
+            <param name="width">Return image width</param>
+            <param name="height">Return image height</param>
+            <returns></returns>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.Byte[])">
+            <summary>
+            Returns a image of the specified qb file at the specified deminsions. This is ideal for one shot rendering.
+            </summary>
+            /// <param name="bytes">qb as a byte[]</param>
+            <returns></returns>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.String,QbBreeze.OwnerFixedCallBack)">
+            <summary>
+            Returns a image of the specified qb file at the specified deminsions. This is ideal for one shot rendering.
+            </summary>
+            <param name="filepath">Path to file</param>
+            <param name="width">Return image width</param>
+            <param name="height">Return image height</param>
+            <param name="camera_callback">Delegate called with the largest matrix boundarys, camera's view position and direction. Position the camera however you like.</param>
+            <returns></returns>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.Byte[],QbBreeze.OwnerFixedCallBack)">
+            <summary>
+            Returns a image of the specified qb file at the specified deminsions. This is ideal for one shot rendering.
+            </summary>
+            <param name="bytes">qb file as a byte[]</param>
+            <param name="width">Return image width</param>
+            <param name="height">Return image height</param>
+            <param name="camera_callback">Delegate called with the largest matrix boundarys, camera's view position and direction. Position the camera however you like.</param>
+            <returns></returns>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.String,System.Int32,System.Int32)">
+            <summary>
+            Returns a image of the specified qb file at the specified deminsions. This is ideal for one shot rendering.
+            </summary>
+            <param name="filepath">Path to file</param>
+            <param name="width">Return image width</param>
+            <param name="height">Return image height</param>
+            <returns></returns>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.String,System.Int32,System.Int32,QbBreeze.OwnerFixedCallBack)">
+            <summary>
+            Returns a image of the specified qb file at the specified deminsions. This is ideal for one shot rendering.
+            </summary>
+            <param name="filepath">Path to file</param>
+            <param name="width">Return image width</param>
+            <param name="height">Return image height</param>
+            <param name="camera_callback">Delegate called with the largest matrix boundarys, camera's view position and direction. Position the camera however you like.</param>
+            <returns></returns>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.String,System.Drawing.Bitmap)">
+            <summary>
+            Performs a bit transfer to the specified Bitmap rather than returning a new one. (Could be potentially much faster depending on your use case, for example rather than creating bitmaps everytime you need a new image you just reuse the same ones)
+            </summary>
+            <param name="filepath">Path to file</param>
+            <param name="bitmap">Bitmap object to do the bit transfer to... Also the Bitmap object must match the deminsions of the renderer</param>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.Byte[],System.Drawing.Bitmap)">
+            <summary>
+            Performs a bit transfer to the specified Bitmap rather than returning a new one. (Could be potentially much faster depending on your use case, for example rather than creating bitmaps everytime you need a new image you just reuse the same ones)
+            </summary>
+            <param name="bytes">qb file as byte[]</param>
+            <param name="bitmap">Bitmap object to do the bit transfer to... Also the Bitmap object must match the deminsions of the renderer</param>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.String,System.Drawing.Bitmap,QbBreeze.OwnerFixedCallBack)">
+            <summary>
+            Performs a bit transfer to the specified Bitmap rather than returning a new one. (Could be potentially much faster depending on your use case, for example rather than creating bitmaps everytime you need a new image you just reuse the same ones)
+            </summary>
+            <param name="filepath">Path to file</param>
+            <param name="bitmap">Bitmap object to do the bit transfer to... Also the Bitmap object must match the deminsions of the renderer</param>
+            <param name="camera_callback">Delegate called with the largest matrix boundarys, camera's view position and direction. Position the camera however you like.</param>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnail(System.Byte[],System.Drawing.Bitmap,QbBreeze.OwnerFixedCallBack)">
+            <summary>
+            Performs a bit transfer to the specified Bitmap rather than returning a new one. (Could be potentially much faster depending on your use case, for example rather than creating bitmaps everytime you need a new image you just reuse the same ones)
+            </summary>
+            <param name="bytes">Path to file</param>
+            <param name="bitmap">Bitmap object to do the bit transfer to... Also the Bitmap object must match the deminsions of the renderer</param>
+            <param name="camera_callback">Delegate called with the largest matrix boundarys, camera's view position and direction. Position the camera however you like.</param>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnails(System.String[],System.Int32,System.Int32,QbBreeze.ThumbnailCallBack)">
+            <summary>
+            Thumbnails all specifed files at the specified width and height. Bitmap objects are returned to you via the callback delegate. 
+            </summary>
+            <param name="files">Array of files to thumbnail.</param>
+            <param name="width">Return image width</param>
+            <param name="height">Return image height</param>
+            <param name="callback">This delegate will be called with each thumbnailed created. (This us just here for future this when I have async loading working)</param>
+        </member>
+        <member name="M:QbBreeze.Breeze.GetThumbnails(System.String[],System.Int32,System.Int32,QbBreeze.ThumbnailCallBack,QbBreeze.OwnerFixedCallBack)">
+            <summary>
+            Thumbnails all specifed files at the specified width and height. Bitmap objects are returned to you via the callback delegate. 
+            </summary>
+            <param name="files">Array of files to thumbnail.</param>
+            <param name="width">Return image width</param>
+            <param name="height">Return image height</param>
+            <param name="callback">This delegate will be called with each thumbnailed created. (This us just here for future this when I have async loading working)</param>
+            <param name="camera_callback">Delegate called with the largest matrix boundarys, camera's view position and direction. Position the camera however you like.</param>
+        </member>
+        <member name="M:QbBreeze.Breeze.Dispose">
+            <summary>
+            Disposes of the OpenGL context and such. Please call this during your clean up code.
+            </summary>
+        </member>
+        <member name="T:QbBreeze.Properties.Resource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:QbBreeze.Properties.Resource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:QbBreeze.Properties.Resource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:QbBreeze.Properties.Resource.fragmentshader">
+             <summary>
+               Looks up a localized string similar to #version 150
+            
+            out vec4 color;
+            
+            in vec4 _color;
+            	
+            void main()
+            {
+            	color = _color; 
+            }
+            .
+             </summary>
+        </member>
+        <member name="P:QbBreeze.Properties.Resource.vertexshader">
+             <summary>
+               Looks up a localized string similar to #version 150
+            
+            in vec3 position;
+            in float color;
+            
+            out vec4 _color;
+            
+            uniform mat4 modelview;
+            uniform vec3 highlight;
+            uniform vec3 normal;
+            uniform float light = 1.0;
+            
+            uniform vec3 lowclamp = vec3(0,0,0);
+            uniform vec3 highclamp = vec3(1,1,1);
+            
+            uniform float alpha = 1.0;
+            
+            uniform vec3 colors[64];
+            	
+            void interesting()
+            {
+            	vec4 v = vec4(position,1.0);
+            	gl_Position =  modelview * v;
+            	vec3 _step = clamp(colors[int(color)]*highlight + (-gl_Position.z*0.0015), lowclamp, highclamp);
+            	_color = vec [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+    </members>
+</doc>

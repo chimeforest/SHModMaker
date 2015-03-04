@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -101,6 +102,16 @@ namespace SHModMaker
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Breeze.Dispose();
+        }
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            //Console.WriteLine("Activated");
+            if (configJustUpdated)
+            {
+                update_recipe_crafters();
+                update_recipe_igredients();
+                configJustUpdated = false;
+            }
         }
 
         //restricts characters for name fields.
@@ -301,9 +312,8 @@ namespace SHModMaker
                 {
                     if (recp.name == lst_recipe.SelectedItem.ToString())
                     {
-                        //FIX : figure out how to do recipe icon...
-                        //pic_recipe.Image = Image.FromStream(new MemoryStream(recp.png));
-                        //pic_recipe.Refresh();
+                        pic_mod_recipe.Image = Image.FromStream(new MemoryStream(recp.png));
+                        pic_mod_recipe.Refresh();
                         break;
                     }
                 }
@@ -463,11 +473,6 @@ namespace SHModMaker
         }
         private void btn_weapon_Click(object sender, EventArgs e)
         {
-            //String iname = utils.LowerNoSpaces(txt_weap_name.Text);
-            //String localPath = System.IO.Directory.GetCurrentDirectory();
-
-            //currentWeapon = new Weapon(txt_weap_name.Text, txt_weap_desc.Text, (int)nud_weap_ilevel.Value, (int)nud_weap_damage.Value, (float)nud_weap_reach.Value);
-
             //Add weapon to MOD
             if (currentWeapon.name != "")
             {
@@ -488,24 +493,11 @@ namespace SHModMaker
         //__________Recipe Tab Stuff__________
         private void tab_recipe_Enter(object sender, EventArgs e)
         {
-            //FIX move to somewhere where it gets noticed sooner..
-            if (configJustUpdated)
-            {
-                update_recipe_crafters();
-                update_recipe_igredients();
-                configJustUpdated = false;
-            }
             txt_recp_name.Text = currentRecipe.name;
             txt_recp_desc.Text = currentRecipe.Desc;
             txt_recp_flavor.Text = currentRecipe.Flavor;
             nud_recipe_level.Value = currentRecipe.level;
             nud_recipe_work.Value = currentRecipe.workTime;
-            //crafter
-            //produces
-            //ingredients
-            //image
-            //FIX
-
         }
 
         private void chk_recipe_lockimg_CheckedChanged(object sender, EventArgs e)
@@ -514,7 +506,21 @@ namespace SHModMaker
         }
         private void pic_recipe_Click(object sender, EventArgs e)
         {
+            if (openFileDialogPNG.ShowDialog() == DialogResult.OK)
+            {
+                currentRecipe.png = File.ReadAllBytes(openFileDialogPNG.FileName);
+                pic_recipe.Image = Image.FromStream(new MemoryStream(currentRecipe.png));
+                pic_recipe.Refresh();
+            }
+        }
 
+        private void btn_recipe_add_ingredient_Click(object sender, EventArgs e)
+        {
+            if (txt_recp_ingr.Text != "")
+            {
+                txt_recp_ingr.AppendText("\n");
+            }
+            txt_recp_ingr.AppendText(nud_recipe_ingredients.Value.ToString() + "," + cmb_recipe_ingredients.SelectedItem.ToString());
         }
 
         private void update_recipe_crafters()
@@ -544,9 +550,80 @@ namespace SHModMaker
             }
         }
 
-        private void btn_recipe_add_ingredient_Click(object sender, EventArgs e)
+        private void txt_recp_TextChanged(object sender, EventArgs e)
         {
-            
+            currentRecipe.name = txt_recp_name.Text;
+            currentRecipe.Desc = txt_recp_desc.Text;
+            currentRecipe.Flavor = txt_recp_flavor.Text;
+            currentRecipe.level = (int)nud_recipe_level.Value;
+            currentRecipe.workTime = (int)nud_recipe_work.Value;
+        }
+
+        private void cmb_recipe_prod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if the cmb is not empty
+            if (cmb_recipe_prod.SelectedItem.ToString() != "")
+            {
+                currentRecipe.Produces.Clear();
+                AmountOfItem temp = new AmountOfItem(cmb_recipe_prod.SelectedItem.ToString(), 1);
+                currentRecipe.Produces.Add(temp);
+                //if pic checkbox is not checked, change pic
+                if (!chk_recipe_lockimg.Checked)
+                {
+                    //if it has ':weapon:' in the text then it must be a weapon
+                    if (cmb_recipe_prod.SelectedItem.ToString().Contains(":weapon:"))
+                    {
+                        foreach (Weapon weap in mod.weapons)
+                        {
+                            //Console.WriteLine(weap.iname + " " + cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":weapons:".Length-1));
+                            if (weap.iname == cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":weapons:".Length - 1))
+                            {
+                                currentRecipe.png = weap.png;
+                                pic_recipe.Image = Image.FromStream(new MemoryStream(currentRecipe.png));
+                                pic_recipe.Refresh();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btn_recipe_Click(object sender, EventArgs e)
+        {
+            //Add recipe to MOD
+            if (currentRecipe.name == "")
+            {
+                lbl_status.Text = "Recipe has no name! Could not add/update weapon.";
+            }
+            else if(txt_recp_ingr.Text == "")
+            {
+                lbl_status.Text = "Recipe has no ingredients! Could not add/update weapon.";
+            }
+            else if (currentRecipe.Produces.Count == 0)
+            {
+                lbl_status.Text = "Recipe has no product! Could not add/update weapon.";
+            }
+            else if (cmb_recipe_Crafters.Text == "")
+            {
+                lbl_status.Text = "Recipe has no crafter! Could not add/update weapon.";
+            }
+            else
+            {
+                currentRecipe.Ingredients.Clear();
+                foreach (String str in txt_recp_ingr.Lines)
+                {
+                    if (str.Contains(","))
+                    {
+                        AmountOfItem temp = new AmountOfItem();
+                        currentRecipe.Ingredients.Add(temp.FromString(str));
+                    }
+                }
+                currentRecipe.crafter = cmb_recipe_Crafters.Text;
+                mod.AddRecipe(currentRecipe);
+                tabcontrol.SelectedIndex = 0;
+                lbl_status.Text = "Recipe " + currentRecipe.name + " has been added/updated.";
+            }
         }
     }
 
@@ -651,16 +728,6 @@ namespace SHModMaker
                                 strArray = sr.ReadToEnd().Split('\n');
                             }
                         }
-                        //FIX: add skipwords to CONFIG
-                        String[] skipWords = new String[] { "cursors/", "mixins/", "data/",
-                                                            "/generic/", "build/", "services/",
-                                                            "critters/", "jobs/", "mining_zone",
-                                                            "construction/", "crafting/", "humans/",
-                                                            "monsters/", "boulders/", "terrain",
-                                                            "crops/", "tree/", "berry_bush",
-                                                            "tester", "gizmos/", "buffs/",
-                                                            "ai/", "class_info", "scenarios/",
-                                                            "bulletins"};
                         bool inAliasSection = false;
                         foreach (String str in strArray)
                         {
@@ -676,7 +743,7 @@ namespace SHModMaker
                                 if (str.Contains('\"'))
                                 {
                                     //Console.WriteLine(str + " contains a \"");
-                                    foreach (String word in skipWords)
+                                    foreach (String word in Form1.config.AliasSkipWords)
                                     {
                                         if (str.Contains(word))
                                         {
@@ -854,12 +921,12 @@ namespace SHModMaker
         public String name;
         public int amount;
 
-        AmountOfItem()
+        public AmountOfItem()
         {
             name = "";
             amount = 1;
         }
-        AmountOfItem(String nam, int amt)
+        public AmountOfItem(String nam, int amt)
         {
             name = nam;
             amount = amt;
@@ -871,7 +938,7 @@ namespace SHModMaker
         }
         public AmountOfItem FromString(String str)
         {
-            return new AmountOfItem(str.Split(',')[1],int.Parse(str.Split(',')[1]));
+            return new AmountOfItem(str.Split(',')[1],int.Parse(str.Split(',')[0]));
         }
     }
 
@@ -1125,6 +1192,7 @@ namespace SHModMaker
         public string SHsmodPath;
         public List<String> SHCrafters;
         public List<String> CommonMaterialTags;
+        public List<String> AliasSkipWords;
 
         public CONFIG()
         {
@@ -1138,6 +1206,7 @@ namespace SHModMaker
             }
             SHCrafters = new List<string>();
             CommonMaterialTags = new List<string>();
+            AliasSkipWords = new List<string>();
         }
         public void SAVECONFIG()
         {
