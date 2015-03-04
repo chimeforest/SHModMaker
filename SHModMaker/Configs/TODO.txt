@@ -4,16 +4,12 @@ Weapons
 	Add custom txtfields
 
 Config
-	make config form
 	??put blank.png and blank.qb into config file as byte[]s??
 
 Recipes
-	put list of crafters into recipe tab
-	get list of ingredients from stonehearth.smod and MOD
+	get list of ingredients from stonehearth.smod
 		//including some common material tags.. perhaps store these in CONFIG??
-	get list of craftable items from MOD
 	make the add recipe button work
-
 
 Open and Save Mod data
 

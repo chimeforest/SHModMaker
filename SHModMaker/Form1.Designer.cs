@@ -77,8 +77,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.tab_recipe = new System.Windows.Forms.TabPage();
-            this.txt_recp_ingr = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cmb_recipe_prod = new System.Windows.Forms.ComboBox();
             this.chk_recipe_lockimg = new System.Windows.Forms.CheckBox();
+            this.pic_recipe = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_recipe_add_ingredient = new System.Windows.Forms.Button();
+            this.nud_recipe_ingredients = new System.Windows.Forms.NumericUpDown();
+            this.cmb_recipe_ingredients = new System.Windows.Forms.ComboBox();
+            this.txt_recp_ingr = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txt_recp_flavor = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -89,9 +96,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.nud_recipe_level = new System.Windows.Forms.NumericUpDown();
             this.nud_recipe_work = new System.Windows.Forms.NumericUpDown();
-            this.cmp_recipe_prod = new System.Windows.Forms.ComboBox();
             this.btn_recipe = new System.Windows.Forms.Button();
-            this.pic_recipe = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmb_recipe_Crafters = new System.Windows.Forms.ComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -99,11 +104,6 @@
             this.openFileDialogQB = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogPNG = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.tab_weapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_weap_png)).BeginInit();
@@ -121,13 +121,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_weapon)).BeginInit();
             this.tabcontrol.SuspendLayout();
             this.tab_recipe.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_recipe)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_ingredients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_level)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_work)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_recipe)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -220,8 +220,9 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.optionsToolStripMenuItem.Text = "Config";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // openFileDialogSHMM
             // 
@@ -622,13 +623,27 @@
             this.tab_recipe.Text = "Recipe";
             this.tab_recipe.Enter += new System.EventHandler(this.tab_recipe_Enter);
             // 
-            // txt_recp_ingr
+            // groupBox4
             // 
-            this.txt_recp_ingr.Location = new System.Drawing.Point(6, 46);
-            this.txt_recp_ingr.Multiline = true;
-            this.txt_recp_ingr.Name = "txt_recp_ingr";
-            this.txt_recp_ingr.Size = new System.Drawing.Size(286, 125);
-            this.txt_recp_ingr.TabIndex = 18;
+            this.groupBox4.Controls.Add(this.cmb_recipe_prod);
+            this.groupBox4.Controls.Add(this.chk_recipe_lockimg);
+            this.groupBox4.Controls.Add(this.pic_recipe);
+            this.groupBox4.Location = new System.Drawing.Point(313, 85);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(166, 204);
+            this.groupBox4.TabIndex = 22;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Produces";
+            // 
+            // cmb_recipe_prod
+            // 
+            this.cmb_recipe_prod.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmb_recipe_prod.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmb_recipe_prod.FormattingEnabled = true;
+            this.cmb_recipe_prod.Location = new System.Drawing.Point(6, 19);
+            this.cmb_recipe_prod.Name = "cmb_recipe_prod";
+            this.cmb_recipe_prod.Size = new System.Drawing.Size(154, 21);
+            this.cmb_recipe_prod.TabIndex = 5;
             // 
             // chk_recipe_lockimg
             // 
@@ -640,6 +655,81 @@
             this.chk_recipe_lockimg.Text = "Lock Image";
             this.chk_recipe_lockimg.UseVisualStyleBackColor = true;
             this.chk_recipe_lockimg.CheckedChanged += new System.EventHandler(this.chk_recipe_lockimg_CheckedChanged);
+            // 
+            // pic_recipe
+            // 
+            this.pic_recipe.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
+            this.pic_recipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_recipe.Location = new System.Drawing.Point(18, 46);
+            this.pic_recipe.Name = "pic_recipe";
+            this.pic_recipe.Size = new System.Drawing.Size(129, 129);
+            this.pic_recipe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_recipe.TabIndex = 2;
+            this.pic_recipe.TabStop = false;
+            this.pic_recipe.Click += new System.EventHandler(this.pic_recipe_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btn_recipe_add_ingredient);
+            this.groupBox3.Controls.Add(this.nud_recipe_ingredients);
+            this.groupBox3.Controls.Add(this.cmb_recipe_ingredients);
+            this.groupBox3.Controls.Add(this.txt_recp_ingr);
+            this.groupBox3.Location = new System.Drawing.Point(9, 112);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(298, 177);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Ingredients";
+            // 
+            // btn_recipe_add_ingredient
+            // 
+            this.btn_recipe_add_ingredient.Location = new System.Drawing.Point(253, 19);
+            this.btn_recipe_add_ingredient.Name = "btn_recipe_add_ingredient";
+            this.btn_recipe_add_ingredient.Size = new System.Drawing.Size(39, 23);
+            this.btn_recipe_add_ingredient.TabIndex = 22;
+            this.btn_recipe_add_ingredient.Text = "Add";
+            this.btn_recipe_add_ingredient.UseVisualStyleBackColor = true;
+            this.btn_recipe_add_ingredient.Click += new System.EventHandler(this.btn_recipe_add_ingredient_Click);
+            // 
+            // nud_recipe_ingredients
+            // 
+            this.nud_recipe_ingredients.Location = new System.Drawing.Point(211, 20);
+            this.nud_recipe_ingredients.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nud_recipe_ingredients.Name = "nud_recipe_ingredients";
+            this.nud_recipe_ingredients.Size = new System.Drawing.Size(36, 20);
+            this.nud_recipe_ingredients.TabIndex = 21;
+            this.nud_recipe_ingredients.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // cmb_recipe_ingredients
+            // 
+            this.cmb_recipe_ingredients.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmb_recipe_ingredients.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmb_recipe_ingredients.FormattingEnabled = true;
+            this.cmb_recipe_ingredients.Items.AddRange(new object[] {
+            "test",
+            "blah",
+            "laaa",
+            "doodad"});
+            this.cmb_recipe_ingredients.Location = new System.Drawing.Point(6, 19);
+            this.cmb_recipe_ingredients.Name = "cmb_recipe_ingredients";
+            this.cmb_recipe_ingredients.Size = new System.Drawing.Size(199, 21);
+            this.cmb_recipe_ingredients.TabIndex = 20;
+            // 
+            // txt_recp_ingr
+            // 
+            this.txt_recp_ingr.Location = new System.Drawing.Point(6, 46);
+            this.txt_recp_ingr.Multiline = true;
+            this.txt_recp_ingr.Name = "txt_recp_ingr";
+            this.txt_recp_ingr.Size = new System.Drawing.Size(286, 125);
+            this.txt_recp_ingr.TabIndex = 18;
             // 
             // label17
             // 
@@ -686,7 +776,7 @@
             // 
             this.txt_recp_name.Location = new System.Drawing.Point(50, 6);
             this.txt_recp_name.Name = "txt_recp_name";
-            this.txt_recp_name.Size = new System.Drawing.Size(257, 20);
+            this.txt_recp_name.Size = new System.Drawing.Size(216, 20);
             this.txt_recp_name.TabIndex = 11;
             // 
             // label14
@@ -721,14 +811,6 @@
             this.nud_recipe_work.Size = new System.Drawing.Size(45, 20);
             this.nud_recipe_work.TabIndex = 7;
             // 
-            // cmp_recipe_prod
-            // 
-            this.cmp_recipe_prod.FormattingEnabled = true;
-            this.cmp_recipe_prod.Location = new System.Drawing.Point(6, 19);
-            this.cmp_recipe_prod.Name = "cmp_recipe_prod";
-            this.cmp_recipe_prod.Size = new System.Drawing.Size(154, 21);
-            this.cmp_recipe_prod.TabIndex = 5;
-            // 
             // btn_recipe
             // 
             this.btn_recipe.Location = new System.Drawing.Point(6, 295);
@@ -738,22 +820,10 @@
             this.btn_recipe.Text = "Save Recipe";
             this.btn_recipe.UseVisualStyleBackColor = true;
             // 
-            // pic_recipe
-            // 
-            this.pic_recipe.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
-            this.pic_recipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_recipe.Location = new System.Drawing.Point(18, 46);
-            this.pic_recipe.Name = "pic_recipe";
-            this.pic_recipe.Size = new System.Drawing.Size(129, 129);
-            this.pic_recipe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pic_recipe.TabIndex = 2;
-            this.pic_recipe.TabStop = false;
-            this.pic_recipe.Click += new System.EventHandler(this.pic_recipe_Click);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(313, 9);
+            this.label4.Location = new System.Drawing.Point(272, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 1;
@@ -761,10 +831,12 @@
             // 
             // cmb_recipe_Crafters
             // 
+            this.cmb_recipe_Crafters.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmb_recipe_Crafters.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_recipe_Crafters.FormattingEnabled = true;
-            this.cmb_recipe_Crafters.Location = new System.Drawing.Point(360, 6);
+            this.cmb_recipe_Crafters.Location = new System.Drawing.Point(319, 6);
             this.cmb_recipe_Crafters.Name = "cmb_recipe_Crafters";
-            this.cmb_recipe_Crafters.Size = new System.Drawing.Size(119, 21);
+            this.cmb_recipe_Crafters.Size = new System.Drawing.Size(160, 21);
             this.cmb_recipe_Crafters.TabIndex = 0;
             // 
             // statusStrip1
@@ -791,62 +863,6 @@
             // 
             this.openFileDialogPNG.Filter = "PNG|*.png";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "test",
-            "blah",
-            "laaa",
-            "doodad"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(199, 21);
-            this.comboBox1.TabIndex = 20;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Controls.Add(this.comboBox1);
-            this.groupBox3.Controls.Add(this.txt_recp_ingr);
-            this.groupBox3.Location = new System.Drawing.Point(9, 112);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(298, 177);
-            this.groupBox3.TabIndex = 21;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Ingredients";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(211, 20);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(36, 20);
-            this.numericUpDown1.TabIndex = 21;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(253, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 23);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.cmp_recipe_prod);
-            this.groupBox4.Controls.Add(this.chk_recipe_lockimg);
-            this.groupBox4.Controls.Add(this.pic_recipe);
-            this.groupBox4.Location = new System.Drawing.Point(313, 85);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(166, 204);
-            this.groupBox4.TabIndex = 22;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Produces";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -862,6 +878,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SHModMaker";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -884,16 +901,16 @@
             this.tabcontrol.ResumeLayout(false);
             this.tab_recipe.ResumeLayout(false);
             this.tab_recipe.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_level)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_work)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_recipe)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_recipe)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_ingredients)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_level)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_work)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -967,13 +984,13 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown nud_recipe_level;
         private System.Windows.Forms.NumericUpDown nud_recipe_work;
-        private System.Windows.Forms.ComboBox cmp_recipe_prod;
+        private System.Windows.Forms.ComboBox cmb_recipe_prod;
         private System.Windows.Forms.CheckBox chk_recipe_lockimg;
         private System.Windows.Forms.TextBox txt_recp_ingr;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btn_recipe_add_ingredient;
+        private System.Windows.Forms.NumericUpDown nud_recipe_ingredients;
+        private System.Windows.Forms.ComboBox cmb_recipe_ingredients;
         private System.Windows.Forms.GroupBox groupBox4;
     }
 }

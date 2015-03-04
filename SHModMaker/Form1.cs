@@ -23,8 +23,9 @@ namespace SHModMaker
         public static String SHMMPath = "";
 
         //Config Variable
-        public static CONFIG config = new CONFIG();//FIX change to LOADCONFIG after loadconfig method is written
+        public static CONFIG config = new CONFIG();
         public static bool canRenderQB = false;
+        public static bool configJustUpdated = false;
 
         //Current Item variables
         public static MOD mod = new MOD();
@@ -75,21 +76,31 @@ namespace SHModMaker
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            config = config.LOADCONFIG();
             mod.manifest = new ManifestJSON();
             lbl_status.Text = "Welcome to the Stonehearth Mod Maker by Chimeforest";
 
-            if (Breeze.Initialize())
+            config = config.LOADCONFIG();
+            if (config == new CONFIG())
             {
-                // opengl is ready to go...
-                // simple way to return a thumbnail...
-                //using (Bitmap thumbnail = Breeze.GetThumbnail(@"C:\users\david\desktop\Templar.qb"))
-                //{
-                //    thumbnail.Save(@"C:\users\david\desktop\templar.png");
-                //}
-                canRenderQB = true;
+                config.GetSHCrafters();
             }
 
+            update_recipe_crafters();
+            update_recipe_igredients();
+            update_recipe_products();
+
+            //check if computer can run thumbnailer
+            Console.WriteLine("Attempting to Initialize QbBreeze...");
+            if (Breeze.Initialize())
+            {
+                canRenderQB = true;
+            }
+            Console.WriteLine("Breeze Initialized? " + canRenderQB.ToString());
+
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Breeze.Dispose();
         }
 
         //restricts characters for name fields.
@@ -167,6 +178,10 @@ namespace SHModMaker
                 {
                     lst_recipe.SelectedIndex = 0;
                 }
+
+                update_recipe_crafters();
+                update_recipe_igredients();
+                update_recipe_products();
             }
         }
         private void exportsmodToolStripMenuItem_Click(object sender, EventArgs e)
@@ -200,6 +215,14 @@ namespace SHModMaker
             }
         }
 
+
+        //__________EDIT MENU ITEMS__________
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigForm con = new ConfigForm();
+            con.ShowDialog();
+        }
+
         //__________MOD TAB__________
         private void tab_MOD_Enter(object sender, EventArgs e)
         {
@@ -228,6 +251,10 @@ namespace SHModMaker
         {
             mod.name = txt_mod_name.Text;
             mod.manifest.name = txt_mod_name.Text;
+
+            update_recipe_crafters();
+            update_recipe_igredients();
+            update_recipe_products();
         }
         private void txt_api_version_TextChanged(object sender, EventArgs e)
         {
@@ -452,6 +479,8 @@ namespace SHModMaker
             {
                 lbl_status.Text = "Weapon has no name! Could not add/update weapon.";
             }
+            update_recipe_igredients();
+            update_recipe_products();
 
 
         }
@@ -459,6 +488,13 @@ namespace SHModMaker
         //__________Recipe Tab Stuff__________
         private void tab_recipe_Enter(object sender, EventArgs e)
         {
+            //FIX move to somewhere where it gets noticed sooner..
+            if (configJustUpdated)
+            {
+                update_recipe_crafters();
+                update_recipe_igredients();
+                configJustUpdated = false;
+            }
             txt_recp_name.Text = currentRecipe.name;
             txt_recp_desc.Text = currentRecipe.Desc;
             txt_recp_flavor.Text = currentRecipe.Flavor;
@@ -476,10 +512,41 @@ namespace SHModMaker
         {
             pic_recipe.Enabled = !chk_recipe_lockimg.Checked;
         }
-
         private void pic_recipe_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void update_recipe_crafters()
+        {
+            //update crafterlist
+            cmb_recipe_Crafters.Items.Clear();
+            foreach (String str in utils.GetCrafters())
+            {
+                
+                cmb_recipe_Crafters.Items.Add(str);
+            }
+        }
+        private void update_recipe_igredients()
+        {
+            cmb_recipe_ingredients.Items.Clear();
+            foreach (string str in utils.GetIngredients())
+            {
+                cmb_recipe_ingredients.Items.Add(str);
+            }
+        }
+        private void update_recipe_products()
+        {
+            cmb_recipe_prod.Items.Clear();
+            foreach (string str in mod.GetAllItemAliases())
+            {
+                cmb_recipe_prod.Items.Add(str);
+            }
+        }
+
+        private void btn_recipe_add_ingredient_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 
@@ -528,6 +595,128 @@ namespace SHModMaker
             newStr = str.Replace(' ', '_');
             newStr = newStr.ToLower();
             return newStr;
+        }
+        public static List<String> GetCrafters()
+        {
+            List<String> crafters = new List<String>();
+
+            //Get crafters from stonehearth
+            foreach (String str in Form1.config.SHCrafters)
+            {
+                crafters.Add(str);
+            }
+
+            //Get crafters from current mod
+            foreach (Crafter crft in Form1.mod.crafters)
+            {
+                crafters.Add(Form1.mod.name + ":" + crft.name);
+            }
+
+            ////Get crafters from other mods?
+
+            return crafters;
+        }
+        public static List<String> GetIngredients()
+        {
+            List<String> ingredients = new List<string>();
+
+            //add common resources
+            foreach(String str in Form1.config.CommonMaterialTags)
+            {
+                ingredients.Add(str);
+            }
+
+            //Read stonehearth.smod and get ingredients from the manifest return alias as string
+            using (ZipFile zip = ZipFile.Read(Form1.config.SHsmodPath))
+            {
+                foreach (ZipEntry e in zip)
+                {
+                    if (e.FileName.Contains("stonehearth/manifest.json"))
+                    {
+                        //read manifest until the "Aliases" section
+                        //then grab each alias, line by line.. getting rid of the parts which are unneeded
+                        //when the next secion show up.. stop
+
+                        Console.WriteLine("Found Manifest: " + e.FileName);
+                        String[] strArray;
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            e.Extract(stream);
+                            stream.Position = 0;
+                            Console.WriteLine("Extracted to stream:" + stream.ToString());
+                            using (StreamReader sr = new StreamReader(stream))
+                            {
+                                //Console.WriteLine("The stream:");
+                                //Console.WriteLine(sr.ReadToEnd());
+                                strArray = sr.ReadToEnd().Split('\n');
+                            }
+                        }
+                        //FIX: add skipwords to CONFIG
+                        String[] skipWords = new String[] { "cursors/", "mixins/", "data/",
+                                                            "/generic/", "build/", "services/",
+                                                            "critters/", "jobs/", "mining_zone",
+                                                            "construction/", "crafting/", "humans/",
+                                                            "monsters/", "boulders/", "terrain",
+                                                            "crops/", "tree/", "berry_bush",
+                                                            "tester", "gizmos/", "buffs/",
+                                                            "ai/", "class_info", "scenarios/",
+                                                            "bulletins"};
+                        bool inAliasSection = false;
+                        foreach (String str in strArray)
+                        {
+                            //Console.WriteLine("CURRENT STR :" + str);
+                            //check for the end of alias section
+                            if (inAliasSection && str.Contains("},")) { inAliasSection = false; break; }
+                            
+                            // process aliases
+                            if (inAliasSection)
+                            {
+                                bool containsSkipWord = false;
+                                //if string contains a " then it is 1. not empty and 2/ contains an alias.
+                                if (str.Contains('\"'))
+                                {
+                                    //Console.WriteLine(str + " contains a \"");
+                                    foreach (String word in skipWords)
+                                    {
+                                        if (str.Contains(word))
+                                        {
+                                            containsSkipWord = true;
+                                            break; 
+                                        }
+                                    }
+
+                                    if (!containsSkipWord)
+                                    {
+                                        String alias = str.Remove(str.LastIndexOf(':'));
+                                        alias = alias.Remove(alias.LastIndexOf('"'));
+                                        alias = alias.Remove(0,alias.IndexOf('"')+1);
+                                        ingredients.Add("stonehearth:" + alias);
+                                        //Console.WriteLine("stonehearth:" + alias);
+                                    }
+                                }
+                            }
+
+                            //check for beginning of aliases... if string contains 'aliases' then the next string will be an alias
+                            if (str.Contains("aliases")) { inAliasSection = true; Console.WriteLine("Entering Aliases section"); }
+                        }
+                        //Console.WriteLine(e.FileName);
+                        //String str = e.FileName.Remove((e.FileName.Length - 21));
+                        //str = str.Remove(0, 17);
+                        //Console.WriteLine(str);
+                        //ingredients.Add("stonehearth:" + str);
+                    }
+                }
+            }
+
+            //Get items from this mod
+            foreach (String str in Form1.mod.GetAllItemAliases())
+            {
+                ingredients.Add(str);
+            }
+
+            ////Get items from other mods??
+
+            return ingredients;
         }
     }
 
@@ -793,7 +982,7 @@ namespace SHModMaker
         public String name;
         public String apiVersion;
         public ManifestJSON manifest;
-        public List<String> crafters;
+        public List<Crafter> crafters;
         public List<Recipe> recipes;
         public List<Weapon> weapons;
 
@@ -802,7 +991,7 @@ namespace SHModMaker
             name = "";
             apiVersion = "1";
             manifest = new ManifestJSON();
-            crafters = new List<string>();
+            crafters = new List<Crafter>();
             recipes = new List<Recipe>();
             weapons = new List<Weapon>();
         }
@@ -811,7 +1000,7 @@ namespace SHModMaker
             name = nam;
             apiVersion = "1";
             manifest = new ManifestJSON();
-            crafters = new List<string>();
+            crafters = new List<Crafter>();
             recipes = new List<Recipe>();
             weapons = new List<Weapon>();
         }
@@ -836,6 +1025,43 @@ namespace SHModMaker
         public void RemoveWeapon(Weapon weap)
         {
             weapons.Remove(weap);
+        }
+
+        public void AddRecipe(Recipe recp)
+        {
+            bool changed = false;
+            //Search for an item of the same name, if one exsists then it updates the information, else it adds it to the list.
+            for (int i = 0; i < recipes.Count; i++)
+            {
+                if (recipes[i].name == recp.name)
+                {
+                    changed = true;
+                    recipes[i] = recp;
+                }
+            }
+            if (changed == false)
+            {
+                recipes.Add(recp);
+            }
+        }
+        public void RemoveRecipe(Recipe recp)
+        {
+            recipes.Remove(recp);
+        }
+
+        public List<String> GetAllItemAliases()
+        {
+            List<String> items = new List<String>();
+
+            //Get aliases from weapons
+            foreach (Weapon weap in weapons)
+            {
+                items.Add(name + ":" + "weapon:" + weap.iname);
+            }
+
+            //Get aliases from ...
+
+            return items;
         }
 
         public void BuildManifest()
@@ -897,6 +1123,8 @@ namespace SHModMaker
     public class CONFIG
     {
         public string SHsmodPath;
+        public List<String> SHCrafters;
+        public List<String> CommonMaterialTags;
 
         public CONFIG()
         {
@@ -908,15 +1136,41 @@ namespace SHModMaker
             {
                 SHsmodPath = "C:\\Program Files\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod";
             }
+            SHCrafters = new List<string>();
+            CommonMaterialTags = new List<string>();
         }
         public void SAVECONFIG()
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+            //using (System.IO.StreamWriter file = new System.IO.StreamWriter(Form1.localPath + "\\Configs\\config.json"))
+            //{
+            //    file.Write(json);
+            //}
             System.IO.File.WriteAllText(Form1.localPath + "\\Configs\\config.json", json, Encoding.ASCII);
         }
         public CONFIG LOADCONFIG()
         {
             return JsonConvert.DeserializeObject<CONFIG>(System.IO.File.ReadAllText(Form1.localPath + "\\Configs\\config.json"));
+        }
+
+        public void GetSHCrafters()
+        {
+            SHCrafters.Clear();
+            //Read stonehearth.smod and get everybody who has a recipe.json
+            using (ZipFile zip = ZipFile.Read(Form1.config.SHsmodPath))
+            {
+                foreach (ZipEntry e in zip)
+                {
+                    if (e.FileName.Contains("recipes.json"))
+                    {
+                        //Console.WriteLine(e.FileName);
+                        String str = e.FileName.Remove((e.FileName.Length - 21));
+                        str = str.Remove(0, 17);
+                        //Console.WriteLine(str);
+                        SHCrafters.Add("stonehearth:" + str);
+                    }
+                }
+            }
         }
     }
 }
