@@ -1,12 +1,20 @@
 ﻿TODO
 
+Change Save Item buttons to Add or Update depending on wether the item exsists yet in the mod
+
+MOD tab
+	context menu.. add 'add recipe' function
+	maybe make it go away on recipe list? if not, then
+
 Weapons
-	Add custom txtfields
+	Add tags
+	Have Breeze take qb thumbnail from the side.
 
 Config
 	??put blank.png and blank.qb into config file as byte[]s??
 
 Open and Save Mod data
+	Add option to import other .shmm files into the current mod.
 
 	//Evantually import .smods?? maybe??
 	//eventually set qb setting and force qbs to comply.

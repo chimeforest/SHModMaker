@@ -40,6 +40,11 @@
             this.exportsmodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.recipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.armorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.weaponToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogSHMM = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialogSHMM = new System.Windows.Forms.SaveFileDialog();
@@ -60,12 +65,15 @@
             this.btn_weapon = new System.Windows.Forms.Button();
             this.tab_MOD = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lst_recipe = new System.Windows.Forms.ListBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lst_armor = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pic_mod_armor = new System.Windows.Forms.PictureBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lst_recipe = new System.Windows.Forms.ListBox();
             this.pic_mod_recipe = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lst_weap = new System.Windows.Forms.ListBox();
@@ -75,7 +83,7 @@
             this.txt_api_version = new System.Windows.Forms.TextBox();
             this.txt_mod_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabcontrol = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tab_recipe = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.cmb_recp_cat = new System.Windows.Forms.ComboBox();
@@ -101,6 +109,22 @@
             this.btn_recipe = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.cmb_recipe_Crafters = new System.Windows.Forms.ComboBox();
+            this.tab_armor = new System.Windows.Forms.TabPage();
+            this.btn_armor = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txt_armor_tags = new System.Windows.Forms.TextBox();
+            this.pic_armor_qb = new System.Windows.Forms.PictureBox();
+            this.pic_armor_png = new System.Windows.Forms.PictureBox();
+            this.pic_armor_qbi = new System.Windows.Forms.PictureBox();
+            this.pic_armor_qbf = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nud_armor_ilevel = new System.Windows.Forms.NumericUpDown();
+            this.nud_armor_dmgRed = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txt_armor_desc = new System.Windows.Forms.TextBox();
+            this.txt_armor_name = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lbl_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialogQB = new System.Windows.Forms.OpenFileDialog();
@@ -116,12 +140,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_damage)).BeginInit();
             this.tab_MOD.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_mod_armor)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_recipe)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_weapon)).BeginInit();
-            this.tabcontrol.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.tab_recipe.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_recipe)).BeginInit();
@@ -129,6 +155,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_ingredients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_level)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_work)).BeginInit();
+            this.tab_armor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_armor_png)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbf)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_armor_ilevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_armor_dmgRed)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -214,15 +247,50 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddToolStripMenuItem2,
             this.optionsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
+            // AddToolStripMenuItem2
+            // 
+            this.AddToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recipeToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.armorToolStripMenuItem,
+            this.weaponToolStripMenuItem});
+            this.AddToolStripMenuItem2.Name = "AddToolStripMenuItem2";
+            this.AddToolStripMenuItem2.Size = new System.Drawing.Size(123, 22);
+            this.AddToolStripMenuItem2.Text = "Add New";
+            // 
+            // recipeToolStripMenuItem
+            // 
+            this.recipeToolStripMenuItem.Name = "recipeToolStripMenuItem";
+            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.recipeToolStripMenuItem.Text = "Recipe";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(115, 6);
+            // 
+            // armorToolStripMenuItem
+            // 
+            this.armorToolStripMenuItem.Name = "armorToolStripMenuItem";
+            this.armorToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.armorToolStripMenuItem.Text = "Armor";
+            // 
+            // weaponToolStripMenuItem
+            // 
+            this.weaponToolStripMenuItem.Name = "weaponToolStripMenuItem";
+            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.weaponToolStripMenuItem.Text = "Weapon";
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.optionsToolStripMenuItem.Text = "Config";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
@@ -264,7 +332,7 @@
             this.pic_weap_png.BackColor = System.Drawing.Color.LightGray;
             this.pic_weap_png.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
             this.pic_weap_png.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_weap_png.Location = new System.Drawing.Point(407, 59);
+            this.pic_weap_png.Location = new System.Drawing.Point(407, 58);
             this.pic_weap_png.Name = "pic_weap_png";
             this.pic_weap_png.Size = new System.Drawing.Size(72, 72);
             this.pic_weap_png.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -277,7 +345,7 @@
             this.pic_weap_qbi.BackColor = System.Drawing.Color.LightGray;
             this.pic_weap_qbi.BackgroundImage = global::SHModMaker.Properties.Resources.QB_iconic;
             this.pic_weap_qbi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_weap_qbi.Location = new System.Drawing.Point(313, 59);
+            this.pic_weap_qbi.Location = new System.Drawing.Point(313, 58);
             this.pic_weap_qbi.Name = "pic_weap_qbi";
             this.pic_weap_qbi.Size = new System.Drawing.Size(72, 72);
             this.pic_weap_qbi.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -290,7 +358,7 @@
             this.pic_weap_qb.BackColor = System.Drawing.Color.LightGray;
             this.pic_weap_qb.BackgroundImage = global::SHModMaker.Properties.Resources.QB;
             this.pic_weap_qb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_weap_qb.Location = new System.Drawing.Point(218, 59);
+            this.pic_weap_qb.Location = new System.Drawing.Point(218, 58);
             this.pic_weap_qb.Name = "pic_weap_qb";
             this.pic_weap_qb.Size = new System.Drawing.Size(72, 72);
             this.pic_weap_qb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -301,7 +369,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 61);
+            this.label11.Location = new System.Drawing.Point(6, 60);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 13);
             this.label11.TabIndex = 23;
@@ -309,7 +377,7 @@
             // 
             // nud_weap_ilevel
             // 
-            this.nud_weap_ilevel.Location = new System.Drawing.Point(50, 59);
+            this.nud_weap_ilevel.Location = new System.Drawing.Point(50, 58);
             this.nud_weap_ilevel.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -323,7 +391,7 @@
             // nud_weap_reach
             // 
             this.nud_weap_reach.DecimalPlaces = 1;
-            this.nud_weap_reach.Location = new System.Drawing.Point(50, 111);
+            this.nud_weap_reach.Location = new System.Drawing.Point(50, 110);
             this.nud_weap_reach.Name = "nud_weap_reach";
             this.nud_weap_reach.Size = new System.Drawing.Size(57, 20);
             this.nud_weap_reach.TabIndex = 21;
@@ -331,7 +399,7 @@
             // 
             // nud_weap_damage
             // 
-            this.nud_weap_damage.Location = new System.Drawing.Point(50, 85);
+            this.nud_weap_damage.Location = new System.Drawing.Point(50, 84);
             this.nud_weap_damage.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -345,7 +413,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 113);
+            this.label10.Location = new System.Drawing.Point(6, 112);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 13);
             this.label10.TabIndex = 19;
@@ -354,7 +422,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 87);
+            this.label9.Location = new System.Drawing.Point(6, 86);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 18;
@@ -363,7 +431,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 36);
+            this.label8.Location = new System.Drawing.Point(6, 35);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 15;
@@ -371,7 +439,7 @@
             // 
             // txt_weap_desc
             // 
-            this.txt_weap_desc.Location = new System.Drawing.Point(50, 33);
+            this.txt_weap_desc.Location = new System.Drawing.Point(50, 32);
             this.txt_weap_desc.Name = "txt_weap_desc";
             this.txt_weap_desc.Size = new System.Drawing.Size(429, 20);
             this.txt_weap_desc.TabIndex = 14;
@@ -379,7 +447,7 @@
             // 
             // txt_weap_name
             // 
-            this.txt_weap_name.Location = new System.Drawing.Point(50, 7);
+            this.txt_weap_name.Location = new System.Drawing.Point(50, 6);
             this.txt_weap_name.Name = "txt_weap_name";
             this.txt_weap_name.Size = new System.Drawing.Size(429, 20);
             this.txt_weap_name.TabIndex = 2;
@@ -389,7 +457,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 10);
+            this.label3.Location = new System.Drawing.Point(6, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 1;
@@ -426,6 +494,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Location = new System.Drawing.Point(0, 36);
@@ -433,28 +502,28 @@
             this.panel1.Size = new System.Drawing.Size(491, 292);
             this.panel1.TabIndex = 11;
             // 
-            // groupBox2
+            // groupBox5
             // 
-            this.groupBox2.Controls.Add(this.lst_recipe);
-            this.groupBox2.Controls.Add(this.pic_mod_recipe);
-            this.groupBox2.Location = new System.Drawing.Point(6, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(221, 121);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Recipes";
+            this.groupBox5.Controls.Add(this.lst_armor);
+            this.groupBox5.Controls.Add(this.pic_mod_armor);
+            this.groupBox5.Location = new System.Drawing.Point(6, 130);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(221, 121);
+            this.groupBox5.TabIndex = 11;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Armors";
             // 
-            // lst_recipe
+            // lst_armor
             // 
-            this.lst_recipe.BackColor = System.Drawing.Color.Wheat;
-            this.lst_recipe.ContextMenuStrip = this.contextMenuStrip1;
-            this.lst_recipe.FormattingEnabled = true;
-            this.lst_recipe.Location = new System.Drawing.Point(6, 19);
-            this.lst_recipe.Name = "lst_recipe";
-            this.lst_recipe.Size = new System.Drawing.Size(100, 95);
-            this.lst_recipe.TabIndex = 6;
-            this.lst_recipe.SelectedIndexChanged += new System.EventHandler(this.lst_recipe_SelectedIndexChanged);
-            this.lst_recipe.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_recipe_MouseDown);
+            this.lst_armor.BackColor = System.Drawing.Color.Wheat;
+            this.lst_armor.ContextMenuStrip = this.contextMenuStrip1;
+            this.lst_armor.FormattingEnabled = true;
+            this.lst_armor.Location = new System.Drawing.Point(6, 19);
+            this.lst_armor.Name = "lst_armor";
+            this.lst_armor.Size = new System.Drawing.Size(100, 95);
+            this.lst_armor.TabIndex = 6;
+            this.lst_armor.SelectedIndexChanged += new System.EventHandler(this.lst_armor_SelectedIndexChanged);
+            this.lst_armor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_armor_MouseDown);
             // 
             // contextMenuStrip1
             // 
@@ -486,6 +555,39 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // pic_mod_armor
+            // 
+            this.pic_mod_armor.BackColor = System.Drawing.Color.BurlyWood;
+            this.pic_mod_armor.Location = new System.Drawing.Point(112, 19);
+            this.pic_mod_armor.Name = "pic_mod_armor";
+            this.pic_mod_armor.Size = new System.Drawing.Size(100, 95);
+            this.pic_mod_armor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_mod_armor.TabIndex = 7;
+            this.pic_mod_armor.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lst_recipe);
+            this.groupBox2.Controls.Add(this.pic_mod_recipe);
+            this.groupBox2.Location = new System.Drawing.Point(6, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(221, 121);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Recipes";
+            // 
+            // lst_recipe
+            // 
+            this.lst_recipe.BackColor = System.Drawing.Color.Wheat;
+            this.lst_recipe.ContextMenuStrip = this.contextMenuStrip1;
+            this.lst_recipe.FormattingEnabled = true;
+            this.lst_recipe.Location = new System.Drawing.Point(6, 19);
+            this.lst_recipe.Name = "lst_recipe";
+            this.lst_recipe.Size = new System.Drawing.Size(100, 95);
+            this.lst_recipe.TabIndex = 6;
+            this.lst_recipe.SelectedIndexChanged += new System.EventHandler(this.lst_recipe_SelectedIndexChanged);
+            this.lst_recipe.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_recipe_MouseDown);
+            // 
             // pic_mod_recipe
             // 
             this.pic_mod_recipe.BackColor = System.Drawing.Color.BurlyWood;
@@ -500,7 +602,7 @@
             // 
             this.groupBox1.Controls.Add(this.lst_weap);
             this.groupBox1.Controls.Add(this.pic_mod_weapon);
-            this.groupBox1.Location = new System.Drawing.Point(233, 3);
+            this.groupBox1.Location = new System.Drawing.Point(233, 130);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(221, 121);
             this.groupBox1.TabIndex = 9;
@@ -580,25 +682,26 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Mod Name:";
             // 
-            // tabcontrol
+            // tabControl
             // 
-            this.tabcontrol.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabcontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabcontrol.Controls.Add(this.tab_MOD);
-            this.tabcontrol.Controls.Add(this.tab_recipe);
-            this.tabcontrol.Controls.Add(this.tab_weapon);
-            this.tabcontrol.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabcontrol.ItemSize = new System.Drawing.Size(20, 50);
-            this.tabcontrol.Location = new System.Drawing.Point(0, 27);
-            this.tabcontrol.Multiline = true;
-            this.tabcontrol.Name = "tabcontrol";
-            this.tabcontrol.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabcontrol.SelectedIndex = 0;
-            this.tabcontrol.Size = new System.Drawing.Size(545, 332);
-            this.tabcontrol.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabcontrol.TabIndex = 0;
+            this.tabControl.Controls.Add(this.tab_MOD);
+            this.tabControl.Controls.Add(this.tab_recipe);
+            this.tabControl.Controls.Add(this.tab_armor);
+            this.tabControl.Controls.Add(this.tab_weapon);
+            this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl.ItemSize = new System.Drawing.Size(20, 50);
+            this.tabControl.Location = new System.Drawing.Point(0, 27);
+            this.tabControl.Multiline = true;
+            this.tabControl.Name = "tabControl";
+            this.tabControl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(545, 332);
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl.TabIndex = 0;
             // 
             // tab_recipe
             // 
@@ -625,7 +728,7 @@
             this.tab_recipe.Padding = new System.Windows.Forms.Padding(3);
             this.tab_recipe.Size = new System.Drawing.Size(487, 324);
             this.tab_recipe.TabIndex = 5;
-            this.tab_recipe.Text = "Recipe";
+            this.tab_recipe.Text = "RECIPE";
             this.tab_recipe.Enter += new System.EventHandler(this.tab_recipe_Enter);
             // 
             // label5
@@ -872,6 +975,189 @@
             this.cmb_recipe_Crafters.TabIndex = 12;
             this.cmb_recipe_Crafters.SelectedIndexChanged += new System.EventHandler(this.cmb_recipe_Crafters_SelectedIndexChanged);
             // 
+            // tab_armor
+            // 
+            this.tab_armor.BackColor = System.Drawing.SystemColors.Control;
+            this.tab_armor.Controls.Add(this.btn_armor);
+            this.tab_armor.Controls.Add(this.label7);
+            this.tab_armor.Controls.Add(this.txt_armor_tags);
+            this.tab_armor.Controls.Add(this.pic_armor_qb);
+            this.tab_armor.Controls.Add(this.pic_armor_png);
+            this.tab_armor.Controls.Add(this.pic_armor_qbi);
+            this.tab_armor.Controls.Add(this.pic_armor_qbf);
+            this.tab_armor.Controls.Add(this.label6);
+            this.tab_armor.Controls.Add(this.nud_armor_ilevel);
+            this.tab_armor.Controls.Add(this.nud_armor_dmgRed);
+            this.tab_armor.Controls.Add(this.label12);
+            this.tab_armor.Controls.Add(this.label18);
+            this.tab_armor.Controls.Add(this.txt_armor_desc);
+            this.tab_armor.Controls.Add(this.txt_armor_name);
+            this.tab_armor.Controls.Add(this.label19);
+            this.tab_armor.Location = new System.Drawing.Point(54, 4);
+            this.tab_armor.Name = "tab_armor";
+            this.tab_armor.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_armor.Size = new System.Drawing.Size(487, 324);
+            this.tab_armor.TabIndex = 6;
+            this.tab_armor.Text = "Armor";
+            this.tab_armor.Enter += new System.EventHandler(this.tab_armor_Enter);
+            // 
+            // btn_armor
+            // 
+            this.btn_armor.Location = new System.Drawing.Point(6, 295);
+            this.btn_armor.Name = "btn_armor";
+            this.btn_armor.Size = new System.Drawing.Size(475, 23);
+            this.btn_armor.TabIndex = 43;
+            this.btn_armor.Text = "Save Armor";
+            this.btn_armor.UseVisualStyleBackColor = true;
+            this.btn_armor.Click += new System.EventHandler(this.btn_armor_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 61);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 42;
+            this.label7.Text = "Tags:";
+            // 
+            // txt_armor_tags
+            // 
+            this.txt_armor_tags.Location = new System.Drawing.Point(50, 58);
+            this.txt_armor_tags.Name = "txt_armor_tags";
+            this.txt_armor_tags.Size = new System.Drawing.Size(429, 20);
+            this.txt_armor_tags.TabIndex = 30;
+            this.txt_armor_tags.TextChanged += new System.EventHandler(this.txt_armor_changed);
+            // 
+            // pic_armor_qb
+            // 
+            this.pic_armor_qb.BackColor = System.Drawing.Color.LightGray;
+            this.pic_armor_qb.BackgroundImage = global::SHModMaker.Properties.Resources.QB;
+            this.pic_armor_qb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_armor_qb.Location = new System.Drawing.Point(125, 84);
+            this.pic_armor_qb.Name = "pic_armor_qb";
+            this.pic_armor_qb.Size = new System.Drawing.Size(72, 72);
+            this.pic_armor_qb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_armor_qb.TabIndex = 40;
+            this.pic_armor_qb.TabStop = false;
+            this.pic_armor_qb.Click += new System.EventHandler(this.pic_armor_qb_Click);
+            // 
+            // pic_armor_png
+            // 
+            this.pic_armor_png.BackColor = System.Drawing.Color.LightGray;
+            this.pic_armor_png.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
+            this.pic_armor_png.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_armor_png.Location = new System.Drawing.Point(407, 84);
+            this.pic_armor_png.Name = "pic_armor_png";
+            this.pic_armor_png.Size = new System.Drawing.Size(72, 72);
+            this.pic_armor_png.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_armor_png.TabIndex = 39;
+            this.pic_armor_png.TabStop = false;
+            this.pic_armor_png.Click += new System.EventHandler(this.pic_armor_png_Click);
+            // 
+            // pic_armor_qbi
+            // 
+            this.pic_armor_qbi.BackColor = System.Drawing.Color.LightGray;
+            this.pic_armor_qbi.BackgroundImage = global::SHModMaker.Properties.Resources.QB_iconic;
+            this.pic_armor_qbi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_armor_qbi.Location = new System.Drawing.Point(313, 84);
+            this.pic_armor_qbi.Name = "pic_armor_qbi";
+            this.pic_armor_qbi.Size = new System.Drawing.Size(72, 72);
+            this.pic_armor_qbi.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_armor_qbi.TabIndex = 38;
+            this.pic_armor_qbi.TabStop = false;
+            this.pic_armor_qbi.Click += new System.EventHandler(this.pic_armor_qbi_Click);
+            // 
+            // pic_armor_qbf
+            // 
+            this.pic_armor_qbf.BackColor = System.Drawing.Color.LightGray;
+            this.pic_armor_qbf.BackgroundImage = global::SHModMaker.Properties.Resources.QB_female;
+            this.pic_armor_qbf.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_armor_qbf.Location = new System.Drawing.Point(218, 84);
+            this.pic_armor_qbf.Name = "pic_armor_qbf";
+            this.pic_armor_qbf.Size = new System.Drawing.Size(72, 72);
+            this.pic_armor_qbf.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_armor_qbf.TabIndex = 37;
+            this.pic_armor_qbf.TabStop = false;
+            this.pic_armor_qbf.Click += new System.EventHandler(this.pic_armor_qbf_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 86);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 36;
+            this.label6.Text = "iLevel:";
+            // 
+            // nud_armor_ilevel
+            // 
+            this.nud_armor_ilevel.Location = new System.Drawing.Point(50, 84);
+            this.nud_armor_ilevel.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nud_armor_ilevel.Name = "nud_armor_ilevel";
+            this.nud_armor_ilevel.Size = new System.Drawing.Size(57, 20);
+            this.nud_armor_ilevel.TabIndex = 31;
+            this.nud_armor_ilevel.ValueChanged += new System.EventHandler(this.txt_armor_changed);
+            // 
+            // nud_armor_dmgRed
+            // 
+            this.nud_armor_dmgRed.Location = new System.Drawing.Point(50, 110);
+            this.nud_armor_dmgRed.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nud_armor_dmgRed.Name = "nud_armor_dmgRed";
+            this.nud_armor_dmgRed.Size = new System.Drawing.Size(57, 20);
+            this.nud_armor_dmgRed.TabIndex = 34;
+            this.nud_armor_dmgRed.ValueChanged += new System.EventHandler(this.txt_armor_changed);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 112);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(43, 13);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "Dmg R:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 35);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 13);
+            this.label18.TabIndex = 31;
+            this.label18.Text = "Desc:";
+            // 
+            // txt_armor_desc
+            // 
+            this.txt_armor_desc.Location = new System.Drawing.Point(50, 32);
+            this.txt_armor_desc.Name = "txt_armor_desc";
+            this.txt_armor_desc.Size = new System.Drawing.Size(429, 20);
+            this.txt_armor_desc.TabIndex = 29;
+            this.txt_armor_desc.TextChanged += new System.EventHandler(this.txt_armor_changed);
+            // 
+            // txt_armor_name
+            // 
+            this.txt_armor_name.Location = new System.Drawing.Point(50, 6);
+            this.txt_armor_name.Name = "txt_armor_name";
+            this.txt_armor_name.Size = new System.Drawing.Size(429, 20);
+            this.txt_armor_name.TabIndex = 28;
+            this.txt_armor_name.TextChanged += new System.EventHandler(this.txt_armor_changed);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 9);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(38, 13);
+            this.label19.TabIndex = 27;
+            this.label19.Text = "Name:";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -903,7 +1189,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(545, 384);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.tabcontrol);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
@@ -927,12 +1213,14 @@
             this.tab_MOD.ResumeLayout(false);
             this.tab_MOD.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_mod_armor)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_recipe)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_weapon)).EndInit();
-            this.tabcontrol.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tab_recipe.ResumeLayout(false);
             this.tab_recipe.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -943,6 +1231,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_ingredients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_level)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_work)).EndInit();
+            this.tab_armor.ResumeLayout(false);
+            this.tab_armor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_armor_png)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbf)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_armor_ilevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_armor_dmgRed)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -965,9 +1261,7 @@
         private System.Windows.Forms.TabPage tab_weapon;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown nud_weap_ilevel;
-        private System.Windows.Forms.NumericUpDown nud_weap_reach;
         private System.Windows.Forms.NumericUpDown nud_weap_damage;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txt_weap_desc;
@@ -983,7 +1277,7 @@
         private System.Windows.Forms.TextBox txt_api_version;
         private System.Windows.Forms.TextBox txt_mod_name;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabControl tabcontrol;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
@@ -1028,6 +1322,32 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox cmb_recp_cat;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripMenuItem AddToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem recipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem armorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem weaponToolStripMenuItem;
+        private System.Windows.Forms.TabPage tab_armor;
+        private System.Windows.Forms.PictureBox pic_armor_png;
+        private System.Windows.Forms.PictureBox pic_armor_qbi;
+        private System.Windows.Forms.PictureBox pic_armor_qbf;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown nud_armor_ilevel;
+        private System.Windows.Forms.NumericUpDown nud_armor_dmgRed;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txt_armor_desc;
+        private System.Windows.Forms.TextBox txt_armor_name;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown nud_weap_reach;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txt_armor_tags;
+        private System.Windows.Forms.PictureBox pic_armor_qb;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ListBox lst_armor;
+        private System.Windows.Forms.PictureBox pic_mod_armor;
+        private System.Windows.Forms.Button btn_armor;
     }
 }
 

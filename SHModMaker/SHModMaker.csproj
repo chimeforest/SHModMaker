@@ -115,6 +115,12 @@
     <None Include="Configs\config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="JSONs\Armor\armor.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JSONs\Armor\armor_iconic.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="JSONs\Recipe\item_mixinto.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -148,6 +154,7 @@
     <Content Include="Configs\List of Tabs.txt" />
     <Content Include="Configs\Shortcuts.txt" />
     <Content Include="Configs\TODO.txt" />
+    <None Include="Resources\QB_female.png" />
     <None Include="Resources\QB_iconic.png" />
     <None Include="Resources\QB.png" />
     <None Include="Resources\PNG.png" />
@@ -164,6 +171,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

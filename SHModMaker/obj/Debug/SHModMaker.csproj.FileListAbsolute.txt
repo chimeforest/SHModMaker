@@ -35,3 +35,5 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.Confi
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\QbBreeze.xml
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Recipe\item_mixinto.json
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Recipe\item_recipe.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Armor\armor.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Armor\armor_iconic.json

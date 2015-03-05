@@ -31,6 +31,7 @@ namespace SHModMaker
         //Current Item variables
         public static MOD mod = new MOD();
         public static Recipe currentRecipe = new Recipe();
+        public static Armor currentArmor = new Armor();
         public static Weapon currentWeapon = new Weapon();
 
         private static bool TabLoading = false;
@@ -40,7 +41,7 @@ namespace SHModMaker
         public Form1()
         {
             InitializeComponent();
-            tabcontrol.DrawItem += new DrawItemEventHandler(tabControl1_DrawItem);
+            tabControl.DrawItem += new DrawItemEventHandler(tabControl1_DrawItem);
         }
         private void tabControl1_DrawItem(Object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
@@ -48,10 +49,10 @@ namespace SHModMaker
             Brush _textBrush;
 
             // Get the item from the collection.
-            TabPage _tabPage = tabcontrol.TabPages[e.Index];
+            TabPage _tabPage = tabControl.TabPages[e.Index];
 
             // Get the real bounds for the tab rectangle.
-            Rectangle _tabBounds = tabcontrol.GetTabRect(e.Index);
+            Rectangle _tabBounds = tabControl.GetTabRect(e.Index);
 
             if (e.State == DrawItemState.Selected)
             {
@@ -185,13 +186,18 @@ namespace SHModMaker
                 updateMODtab();
 
                 //if weaponlist != empty then set selected index to 0.. same for recipe
-                if (lst_weap.Items.Count > 0)
-                {
-                    lst_weap.SelectedIndex = 0;
-                }
+
                 if (lst_recipe.Items.Count > 0)
                 {
                     lst_recipe.SelectedIndex = 0;
+                }
+                if (lst_armor.Items.Count > 0)
+                {
+                    lst_armor.SelectedIndex = 0;
+                }
+                if (lst_weap.Items.Count > 0)
+                {
+                    lst_weap.SelectedIndex = 0;
                 }
 
                 update_recipe_crafters();
@@ -249,17 +255,23 @@ namespace SHModMaker
             txt_mod_name.Text = mod.name;
             txt_api_version.Text = mod.apiVersion;
 
-            //update weapons list
-            lst_weap.Items.Clear();
-            foreach (Weapon weap in mod.weapons)
-            {
-                lst_weap.Items.Add(weap.name);
-            }
-            //update recipe list
+            //update lists
             lst_recipe.Items.Clear();
             foreach (Recipe recp in mod.recipes)
             {
                 lst_recipe.Items.Add(recp.name);
+            }
+
+            lst_armor.Items.Clear();
+            foreach (Armor armr in mod.armors)
+            {
+                lst_armor.Items.Add(armr.name);
+            }
+
+            lst_weap.Items.Clear();
+            foreach (Weapon weap in mod.weapons)
+            {
+                lst_weap.Items.Add(weap.name);
             }
         }
         private void txt_mod_name_TextChanged(object sender, EventArgs e)
@@ -274,32 +286,6 @@ namespace SHModMaker
         private void txt_api_version_TextChanged(object sender, EventArgs e)
         {
             mod.apiVersion = txt_api_version.Text;
-        }
-
-        //lst_weapon stuff
-        private void lst_weap_MouseDown(object sender, MouseEventArgs e)
-        {
-            lst_weap.SelectedIndex = lst_weap.IndexFromPoint(e.X, e.Y);
-            currentListBox = "weapons";
-        }
-        private void lst_weap_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lst_weap.SelectedItem != null)
-            {
-                foreach (Weapon weap in mod.weapons)
-                {
-                    if (weap.name == lst_weap.SelectedItem.ToString())
-                    {
-                        pic_mod_weapon.Image = Image.FromStream(new MemoryStream(weap.png));
-                        pic_mod_weapon.Refresh();
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                pic_mod_weapon.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
-            }
         }
 
         //lst_recipe stuff
@@ -325,38 +311,85 @@ namespace SHModMaker
             else
             {
                 pic_mod_recipe.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
+                pic_mod_recipe.Refresh();
+            }
+        }
+
+        //lst_weapon stuff
+        private void lst_armor_MouseDown(object sender, MouseEventArgs e)
+        {
+            lst_armor.SelectedIndex = lst_armor.IndexFromPoint(e.X, e.Y);
+            currentListBox = "armors";
+        }
+        private void lst_armor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lst_armor.SelectedItem != null)
+            {
+                foreach (Armor armr in mod.armors)
+                {
+                    if (armr.name == lst_armor.SelectedItem.ToString())
+                    {
+                        pic_mod_armor.Image = Image.FromStream(new MemoryStream(armr.png));
+                        pic_mod_armor.Refresh();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pic_mod_armor.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
+                pic_mod_armor.Refresh();
+            }
+        }
+
+        //lst_weapon stuff
+        private void lst_weap_MouseDown(object sender, MouseEventArgs e)
+        {
+            lst_weap.SelectedIndex = lst_weap.IndexFromPoint(e.X, e.Y);
+            currentListBox = "weapons";
+        }
+        private void lst_weap_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lst_weap.SelectedItem != null)
+            {
+                foreach (Weapon weap in mod.weapons)
+                {
+                    if (weap.name == lst_weap.SelectedItem.ToString())
+                    {
+                        pic_mod_weapon.Image = Image.FromStream(new MemoryStream(weap.png));
+                        pic_mod_weapon.Refresh();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pic_mod_weapon.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
+                pic_mod_weapon.Refresh();
             }
         }
 
         //context menu for listboxs
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (currentListBox == "weapons")
-            {
-                currentWeapon = new Weapon();
-                tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
-            }
             if (currentListBox == "recipes")
             {
                 currentRecipe = new Recipe();
-                tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_recipe");
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_recipe");
             }
-            
+            if (currentListBox == "armors")
+            {
+                currentArmor = new Armor();
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_armor");
+            }
+            if (currentListBox == "weapons")
+            {
+                currentWeapon = new Weapon();
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_weapon");
+            }
         }
         private void editToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (currentListBox == "weapons")
-            {
-                foreach (Weapon weap in mod.weapons)
-                {
-                    if (weap.name == lst_weap.SelectedItem.ToString())
-                    {
-                        currentWeapon = weap;
-                        break;
-                    }
-                }
-                tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_weapon");
-            }
             if (currentListBox == "recipes")
             {
                 foreach (Recipe recp in mod.recipes)
@@ -367,23 +400,35 @@ namespace SHModMaker
                         break;
                     }
                 }
-                tabcontrol.SelectedIndex = tabcontrol.TabPages.IndexOfKey("tab_recipe");
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_recipe");
             }
-        }
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+            if (currentListBox == "armors")
+            {
+                foreach (Armor armr in mod.armors)
+                {
+                    if (armr.name == lst_armor.SelectedItem.ToString())
+                    {
+                        currentArmor = armr;
+                        break;
+                    }
+                }
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_armor");
+            }
             if (currentListBox == "weapons")
             {
                 foreach (Weapon weap in mod.weapons)
                 {
                     if (weap.name == lst_weap.SelectedItem.ToString())
                     {
-                        mod.weapons.Remove(weap);
+                        currentWeapon = weap;
                         break;
                     }
                 }
-                updateMODtab();
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_weapon");
             }
+        }
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             if (currentListBox == "recipes")
             {
                 foreach (Recipe recp in mod.recipes)
@@ -396,107 +441,30 @@ namespace SHModMaker
                 }
                 updateMODtab();
             }
-        }
-
-        //__________Weapon Tab Stuff__________
-        private void tab_weapon_Enter(object sender, EventArgs e)
-        {
-            TabLoading = true;
-            txt_weap_name.Text = currentWeapon.name;
-            txt_weap_desc.Text = currentWeapon.desc;
-            nud_weap_ilevel.Value = currentWeapon.ilevel;
-            nud_weap_damage.Value = currentWeapon.damage;
-            nud_weap_reach.Value = (decimal)currentWeapon.reach;
-
-            pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
-            pic_weap_qb.Refresh();
-
-            pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
-            pic_weap_qbi.Refresh();
-
-            pic_weap_png.Image = Image.FromStream(new MemoryStream(currentWeapon.png));
-            pic_weap_png.Refresh();
-            TabLoading = false;
-        }
-
-        private void pic_weap_qb_Click(object sender, EventArgs e)
-        {
-            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            if (currentListBox == "armors")
             {
-                currentWeapon.qb = File.ReadAllBytes(openFileDialogQB.FileName);
-                if (canRenderQB)
+                foreach (Armor armr in mod.armors)
                 {
-                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentWeapon.qb))
+                    if (armr.name == lst_armor.SelectedItem.ToString())
                     {
-                        using (MemoryStream stream = new MemoryStream())
-                        {
-                            thumbnail.Save(stream, ImageFormat.Png);
-                            currentWeapon.qbICON = stream.ToArray();
-                        }
+                        mod.armors.Remove(armr);
+                        break;
                     }
                 }
-                pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
-                pic_weap_qb.Refresh();
+                updateMODtab();
             }
-        }
-        private void pic_weap_qbi_Click(object sender, EventArgs e)
-        {
-            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            if (currentListBox == "weapons")
             {
-                currentWeapon.qbi = File.ReadAllBytes(openFileDialogQB.FileName);
-                if (canRenderQB)
+                foreach (Weapon weap in mod.weapons)
                 {
-                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentWeapon.qbi))
+                    if (weap.name == lst_weap.SelectedItem.ToString())
                     {
-                        using (MemoryStream stream = new MemoryStream())
-                        {
-                            thumbnail.Save(stream, ImageFormat.Png);
-                            currentWeapon.qbiICON = stream.ToArray();
-                        }
+                        mod.weapons.Remove(weap);
+                        break;
                     }
                 }
-                pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
-                pic_weap_qbi.Refresh();
+                updateMODtab();
             }
-        }
-        private void pic_weap_png_Click(object sender, EventArgs e)
-        {
-            if (openFileDialogPNG.ShowDialog() == DialogResult.OK)
-            {
-                currentWeapon.png = File.ReadAllBytes(openFileDialogPNG.FileName);
-                pic_weap_png.Image = Image.FromStream(new MemoryStream(currentWeapon.png));
-                pic_weap_png.Refresh();
-            }
-        }
-        private void txt_weap_changed(object sender, EventArgs e)
-        {
-            if (!TabLoading)
-            {
-                currentWeapon.name = txt_weap_name.Text;
-                currentWeapon.iname = utils.LowerNoSpaces(currentWeapon.name);
-                currentWeapon.desc = txt_weap_desc.Text;
-                currentWeapon.ilevel = (int)nud_weap_ilevel.Value;
-                currentWeapon.damage = (int)nud_weap_damage.Value;
-                currentWeapon.reach = (float)nud_weap_reach.Value;
-            }
-        }
-        private void btn_weapon_Click(object sender, EventArgs e)
-        {
-            //Add weapon to MOD
-            if (currentWeapon.name != "")
-            {
-                mod.AddWeapon(currentWeapon);
-                tabcontrol.SelectedIndex = 0;
-                lbl_status.Text = "Weapon " + currentWeapon.name + " has been added/updated.";
-            }
-            else
-            {
-                lbl_status.Text = "Weapon has no name! Could not add/update weapon.";
-            }
-            update_recipe_igredients();
-            update_recipe_products();
-
-
         }
 
         //__________Recipe Tab Stuff__________
@@ -596,18 +564,41 @@ namespace SHModMaker
             if (cmb_recipe_prod.SelectedItem.ToString() != "")
             {
                 currentRecipe.product = cmb_recipe_prod.SelectedItem.ToString();
+                Console.WriteLine(currentRecipe.product.ToString());
                 //if pic checkbox is not checked, change pic
                 if (!chk_recipe_lockimg.Checked)
                 {
+                    Console.WriteLine(cmb_recipe_prod.Text);
+                    Console.WriteLine(cmb_recipe_prod.SelectedItem.ToString());
                     //if it has ':weapon:' in the text then it must be a weapon
                     if (cmb_recipe_prod.SelectedItem.ToString().Contains(":weapon:"))
                     {
                         foreach (Weapon weap in mod.weapons)
                         {
                             //Console.WriteLine(weap.iname + " " + cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":weapons:".Length-1));
-                            if (weap.iname == cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":weapons:".Length - 1))
+                            if (weap.iname == cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":weapon:".Length))
                             {
                                 currentRecipe.png = weap.png;
+                                pic_recipe.Image = Image.FromStream(new MemoryStream(currentRecipe.png));
+                                pic_recipe.Refresh();
+                                break;
+                            }
+                        }
+                    }
+                    
+                    Console.WriteLine(cmb_recipe_prod.Text);
+                    Console.WriteLine(cmb_recipe_prod.SelectedItem.ToString());
+                    //if it has ':armor:' in the text then it must be an armor
+                    if (cmb_recipe_prod.SelectedItem.ToString().Contains(":armor:"))
+                    {
+                        foreach (Armor armr in mod.armors)
+                        {
+                            Console.WriteLine("armor: " + armr.iname);
+                            //MessageBox.Show(armr.iname + " - " + cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":armor:".Length));
+                            //Why is this code +0 while the other one was -1????
+                            if (armr.iname == cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":armor:".Length))
+                            {
+                                currentRecipe.png = armr.png;
                                 pic_recipe.Image = Image.FromStream(new MemoryStream(currentRecipe.png));
                                 pic_recipe.Refresh();
                                 break;
@@ -682,13 +673,235 @@ namespace SHModMaker
                 currentRecipe.crafter = cmb_recipe_Crafters.Text;
                 currentRecipe.category = cmb_recp_cat.Text;
                 mod.AddRecipe(currentRecipe);
-                tabcontrol.SelectedIndex = 0;
+                tabControl.SelectedIndex = 0;
                 lbl_status.Text = "Recipe " + currentRecipe.name + " has been added/updated.";
             }
         }
 
-        //__________  __________
+        //__________Armor Tab Stuff__________
+        private void tab_armor_Enter(object sender, EventArgs e)
+        {
+            TabLoading = true;
+            txt_armor_name.Text = currentArmor.name;
+            txt_armor_desc.Text = currentArmor.desc;
+            txt_armor_tags.Text = currentArmor.tags;
+            nud_armor_ilevel.Value = currentArmor.ilevel;
+            nud_armor_dmgRed.Value = currentArmor.damageReduc;
 
+            pic_armor_qb.Image = Image.FromStream(new MemoryStream(currentArmor.qbICON));
+            pic_armor_qb.Refresh();
+
+            pic_armor_qbf.Image = Image.FromStream(new MemoryStream(currentArmor.qbfICON));
+            pic_armor_qbf.Refresh();
+
+            pic_armor_qbi.Image = Image.FromStream(new MemoryStream(currentArmor.qbiICON));
+            pic_armor_qbi.Refresh();
+
+            pic_armor_png.Image = Image.FromStream(new MemoryStream(currentArmor.png));
+            pic_armor_png.Refresh();
+            TabLoading = false;
+        }
+
+        private void pic_armor_qb_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentArmor.qb = File.ReadAllBytes(openFileDialogQB.FileName);
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentArmor.qb))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentArmor.qbICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_armor_qb.Image = Image.FromStream(new MemoryStream(currentArmor.qbICON));
+                pic_armor_qb.Refresh();
+            }
+        }
+        private void pic_armor_qbf_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentArmor.qbf = File.ReadAllBytes(openFileDialogQB.FileName);
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentArmor.qbf))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentArmor.qbfICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_armor_qbf.Image = Image.FromStream(new MemoryStream(currentArmor.qbfICON));
+                pic_armor_qbf.Refresh();
+            }
+        }
+        private void pic_armor_qbi_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentArmor.qbi = File.ReadAllBytes(openFileDialogQB.FileName);
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentArmor.qbi))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentArmor.qbiICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_armor_qbi.Image = Image.FromStream(new MemoryStream(currentArmor.qbiICON));
+                pic_armor_qbi.Refresh();
+            }
+        }
+        private void pic_armor_png_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogPNG.ShowDialog() == DialogResult.OK)
+            {
+                currentArmor.png = File.ReadAllBytes(openFileDialogPNG.FileName);
+                pic_armor_png.Image = Image.FromStream(new MemoryStream(currentArmor.png));
+                pic_armor_png.Refresh();
+            }
+        }
+        private void txt_armor_changed(object sender, EventArgs e)
+        {
+            if (!TabLoading)
+            {
+                currentArmor.name = txt_armor_name.Text;
+                currentArmor.iname = utils.LowerNoSpaces(currentArmor.name);
+                currentArmor.desc = txt_armor_desc.Text;
+                currentArmor.tags = txt_armor_tags.Text;
+                currentArmor.ilevel = (int)nud_armor_ilevel.Value;
+                currentArmor.damageReduc = (int)nud_armor_dmgRed.Value;
+            }
+        }
+        private void btn_armor_Click(object sender, EventArgs e)
+        {
+            //Add weapon to MOD
+            if (currentArmor.name != "")
+            {
+                mod.AddArmor(currentArmor);
+                tabControl.SelectedIndex = 0;
+                lbl_status.Text = "Armor " + currentArmor.name + " has been added/updated.";
+            }
+            else
+            {
+                lbl_status.Text = "Armor has no name! Could not add/update weapon.";
+            }
+            update_recipe_igredients();
+            update_recipe_products();
+
+
+        }
+
+        //__________Weapon Tab Stuff__________
+        private void tab_weapon_Enter(object sender, EventArgs e)
+        {
+            TabLoading = true;
+            txt_weap_name.Text = currentWeapon.name;
+            txt_weap_desc.Text = currentWeapon.desc;
+            nud_weap_ilevel.Value = currentWeapon.ilevel;
+            nud_weap_damage.Value = currentWeapon.damage;
+            nud_weap_reach.Value = (decimal)currentWeapon.reach;
+
+            pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
+            pic_weap_qb.Refresh();
+
+            pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
+            pic_weap_qbi.Refresh();
+
+            pic_weap_png.Image = Image.FromStream(new MemoryStream(currentWeapon.png));
+            pic_weap_png.Refresh();
+            TabLoading = false;
+        }
+
+        private void pic_weap_qb_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentWeapon.qb = File.ReadAllBytes(openFileDialogQB.FileName);
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentWeapon.qb))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentWeapon.qbICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_weap_qb.Image = Image.FromStream(new MemoryStream(currentWeapon.qbICON));
+                pic_weap_qb.Refresh();
+            }
+        }
+        private void pic_weap_qbi_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentWeapon.qbi = File.ReadAllBytes(openFileDialogQB.FileName);
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentWeapon.qbi))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentWeapon.qbiICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_weap_qbi.Image = Image.FromStream(new MemoryStream(currentWeapon.qbiICON));
+                pic_weap_qbi.Refresh();
+            }
+        }
+        private void pic_weap_png_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogPNG.ShowDialog() == DialogResult.OK)
+            {
+                currentWeapon.png = File.ReadAllBytes(openFileDialogPNG.FileName);
+                pic_weap_png.Image = Image.FromStream(new MemoryStream(currentWeapon.png));
+                pic_weap_png.Refresh();
+            }
+        }
+        private void txt_weap_changed(object sender, EventArgs e)
+        {
+            if (!TabLoading)
+            {
+                currentWeapon.name = txt_weap_name.Text;
+                currentWeapon.iname = utils.LowerNoSpaces(currentWeapon.name);
+                currentWeapon.desc = txt_weap_desc.Text;
+                currentWeapon.ilevel = (int)nud_weap_ilevel.Value;
+                currentWeapon.damage = (int)nud_weap_damage.Value;
+                currentWeapon.reach = (float)nud_weap_reach.Value;
+            }
+        }
+        private void btn_weapon_Click(object sender, EventArgs e)
+        {
+            //Add weapon to MOD
+            if (currentWeapon.name != "")
+            {
+                mod.AddWeapon(currentWeapon);
+                tabControl.SelectedIndex = 0;
+                lbl_status.Text = "Weapon " + currentWeapon.name + " has been added/updated.";
+            }
+            else
+            {
+                lbl_status.Text = "Weapon has no name! Could not add/update weapon.";
+            }
+            update_recipe_igredients();
+            update_recipe_products();
+
+
+        }
     }
 
     // __________Other Classes__________
@@ -1142,6 +1355,113 @@ namespace SHModMaker
         }
     }
 
+    public class Armor
+    {
+        public String name;
+        public String iname;
+        public String desc;
+        public String tags;
+        public int ilevel;
+        public int damageReduc;
+
+        public byte[] qb;
+        public byte[] qbf;
+        public byte[] qbi;
+        public byte[] png;
+        public byte[] qbICON;
+        public byte[] qbfICON;
+        public byte[] qbiICON;
+
+        public Armor()
+            : this("", "", 0, 0, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
+                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+        { }
+
+        public Armor(String nam, String des, int ilvl, int dam, float rea)
+            : this(nam, des, ilvl, dam, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), 
+                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
+                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
+                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), 
+                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
+                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
+                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+        { }
+
+        public Armor(String nam, String des, int ilvl, int dam, Byte[] q, Byte[] qf, Byte[] qi, Byte[] p, Byte[] qbIC, Byte[] qbfIC, Byte[] qbiIC)
+        {
+            name = nam;
+            iname = utils.LowerNoSpaces(nam);
+            desc = des;
+            ilevel = ilvl;
+            damageReduc = dam;
+            qb = q;
+            qbf = qf;
+            qbi = qi;
+            png = p;
+            qbICON = qbIC;
+            qbfICON = qbfIC;
+            qbiICON = qbiIC;
+        }
+
+        public void WriteArmorFile(String modPath)
+        {
+            string localPath = System.IO.Directory.GetCurrentDirectory();
+            String[] filesAll;
+            List<String[]> filesJsonLua = new List<string[]>();
+            //Build Parse List
+            List<String[]> refList = new List<string[]>();
+            refList.Add(new String[] { "name", name });
+            refList.Add(new String[] { "iname", iname });
+            refList.Add(new String[] { "desc", desc });
+            refList.Add(new String[] { "tag", tags });
+            refList.Add(new String[] { "ilevel", ilevel.ToString() });
+            refList.Add(new String[] { "damage", damageReduc.ToString() });
+
+            //Get JSONs and LUA files
+            //FIX can probably make a utils for this utils.GetJsonLua(String path)??
+            filesAll = System.IO.Directory.GetFiles(localPath + "\\JSONs\\Armor\\");
+            foreach (String str in filesAll)
+            {
+                if (str.EndsWith(".json") || str.EndsWith(".lua") || str.EndsWith(".luac"))
+                {
+                    //Parse files
+                    System.IO.StreamReader filepath = new System.IO.StreamReader(str);
+                    filesJsonLua.Add(new String[] { System.IO.Path.GetFileName(str), utils.Parse(filepath.ReadToEnd(), refList) });
+                    filepath.Close();
+                }
+            }
+
+            //make folder if needed
+            if (!System.IO.Directory.Exists(modPath + "\\entities\\armor\\" + iname))
+            {
+                System.IO.Directory.CreateDirectory(modPath + "\\entities\\armor\\" + iname);
+                Console.WriteLine(modPath + "\\entities\\armor\\" + iname);
+            }
+
+            //write them to new path
+            foreach (String[] str in filesJsonLua)
+            {
+                String fileName = str[0];
+                if (fileName.ToLower().Contains("armor"))
+                {
+                    fileName = fileName.ToLower().Replace("armor", iname);
+                }
+                System.IO.File.WriteAllText(modPath + "\\entities\\armor\\" + iname + "\\" + fileName, str[1], Encoding.ASCII);
+            }
+
+            //write qbs and png to new path
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + ".qb", qb);
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + "_female.qb", qbf);
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + "_iconic.qb", qbi);
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + ".png", png);
+        }
+    }
+
     public class Weapon
     {
         public String name;
@@ -1251,6 +1571,7 @@ namespace SHModMaker
         public ManifestJSON manifest;
         public List<Crafter> crafters;
         public List<Recipe> recipes;
+        public List<Armor> armors;
         public List<Weapon> weapons;
 
         public MOD()
@@ -1260,6 +1581,7 @@ namespace SHModMaker
             manifest = new ManifestJSON();
             crafters = new List<Crafter>();
             recipes = new List<Recipe>();
+            armors = new List<Armor>();
             weapons = new List<Weapon>();
         }
         public MOD(string nam)
@@ -1269,7 +1591,30 @@ namespace SHModMaker
             manifest = new ManifestJSON();
             crafters = new List<Crafter>();
             recipes = new List<Recipe>();
+            armors = new List<Armor>();
             weapons = new List<Weapon>();
+        }
+
+        public void AddArmor(Armor armr)
+        {
+            bool changed = false;
+            //Search for an item of the same name, if one exsists then it updates the information, else it adds it to the list.
+            for (int i = 0; i < armors.Count; i++)
+            {
+                if (armors[i].iname == armr.iname)
+                {
+                    changed = true;
+                    armors[i] = armr;
+                }
+            }
+            if (changed == false)
+            {
+                armors.Add(armr);
+            }
+        }
+        public void RemoveArmor(Armor armr)
+        {
+            armors.Remove(armr);
         }
 
         public void AddWeapon(Weapon weap)
@@ -1320,6 +1665,12 @@ namespace SHModMaker
         {
             List<String> items = new List<String>();
 
+            //Get aliases from armor
+            foreach (Armor armr in armors)
+            {
+                items.Add(name + ":" + "armor:" + armr.iname);
+            }
+
             //Get aliases from weapons
             foreach (Weapon weap in weapons)
             {
@@ -1335,11 +1686,18 @@ namespace SHModMaker
         {
             manifest.name = name;
             manifest.apiVersion = apiVersion;
+
+            //Add Armors to manifest
+            foreach (Armor armr in armors)
+            {
+                manifest.AddAlias("armor:" + armr.iname, "file(entities/armor/" + armr.iname + ")");
+            }
             //Add weapons to manifest
             foreach (Weapon weap in weapons)
             {
                 manifest.AddAlias("weapon:" + weap.iname, "file(entities/weapons/" + weap.iname + ")");
             }
+
             //add recipes to manifest
             foreach (Recipe recp in recipes)
             {
@@ -1360,15 +1718,19 @@ namespace SHModMaker
                 Console.WriteLine(modPath + "\\" + name);
             }
 
-            //write weapon files
-            foreach (Weapon weap in weapons)
-            {
-                weap.WriteWeaponFile(modPath + name);
-            }
-
+            //write item files
             foreach (Recipe recp in recipes)
             {
                 recp.WriteRecipeFile(modPath + name);
+            }
+
+            foreach (Armor armr in armors)
+            {
+                armr.WriteArmorFile(modPath + name);
+            }
+            foreach (Weapon weap in weapons)
+            {
+                weap.WriteWeaponFile(modPath + name);
             }
 
             //write manifest
