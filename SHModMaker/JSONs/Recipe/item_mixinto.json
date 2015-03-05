@@ -1,0 +1,11 @@
+{ 
+   "craftable_recipes" : {
+      "~cat~" : {
+         "recipes" : {
+            "~iname~" : {
+               "recipe" : "file(~iname~_recipe.json)"
+            }         
+         }
+      }
+   }
+}

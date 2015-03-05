@@ -33,6 +33,7 @@ namespace SHModMaker
         public static Recipe currentRecipe = new Recipe();
         public static Weapon currentWeapon = new Weapon();
 
+        private static bool TabLoading = false;
         private static String currentListBox = "";
 
         //__________Form and FormLoad stuff__________
@@ -90,6 +91,8 @@ namespace SHModMaker
             update_recipe_igredients();
             update_recipe_products();
 
+            folderBrowserDialog1.SelectedPath = config.SHsmodPath.Remove(config.SHsmodPath.Length - 16);
+
             //check if computer can run thumbnailer
             Console.WriteLine("Attempting to Initialize QbBreeze...");
             if (Breeze.Initialize())
@@ -110,6 +113,7 @@ namespace SHModMaker
             {
                 update_recipe_crafters();
                 update_recipe_igredients();
+                folderBrowserDialog1.SelectedPath = config.SHsmodPath.Remove(config.SHsmodPath.Length-16);
                 configJustUpdated = false;
             }
         }
@@ -397,6 +401,7 @@ namespace SHModMaker
         //__________Weapon Tab Stuff__________
         private void tab_weapon_Enter(object sender, EventArgs e)
         {
+            TabLoading = true;
             txt_weap_name.Text = currentWeapon.name;
             txt_weap_desc.Text = currentWeapon.desc;
             nud_weap_ilevel.Value = currentWeapon.ilevel;
@@ -411,6 +416,7 @@ namespace SHModMaker
 
             pic_weap_png.Image = Image.FromStream(new MemoryStream(currentWeapon.png));
             pic_weap_png.Refresh();
+            TabLoading = false;
         }
 
         private void pic_weap_qb_Click(object sender, EventArgs e)
@@ -464,12 +470,15 @@ namespace SHModMaker
         }
         private void txt_weap_changed(object sender, EventArgs e)
         {
-            currentWeapon.name = txt_weap_name.Text;
-            currentWeapon.iname = utils.LowerNoSpaces(currentWeapon.name);
-            currentWeapon.desc = txt_weap_desc.Text;
-            currentWeapon.ilevel = (int)nud_weap_ilevel.Value;
-            currentWeapon.damage = (int)nud_weap_damage.Value;
-            currentWeapon.reach = (float)nud_weap_reach.Value;
+            if (!TabLoading)
+            {
+                currentWeapon.name = txt_weap_name.Text;
+                currentWeapon.iname = utils.LowerNoSpaces(currentWeapon.name);
+                currentWeapon.desc = txt_weap_desc.Text;
+                currentWeapon.ilevel = (int)nud_weap_ilevel.Value;
+                currentWeapon.damage = (int)nud_weap_damage.Value;
+                currentWeapon.reach = (float)nud_weap_reach.Value;
+            }
         }
         private void btn_weapon_Click(object sender, EventArgs e)
         {
@@ -493,11 +502,31 @@ namespace SHModMaker
         //__________Recipe Tab Stuff__________
         private void tab_recipe_Enter(object sender, EventArgs e)
         {
+            TabLoading = true;
             txt_recp_name.Text = currentRecipe.name;
-            txt_recp_desc.Text = currentRecipe.Desc;
-            txt_recp_flavor.Text = currentRecipe.Flavor;
+            txt_recp_desc.Text = currentRecipe.desc;
+            txt_recp_flavor.Text = currentRecipe.flavor;
             nud_recipe_level.Value = currentRecipe.level;
             nud_recipe_work.Value = currentRecipe.workTime;
+
+            cmb_recipe_Crafters.Text = currentRecipe.crafter;
+            cmb_recp_cat.Text = currentRecipe.category;
+            cmb_recipe_prod.Text = currentRecipe.product;
+            pic_recipe.Image = Image.FromStream(new MemoryStream(currentRecipe.png));
+            pic_recipe.Refresh();
+
+            txt_recp_ingr.Clear();
+            foreach (AmountOfItem item in currentRecipe.ingredients)
+            {
+                if (txt_recp_ingr.Text != "")
+                {
+                    txt_recp_ingr.AppendText("\n");
+                }
+                txt_recp_ingr.AppendText(item.amount.ToString() + "," + item.name);
+            }
+
+
+            TabLoading = false;
         }
 
         private void chk_recipe_lockimg_CheckedChanged(object sender, EventArgs e)
@@ -511,6 +540,17 @@ namespace SHModMaker
                 currentRecipe.png = File.ReadAllBytes(openFileDialogPNG.FileName);
                 pic_recipe.Image = Image.FromStream(new MemoryStream(currentRecipe.png));
                 pic_recipe.Refresh();
+            }
+        }
+        private void txt_recp_TextChanged(object sender, EventArgs e)
+        {
+            if (!TabLoading)
+            {
+                currentRecipe.name = txt_recp_name.Text;
+                currentRecipe.desc = txt_recp_desc.Text;
+                currentRecipe.flavor = txt_recp_flavor.Text;
+                currentRecipe.level = (int)nud_recipe_level.Value;
+                currentRecipe.workTime = (int)nud_recipe_work.Value;
             }
         }
 
@@ -550,23 +590,12 @@ namespace SHModMaker
             }
         }
 
-        private void txt_recp_TextChanged(object sender, EventArgs e)
-        {
-            currentRecipe.name = txt_recp_name.Text;
-            currentRecipe.Desc = txt_recp_desc.Text;
-            currentRecipe.Flavor = txt_recp_flavor.Text;
-            currentRecipe.level = (int)nud_recipe_level.Value;
-            currentRecipe.workTime = (int)nud_recipe_work.Value;
-        }
-
         private void cmb_recipe_prod_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if the cmb is not empty
             if (cmb_recipe_prod.SelectedItem.ToString() != "")
             {
-                currentRecipe.Produces.Clear();
-                AmountOfItem temp = new AmountOfItem(cmb_recipe_prod.SelectedItem.ToString(), 1);
-                currentRecipe.Produces.Add(temp);
+                currentRecipe.product = cmb_recipe_prod.SelectedItem.ToString();
                 //if pic checkbox is not checked, change pic
                 if (!chk_recipe_lockimg.Checked)
                 {
@@ -588,6 +617,33 @@ namespace SHModMaker
                 }
             }
         }
+        private void cmb_recipe_Crafters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!TabLoading)
+            {
+                //change categories based on crafter
+                cmb_recp_cat.Items.Clear();
+                if (cmb_recipe_Crafters.Text != "")
+                {
+                    //if the text contains 'stonehearth' then it is a stonehearth crafter, and NOT a crafter from this mod
+                    if (cmb_recipe_Crafters.Text.Contains("stonehearth"))
+                    {
+                        foreach (Crafter crft in config.SHCrafters)
+                        {
+                            //for each crafter in sh crafters, check to see if it matches
+                            if (crft.IsCrafter(cmb_recipe_Crafters.Text))
+                            {
+                                //if it does, then add all the categories from that crafter to cmb_recp_cat
+                                foreach (String cat in crft.categories)
+                                {
+                                    cmb_recp_cat.Items.Add(cat);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         private void btn_recipe_Click(object sender, EventArgs e)
         {
@@ -600,7 +656,7 @@ namespace SHModMaker
             {
                 lbl_status.Text = "Recipe has no ingredients! Could not add/update weapon.";
             }
-            else if (currentRecipe.Produces.Count == 0)
+            else if (currentRecipe.product == "")
             {
                 lbl_status.Text = "Recipe has no product! Could not add/update weapon.";
             }
@@ -608,25 +664,34 @@ namespace SHModMaker
             {
                 lbl_status.Text = "Recipe has no crafter! Could not add/update weapon.";
             }
+            else if (cmb_recp_cat.Text == "")
+            {
+                lbl_status.Text = "Recipe has no category! Could not add/update weapon.";
+            }
             else
             {
-                currentRecipe.Ingredients.Clear();
+                currentRecipe.ingredients.Clear();
                 foreach (String str in txt_recp_ingr.Lines)
                 {
                     if (str.Contains(","))
                     {
                         AmountOfItem temp = new AmountOfItem();
-                        currentRecipe.Ingredients.Add(temp.FromString(str));
+                        currentRecipe.ingredients.Add(temp.FromString(str));
                     }
                 }
                 currentRecipe.crafter = cmb_recipe_Crafters.Text;
+                currentRecipe.category = cmb_recp_cat.Text;
                 mod.AddRecipe(currentRecipe);
                 tabcontrol.SelectedIndex = 0;
                 lbl_status.Text = "Recipe " + currentRecipe.name + " has been added/updated.";
             }
         }
+
+        //__________  __________
+
     }
 
+    // __________Other Classes__________
     public class utils
     {
         public static String Parse(String line, List<String[]> refList)
@@ -678,9 +743,9 @@ namespace SHModMaker
             List<String> crafters = new List<String>();
 
             //Get crafters from stonehearth
-            foreach (String str in Form1.config.SHCrafters)
+            foreach (Crafter crft in Form1.config.SHCrafters)
             {
-                crafters.Add(str);
+                crafters.Add(crft.GetString());
             }
 
             //Get crafters from current mod
@@ -781,6 +846,7 @@ namespace SHModMaker
                 ingredients.Add(str);
             }
 
+
             ////Get items from other mods??
 
             return ingredients;
@@ -792,6 +858,7 @@ namespace SHModMaker
         public String name;
         public String apiVersion;
         public List<String[]> aliases = new List<string[]>();
+        public List<String[]> mixintos = new List<string[]>();
 
         public ManifestJSON()
         {
@@ -819,6 +886,21 @@ namespace SHModMaker
                 {
                     maniFile = maniFile + "\n\t\t\"" + aliases[i][0] + "\" : \"" + aliases[i][1] + "\"";
                     if (i != aliases.Count - 1)
+                    {
+                        maniFile = maniFile + ",";
+                    }
+                }
+                maniFile = maniFile + "\n\t}";
+            }
+
+            //Add mixintos
+            if (mixintos.Count != 0)
+            {
+                maniFile = maniFile + ",\n\n\t\"mixintos\" : {";
+                for (int i = 0; i < mixintos.Count; i++)
+                {
+                    maniFile = maniFile + "\n\t\t\"" + mixintos[i][0] + "\" : \"" + mixintos[i][1] + "\"";
+                    if (i != mixintos.Count - 1)
                     {
                         maniFile = maniFile + ",";
                     }
@@ -881,6 +963,25 @@ namespace SHModMaker
             }
             return data;
         }
+
+        public void AddMixinto(String mixinto, string data)
+        //Adds Mixin to mixins List. If Mixin already exsists, it updates the data
+        {
+            bool replaced = false;
+            for (int i = 0; i < mixintos.Count; i++)
+            {
+                if (mixintos[i][0] == mixinto)
+                {
+                    mixintos[i][1] = data;
+                    replaced = true;
+                    break;
+                }
+            }
+            if (replaced == false)
+            {
+                mixintos.Add(new String[] { mixinto, data });
+            }
+        }
     }
 
     public class Recipe
@@ -889,11 +990,12 @@ namespace SHModMaker
         public int workTime;
         public int level;
         public String crafter;
-        public String Desc;
-        public String Flavor;
+        public String desc;
+        public String flavor;
+        public String category;
         public byte[] png;
-        public List<AmountOfItem> Ingredients;
-        public List<AmountOfItem> Produces;
+        public List<AmountOfItem> ingredients;
+        public String product;
 
         public Recipe()
         {
@@ -901,11 +1003,81 @@ namespace SHModMaker
             workTime = 2;
             level = 0;
             crafter = "";
-            Desc = "";
-            Flavor = "";
+            desc = "";
+            flavor = "";
+            category = "";
             png = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
-            Ingredients = new List<AmountOfItem>();
-            Produces = new List<AmountOfItem>();
+            ingredients = new List<AmountOfItem>();
+            product = "";
+        }
+
+        public void WriteRecipeFile(String modPath)
+        {
+            String iname = utils.LowerNoSpaces(name);
+            string localPath = System.IO.Directory.GetCurrentDirectory();
+            String[] filesAll;
+            List<String[]> filesJsonLua = new List<string[]>();
+            String craftr = crafter.Remove(0,crafter.IndexOf(":") + 1);
+
+            //Build Parse List
+            List<String[]> refList = new List<string[]>();
+            refList.Add(new String[] { "name", name });
+            refList.Add(new String[] { "iname", iname });
+            refList.Add(new String[] { "desc", desc });
+            refList.Add(new String[] { "cat", category });
+            refList.Add(new String[] { "wrk", workTime.ToString() });
+            refList.Add(new String[] { "flav", flavor });
+            refList.Add(new String[] { "lvl", level.ToString() });
+            refList.Add(new String[] { "prod", product });
+            String ingr = "";
+            foreach (AmountOfItem item in ingredients)
+            {
+                String MorU = "material";
+                if (item.name.Contains(':')) { MorU = "uri"; }
+                if (ingr != "")
+                {
+                    ingr = ingr + ",\n";
+                }
+                ingr = ingr + "\t\t{\n"+
+                               "\t\t\t\"" + MorU + "\" : \"" + item.name + "\",\n" +
+                               "\t\t\t\"count\" : " + item.amount.ToString() + "\n" +
+                               "\t\t}";
+            }
+            refList.Add(new String[] { "ingr", ingr });
+
+            //Get JSONs and LUA files
+            //FIX can probably make a utils for this utils.GetJsonLua(String path)??
+            filesAll = System.IO.Directory.GetFiles(localPath + "\\JSONs\\Recipe\\");
+            foreach (String str in filesAll)
+            {
+                if (str.EndsWith(".json") || str.EndsWith(".lua") || str.EndsWith(".luac"))
+                {
+                    System.IO.StreamReader filepath = new System.IO.StreamReader(str);
+                    filesJsonLua.Add(new String[] { System.IO.Path.GetFileName(str), utils.Parse(filepath.ReadToEnd(), refList) });
+                    filepath.Close();
+                }
+            }
+
+            //make folder if needed
+            if (!System.IO.Directory.Exists(modPath + "\\recipes\\" + craftr))
+            {
+                System.IO.Directory.CreateDirectory(modPath + "\\recipes\\" + craftr);
+                Console.WriteLine(modPath + "\\recipes\\" + craftr);
+            }
+
+            //write them to new path
+            foreach (String[] str in filesJsonLua)
+            {
+                String fileName = str[0];
+                if (fileName.ToLower().Contains("item"))
+                {
+                    fileName = fileName.ToLower().Replace("item", iname);
+                }
+                System.IO.File.WriteAllText(modPath + "\\recipes\\" + craftr + "\\" + fileName, str[1], Encoding.ASCII);
+            }
+
+            //write qbs and png to new path
+            System.IO.File.WriteAllBytes(modPath + "\\recipes\\" + craftr + "\\" + iname + ".png", png);
         }
     }
 
@@ -913,7 +1085,35 @@ namespace SHModMaker
     {
         public String mod;
         public String name;
-        public List<Recipe> recipes;//????
+        public List<String> categories;
+
+        public Crafter()
+        {
+            mod = "";
+            name = "";
+            categories = new List<String>();
+        }
+        public Crafter(String m, String n, List<String> c)
+        {
+            mod = m;
+            name = n;
+            categories = c;
+        }
+        public String GetString()
+        {
+            return mod + ":" + name;
+        }
+        public bool IsCrafter(String crafter)
+        {
+            if (crafter == mod + ":" + name)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
     public class AmountOfItem
@@ -1140,6 +1340,13 @@ namespace SHModMaker
             {
                 manifest.AddAlias("weapon:" + weap.iname, "file(entities/weapons/" + weap.iname + ")");
             }
+            //add recipes to manifest
+            foreach (Recipe recp in recipes)
+            {
+                manifest.AddMixinto("stonehearth/jobs/" + recp.crafter.Remove(0,recp.crafter.IndexOf(":")+1) + "/recipes/recipes.json", 
+                                    "file(recipes/" + recp.crafter.Remove(0, recp.crafter.IndexOf(":") + 1) + "/" + utils.LowerNoSpaces(recp.name) +"_mixinto.json)");
+            }
+
             //Add blah to maifest
         }
         public void BuildMod(String modPath)
@@ -1157,6 +1364,11 @@ namespace SHModMaker
             foreach (Weapon weap in weapons)
             {
                 weap.WriteWeaponFile(modPath + name);
+            }
+
+            foreach (Recipe recp in recipes)
+            {
+                recp.WriteRecipeFile(modPath + name);
             }
 
             //write manifest
@@ -1190,7 +1402,7 @@ namespace SHModMaker
     public class CONFIG
     {
         public string SHsmodPath;
-        public List<String> SHCrafters;
+        public List<Crafter> SHCrafters;
         public List<String> CommonMaterialTags;
         public List<String> AliasSkipWords;
 
@@ -1204,7 +1416,7 @@ namespace SHModMaker
             {
                 SHsmodPath = "C:\\Program Files\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod";
             }
-            SHCrafters = new List<string>();
+            SHCrafters = new List<Crafter>();
             CommonMaterialTags = new List<string>();
             AliasSkipWords = new List<string>();
         }
@@ -1232,11 +1444,34 @@ namespace SHModMaker
                 {
                     if (e.FileName.Contains("recipes.json"))
                     {
-                        //Console.WriteLine(e.FileName);
+                        //get crafter's name
                         String str = e.FileName.Remove((e.FileName.Length - 21));
                         str = str.Remove(0, 17);
-                        //Console.WriteLine(str);
-                        SHCrafters.Add("stonehearth:" + str);
+
+                        //get categories
+                        List<String> cate = new List<string>();
+                        String[] strArray;
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            e.Extract(stream);
+                            stream.Position = 0;
+                            Console.WriteLine("Extracted to stream:" + stream.ToString());
+                            using (StreamReader sr = new StreamReader(stream))
+                            {
+                                strArray = sr.ReadToEnd().Split('\n');
+                            }
+                        }
+                        for (int i = 0; i < strArray.Length - 1; i++)
+                        {
+                            //if the next line contains 'ordinal' then THIS line must contain the category name.
+                            if (strArray[i + 1].Contains("ordinal"))
+                            {
+                                cate.Add(strArray[i].Remove(strArray[i].LastIndexOf('"')).Remove(0, strArray[i].IndexOf('"') + 1));
+                                Console.Write(str + " - " +strArray[i].Remove(strArray[i].LastIndexOf('"')).Remove(0, strArray[i].IndexOf('"') + 1));
+                            }
+                        }
+
+                        SHCrafters.Add(new Crafter("stonehearth", str, cate));
                     }
                 }
             }

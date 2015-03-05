@@ -6,9 +6,6 @@ Weapons
 Config
 	??put blank.png and blank.qb into config file as byte[]s??
 
-Recipes
-	//recipe->edit does not work properly
-
 Open and Save Mod data
 
 	//Evantually import .smods?? maybe??

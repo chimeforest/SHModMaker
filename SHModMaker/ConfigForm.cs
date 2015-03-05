@@ -25,12 +25,6 @@ namespace SHModMaker
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            //add crafters
-            currentConfig.SHCrafters.Clear();
-            foreach (String str in txt_crafters.Lines)
-            {
-                if (str != ""){ currentConfig.SHCrafters.Add(str); }
-            }
             //add materials
             currentConfig.CommonMaterialTags.Clear();
             foreach (String str in txt_material_tags.Lines)
@@ -47,6 +41,9 @@ namespace SHModMaker
 
             //tell form1 that the config was just updated
             Form1.configJustUpdated = true;
+
+            //change folderdialog path
+            //Form1.folderBrowserDialog1.SelectedPath = currentConfig.SHsmodPath;
 
             //save config
             Form1.config = currentConfig;
@@ -72,14 +69,10 @@ namespace SHModMaker
         {
             txt_shsmod.Text = currentConfig.SHsmodPath;
 
-            txt_crafters.Clear();
-            foreach (string str in currentConfig.SHCrafters)
+            lst_SHcrafters.Items.Clear();
+            foreach (Crafter crft in currentConfig.SHCrafters)
             {
-                if (txt_crafters.Text != "")
-                {
-                    txt_crafters.AppendText("\n");
-                }
-                txt_crafters.AppendText(str);
+                lst_SHcrafters.Items.Add(crft.name);
             }
 
             txt_material_tags.Clear();
@@ -107,6 +100,27 @@ namespace SHModMaker
         {
             currentConfig.GetSHCrafters();
             updateForm();
+        }
+
+        private void lst_SHcrafters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txt_crafter_cat.Clear();
+            foreach (Crafter crft in currentConfig.SHCrafters)
+            {
+                //for each crafter in sh crafters, check to see if it matches
+                if (crft.IsCrafter("stonehearth:" + lst_SHcrafters.Text))
+                {
+                    //if it does, then add all the categories from that crafter
+                    foreach (String cat in crft.categories)
+                    {
+                        if (txt_crafter_cat.Text != "")
+                        {
+                            txt_crafter_cat.AppendText("\n");
+                        }
+                        txt_crafter_cat.AppendText(cat);
+                    }
+                }
+            }
         }
     }
 }

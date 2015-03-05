@@ -1,0 +1,19 @@
+{
+   "type":"recipe",
+
+   "work_units"  : ~wrk~,
+   "recipe_name" : "~name~",
+   "description" : "~desc~",
+   "flavor"      : "~flav~",
+   "portrait"    : "file(~iname~.png)",
+   "level_requirement" : ~lvl~,
+
+   "ingredients": [
+~ingr~
+  ],
+  "produces": [
+      {
+         "item":"~prod~"
+      }
+  ]
+}

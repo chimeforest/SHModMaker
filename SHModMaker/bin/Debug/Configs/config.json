@@ -1,10 +1,47 @@
 {
   "SHsmodPath": "C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod",
   "SHCrafters": [
-    "stonehearth:blacksmith",
-    "stonehearth:carpenter",
-    "stonehearth:mason",
-    "stonehearth:weaver"
+    {
+      "mod": "stonehearth",
+      "name": "blacksmith",
+      "categories": [
+        "smelt",
+        "tools",
+        "weapons",
+        "armor"
+      ]
+    },
+    {
+      "mod": "stonehearth",
+      "name": "carpenter",
+      "categories": [
+        "tools_weapons",
+        "building_parts",
+        "furniture",
+        "signage_decoration"
+      ]
+    },
+    {
+      "mod": "stonehearth",
+      "name": "mason",
+      "categories": [
+        "tools",
+        "weapons",
+        "building_parts",
+        "furniture",
+        "signage_decoration"
+      ]
+    },
+    {
+      "mod": "stonehearth",
+      "name": "weaver",
+      "categories": [
+        "crafting_materials",
+        "clothing_armor",
+        "decorations",
+        "toys"
+      ]
+    }
   ],
   "CommonMaterialTags": [
     "cloth resource",

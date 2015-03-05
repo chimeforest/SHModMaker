@@ -77,6 +77,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.tab_recipe = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmb_recp_cat = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cmb_recipe_prod = new System.Windows.Forms.ComboBox();
             this.chk_recipe_lockimg = new System.Windows.Forms.CheckBox();
@@ -601,6 +603,8 @@
             // tab_recipe
             // 
             this.tab_recipe.BackColor = System.Drawing.SystemColors.Control;
+            this.tab_recipe.Controls.Add(this.label5);
+            this.tab_recipe.Controls.Add(this.cmb_recp_cat);
             this.tab_recipe.Controls.Add(this.groupBox4);
             this.tab_recipe.Controls.Add(this.groupBox3);
             this.tab_recipe.Controls.Add(this.label17);
@@ -624,14 +628,33 @@
             this.tab_recipe.Text = "Recipe";
             this.tab_recipe.Enter += new System.EventHandler(this.tab_recipe_Enter);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(261, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.TabIndex = 52;
+            this.label5.Text = "Category:";
+            // 
+            // cmb_recp_cat
+            // 
+            this.cmb_recp_cat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmb_recp_cat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmb_recp_cat.FormattingEnabled = true;
+            this.cmb_recp_cat.Location = new System.Drawing.Point(319, 32);
+            this.cmb_recp_cat.Name = "cmb_recp_cat";
+            this.cmb_recp_cat.Size = new System.Drawing.Size(160, 21);
+            this.cmb_recp_cat.TabIndex = 51;
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.cmb_recipe_prod);
             this.groupBox4.Controls.Add(this.chk_recipe_lockimg);
             this.groupBox4.Controls.Add(this.pic_recipe);
-            this.groupBox4.Location = new System.Drawing.Point(313, 85);
+            this.groupBox4.Location = new System.Drawing.Point(313, 62);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(166, 204);
+            this.groupBox4.Size = new System.Drawing.Size(166, 227);
             this.groupBox4.TabIndex = 29;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Produces";
@@ -650,7 +673,7 @@
             // chk_recipe_lockimg
             // 
             this.chk_recipe_lockimg.AutoSize = true;
-            this.chk_recipe_lockimg.Location = new System.Drawing.Point(38, 181);
+            this.chk_recipe_lockimg.Location = new System.Drawing.Point(39, 204);
             this.chk_recipe_lockimg.Name = "chk_recipe_lockimg";
             this.chk_recipe_lockimg.Size = new System.Drawing.Size(82, 17);
             this.chk_recipe_lockimg.TabIndex = 35;
@@ -662,9 +685,9 @@
             // 
             this.pic_recipe.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
             this.pic_recipe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_recipe.Location = new System.Drawing.Point(18, 46);
+            this.pic_recipe.Location = new System.Drawing.Point(6, 46);
             this.pic_recipe.Name = "pic_recipe";
-            this.pic_recipe.Size = new System.Drawing.Size(129, 129);
+            this.pic_recipe.Size = new System.Drawing.Size(154, 154);
             this.pic_recipe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_recipe.TabIndex = 2;
             this.pic_recipe.TabStop = false;
@@ -747,7 +770,7 @@
             // 
             this.txt_recp_flavor.Location = new System.Drawing.Point(50, 59);
             this.txt_recp_flavor.Name = "txt_recp_flavor";
-            this.txt_recp_flavor.Size = new System.Drawing.Size(429, 20);
+            this.txt_recp_flavor.Size = new System.Drawing.Size(206, 20);
             this.txt_recp_flavor.TabIndex = 15;
             this.txt_recp_flavor.TextChanged += new System.EventHandler(this.txt_recp_TextChanged);
             // 
@@ -773,7 +796,7 @@
             // 
             this.txt_recp_desc.Location = new System.Drawing.Point(50, 32);
             this.txt_recp_desc.Name = "txt_recp_desc";
-            this.txt_recp_desc.Size = new System.Drawing.Size(429, 20);
+            this.txt_recp_desc.Size = new System.Drawing.Size(205, 20);
             this.txt_recp_desc.TabIndex = 13;
             this.txt_recp_desc.TextChanged += new System.EventHandler(this.txt_recp_TextChanged);
             // 
@@ -781,14 +804,14 @@
             // 
             this.txt_recp_name.Location = new System.Drawing.Point(50, 6);
             this.txt_recp_name.Name = "txt_recp_name";
-            this.txt_recp_name.Size = new System.Drawing.Size(216, 20);
+            this.txt_recp_name.Size = new System.Drawing.Size(206, 20);
             this.txt_recp_name.TabIndex = 11;
             this.txt_recp_name.TextChanged += new System.EventHandler(this.txt_recp_TextChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(122, 88);
+            this.label14.Location = new System.Drawing.Point(145, 89);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 13);
             this.label14.TabIndex = 10;
@@ -805,7 +828,7 @@
             // 
             // nud_recipe_level
             // 
-            this.nud_recipe_level.Location = new System.Drawing.Point(187, 86);
+            this.nud_recipe_level.Location = new System.Drawing.Point(210, 85);
             this.nud_recipe_level.Name = "nud_recipe_level";
             this.nud_recipe_level.Size = new System.Drawing.Size(45, 20);
             this.nud_recipe_level.TabIndex = 21;
@@ -847,6 +870,7 @@
             this.cmb_recipe_Crafters.Name = "cmb_recipe_Crafters";
             this.cmb_recipe_Crafters.Size = new System.Drawing.Size(160, 21);
             this.cmb_recipe_Crafters.TabIndex = 12;
+            this.cmb_recipe_Crafters.SelectedIndexChanged += new System.EventHandler(this.cmb_recipe_Crafters_SelectedIndexChanged);
             // 
             // statusStrip1
             // 
@@ -1002,6 +1026,8 @@
         private System.Windows.Forms.NumericUpDown nud_recipe_ingredients;
         private System.Windows.Forms.ComboBox cmb_recipe_ingredients;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ComboBox cmb_recp_cat;
+        private System.Windows.Forms.Label label5;
     }
 }
 
