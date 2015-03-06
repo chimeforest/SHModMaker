@@ -133,6 +133,31 @@
             this.openFileDialogQB = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogPNG = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.tab_flowers = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tab_weapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_weap_png)).BeginInit();
@@ -167,6 +192,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_ilevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_dmgRed)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            this.tab_flowers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -695,6 +731,7 @@
             this.tabControl.Controls.Add(this.tab_MOD);
             this.tabControl.Controls.Add(this.tab_recipe);
             this.tabControl.Controls.Add(this.tab_armor);
+            this.tabControl.Controls.Add(this.tab_flowers);
             this.tabControl.Controls.Add(this.tab_weapon);
             this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl.ItemSize = new System.Drawing.Size(20, 50);
@@ -1224,6 +1261,262 @@
             // 
             this.openFileDialogPNG.Filter = "PNG|*.png";
             // 
+            // tab_flowers
+            // 
+            this.tab_flowers.BackColor = System.Drawing.SystemColors.Control;
+            this.tab_flowers.Controls.Add(this.button1);
+            this.tab_flowers.Controls.Add(this.textBox4);
+            this.tab_flowers.Controls.Add(this.groupBox7);
+            this.tab_flowers.Controls.Add(this.groupBox6);
+            this.tab_flowers.Controls.Add(this.label26);
+            this.tab_flowers.Controls.Add(this.label25);
+            this.tab_flowers.Controls.Add(this.textBox3);
+            this.tab_flowers.Controls.Add(this.pictureBox1);
+            this.tab_flowers.Controls.Add(this.pictureBox2);
+            this.tab_flowers.Controls.Add(this.pictureBox3);
+            this.tab_flowers.Controls.Add(this.label20);
+            this.tab_flowers.Controls.Add(this.numericUpDown1);
+            this.tab_flowers.Controls.Add(this.label23);
+            this.tab_flowers.Controls.Add(this.textBox1);
+            this.tab_flowers.Controls.Add(this.textBox2);
+            this.tab_flowers.Controls.Add(this.label24);
+            this.tab_flowers.Location = new System.Drawing.Point(54, 4);
+            this.tab_flowers.Name = "tab_flowers";
+            this.tab_flowers.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_flowers.Size = new System.Drawing.Size(487, 324);
+            this.tab_flowers.TabIndex = 7;
+            this.tab_flowers.Text = "Flowers";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.LightGray;
+            this.pictureBox1.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(407, 84);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 72);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 39;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.LightGray;
+            this.pictureBox2.BackgroundImage = global::SHModMaker.Properties.Resources.QB_iconic;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(313, 84);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(72, 72);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.LightGray;
+            this.pictureBox3.BackgroundImage = global::SHModMaker.Properties.Resources.QB;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(218, 84);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(72, 72);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 37;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 112);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(44, 13);
+            this.label20.TabIndex = 36;
+            this.label20.Text = "Weight:";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(56, 110);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(57, 20);
+            this.numericUpDown1.TabIndex = 30;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(50, 43);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(57, 20);
+            this.numericUpDown2.TabIndex = 35;
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(50, 17);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(57, 20);
+            this.numericUpDown3.TabIndex = 34;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 45);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(40, 13);
+            this.label21.TabIndex = 33;
+            this.label21.Text = "Max #:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 19);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(37, 13);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "Min #:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 35);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(35, 13);
+            this.label23.TabIndex = 31;
+            this.label23.Text = "Desc:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(50, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(429, 20);
+            this.textBox1.TabIndex = 29;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(50, 6);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(429, 20);
+            this.textBox2.TabIndex = 28;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 9);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(38, 13);
+            this.label24.TabIndex = 27;
+            this.label24.Text = "Name:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 61);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(34, 13);
+            this.label25.TabIndex = 44;
+            this.label25.Text = "Tags:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(50, 58);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(429, 20);
+            this.textBox3.TabIndex = 43;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 87);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(49, 13);
+            this.label26.TabIndex = 45;
+            this.label26.Text = "Habitats:";
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(50, 43);
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(57, 20);
+            this.numericUpDown4.TabIndex = 49;
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.Location = new System.Drawing.Point(50, 17);
+            this.numericUpDown5.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(57, 20);
+            this.numericUpDown5.TabIndex = 48;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 45);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(43, 13);
+            this.label27.TabIndex = 47;
+            this.label27.Text = "Length:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 19);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(38, 13);
+            this.label28.TabIndex = 46;
+            this.label28.Text = "Width:";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.numericUpDown4);
+            this.groupBox6.Controls.Add(this.label28);
+            this.groupBox6.Controls.Add(this.numericUpDown5);
+            this.groupBox6.Controls.Add(this.label27);
+            this.groupBox6.Location = new System.Drawing.Point(6, 136);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(120, 73);
+            this.groupBox6.TabIndex = 50;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Field Size";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label22);
+            this.groupBox7.Controls.Add(this.label21);
+            this.groupBox7.Controls.Add(this.numericUpDown3);
+            this.groupBox7.Controls.Add(this.numericUpDown2);
+            this.groupBox7.Location = new System.Drawing.Point(6, 215);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(120, 73);
+            this.groupBox7.TabIndex = 51;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Flowers per Field";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(56, 84);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(156, 20);
+            this.textBox4.TabIndex = 52;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 295);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(473, 23);
+            this.button1.TabIndex = 53;
+            this.button1.Text = "Save Flower";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1285,6 +1578,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_dmgRed)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tab_flowers.ResumeLayout(false);
+            this.tab_flowers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1395,6 +1702,31 @@
         private System.Windows.Forms.GroupBox grp_armor_type;
         private System.Windows.Forms.RadioButton rdo_armor_shield;
         private System.Windows.Forms.RadioButton rdo_armor_armor;
+        private System.Windows.Forms.TabPage tab_flowers;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button button1;
     }
 }
 
