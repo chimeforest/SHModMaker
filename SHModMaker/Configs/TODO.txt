@@ -4,7 +4,11 @@ Change Save Item buttons to Add or Update depending on wether the item exsists y
 
 MOD tab
 	context menu.. add 'add recipe' function
-	maybe make it go away on recipe list? if not, then
+	maybe make it go away on recipe list? if not, then it will make a new blank recipe
+
+Armor
+	Have Breeze take qb thumnail from the shield.
+	On export if it's a shield, don't export qbf
 
 Weapons
 	Add tags
@@ -15,7 +19,7 @@ Config
 
 Open and Save Mod data
 	Add option to import other .shmm files into the current mod.
-
+	Export options not displaying 'exported to' message in the window.
 	//Evantually import .smods?? maybe??
 	//eventually set qb setting and force qbs to comply.
 

@@ -110,6 +110,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmb_recipe_Crafters = new System.Windows.Forms.ComboBox();
             this.tab_armor = new System.Windows.Forms.TabPage();
+            this.grp_armor_type = new System.Windows.Forms.GroupBox();
+            this.rdo_armor_shield = new System.Windows.Forms.RadioButton();
+            this.rdo_armor_armor = new System.Windows.Forms.RadioButton();
             this.btn_armor = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_armor_tags = new System.Windows.Forms.TextBox();
@@ -156,6 +159,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_level)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_work)).BeginInit();
             this.tab_armor.SuspendLayout();
+            this.grp_armor_type.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_png)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbi)).BeginInit();
@@ -978,6 +982,7 @@
             // tab_armor
             // 
             this.tab_armor.BackColor = System.Drawing.SystemColors.Control;
+            this.tab_armor.Controls.Add(this.grp_armor_type);
             this.tab_armor.Controls.Add(this.btn_armor);
             this.tab_armor.Controls.Add(this.label7);
             this.tab_armor.Controls.Add(this.txt_armor_tags);
@@ -1000,6 +1005,41 @@
             this.tab_armor.TabIndex = 6;
             this.tab_armor.Text = "Armor";
             this.tab_armor.Enter += new System.EventHandler(this.tab_armor_Enter);
+            // 
+            // grp_armor_type
+            // 
+            this.grp_armor_type.Controls.Add(this.rdo_armor_shield);
+            this.grp_armor_type.Controls.Add(this.rdo_armor_armor);
+            this.grp_armor_type.Location = new System.Drawing.Point(9, 136);
+            this.grp_armor_type.Name = "grp_armor_type";
+            this.grp_armor_type.Size = new System.Drawing.Size(98, 69);
+            this.grp_armor_type.TabIndex = 44;
+            this.grp_armor_type.TabStop = false;
+            this.grp_armor_type.Text = "Type";
+            // 
+            // rdo_armor_shield
+            // 
+            this.rdo_armor_shield.AutoSize = true;
+            this.rdo_armor_shield.Location = new System.Drawing.Point(6, 42);
+            this.rdo_armor_shield.Name = "rdo_armor_shield";
+            this.rdo_armor_shield.Size = new System.Drawing.Size(54, 17);
+            this.rdo_armor_shield.TabIndex = 1;
+            this.rdo_armor_shield.TabStop = true;
+            this.rdo_armor_shield.Text = "Shield";
+            this.rdo_armor_shield.UseVisualStyleBackColor = true;
+            this.rdo_armor_shield.CheckedChanged += new System.EventHandler(this.rdo_armor_shield_CheckedChanged);
+            // 
+            // rdo_armor_armor
+            // 
+            this.rdo_armor_armor.AutoSize = true;
+            this.rdo_armor_armor.Location = new System.Drawing.Point(6, 19);
+            this.rdo_armor_armor.Name = "rdo_armor_armor";
+            this.rdo_armor_armor.Size = new System.Drawing.Size(52, 17);
+            this.rdo_armor_armor.TabIndex = 0;
+            this.rdo_armor_armor.TabStop = true;
+            this.rdo_armor_armor.Text = "Armor";
+            this.rdo_armor_armor.UseVisualStyleBackColor = true;
+            this.rdo_armor_armor.CheckedChanged += new System.EventHandler(this.rdo_armor_armor_CheckedChanged);
             // 
             // btn_armor
             // 
@@ -1170,7 +1210,9 @@
             // 
             // lbl_status
             // 
+            this.lbl_status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.lbl_status.Name = "lbl_status";
+            this.lbl_status.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.lbl_status.Size = new System.Drawing.Size(56, 17);
             this.lbl_status.Text = "lbl_status";
             // 
@@ -1233,6 +1275,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_recipe_work)).EndInit();
             this.tab_armor.ResumeLayout(false);
             this.tab_armor.PerformLayout();
+            this.grp_armor_type.ResumeLayout(false);
+            this.grp_armor_type.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_png)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbi)).EndInit();
@@ -1348,6 +1392,9 @@
         private System.Windows.Forms.ListBox lst_armor;
         private System.Windows.Forms.PictureBox pic_mod_armor;
         private System.Windows.Forms.Button btn_armor;
+        private System.Windows.Forms.GroupBox grp_armor_type;
+        private System.Windows.Forms.RadioButton rdo_armor_shield;
+        private System.Windows.Forms.RadioButton rdo_armor_armor;
     }
 }
 

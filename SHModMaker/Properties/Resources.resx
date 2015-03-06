@@ -124,10 +124,13 @@
   <data name="QB_iconic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\QB_iconic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="QB_female" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QB_female.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PNG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PNG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="QB_female" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QB_female.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="QB_female_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QB_female_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

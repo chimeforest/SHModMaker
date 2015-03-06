@@ -127,6 +127,12 @@
     <None Include="JSONs\Recipe\item_recipe.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="JSONs\Shield\shield.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JSONs\Shield\shield_iconic.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="JSONs\Weapon\weapon.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -154,6 +160,7 @@
     <Content Include="Configs\List of Tabs.txt" />
     <Content Include="Configs\Shortcuts.txt" />
     <Content Include="Configs\TODO.txt" />
+    <None Include="Resources\QB_female_bw.png" />
     <None Include="Resources\QB_female.png" />
     <None Include="Resources\QB_iconic.png" />
     <None Include="Resources\QB.png" />

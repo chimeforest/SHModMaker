@@ -94,6 +94,8 @@ namespace SHModMaker
 
             folderBrowserDialog1.SelectedPath = config.SHsmodPath.Remove(config.SHsmodPath.Length - 16);
 
+            rdo_armor_armor.Checked = true;
+
             //check if computer can run thumbnailer
             Console.WriteLine("Attempting to Initialize QbBreeze...");
             if (Breeze.Initialize())
@@ -699,6 +701,10 @@ namespace SHModMaker
 
             pic_armor_png.Image = Image.FromStream(new MemoryStream(currentArmor.png));
             pic_armor_png.Refresh();
+
+            if (currentArmor.type == "Armor") { rdo_armor_armor.Checked = true; }
+            if (currentArmor.type == "Shield") { rdo_armor_shield.Checked = true; }
+
             TabLoading = false;
         }
 
@@ -783,6 +789,35 @@ namespace SHModMaker
                 currentArmor.damageReduc = (int)nud_armor_dmgRed.Value;
             }
         }
+
+        private void rdo_armor_armor_CheckedChanged(object sender, EventArgs e)
+        {
+            //if armor is checked then enable the female qb pic.. otherwise disable it.
+            if (rdo_armor_armor.Checked)
+            {
+                pic_armor_qbf.BackgroundImage = SHModMaker.Properties.Resources.QB_female;
+                pic_armor_qbf.Enabled = true;
+                currentArmor.type = "Armor";
+            }
+            else
+            {
+                pic_armor_qbf.BackgroundImage = SHModMaker.Properties.Resources.QB_female_bw;
+                pic_armor_qbf.Enabled = false;
+                currentArmor.qbf = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb");
+                currentArmor.qbfICON = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+                pic_armor_qbf.Image = Image.FromStream(new MemoryStream(currentArmor.qbfICON));
+                pic_armor_qbf.Refresh();
+
+            }
+        }
+        private void rdo_armor_shield_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdo_armor_shield.Checked)
+            {
+                currentArmor.type = "Shield";
+            }
+        }
+
         private void btn_armor_Click(object sender, EventArgs e)
         {
             //Add weapon to MOD
@@ -1178,22 +1213,9 @@ namespace SHModMaker
         }
 
         public void AddMixinto(String mixinto, string data)
-        //Adds Mixin to mixins List. If Mixin already exsists, it updates the data
+        //Adds Mixin to mixins List. 
         {
-            bool replaced = false;
-            for (int i = 0; i < mixintos.Count; i++)
-            {
-                if (mixintos[i][0] == mixinto)
-                {
-                    mixintos[i][1] = data;
-                    replaced = true;
-                    break;
-                }
-            }
-            if (replaced == false)
-            {
-                mixintos.Add(new String[] { mixinto, data });
-            }
+            mixintos.Add(new String[] { mixinto, data });
         }
     }
 
@@ -1363,6 +1385,7 @@ namespace SHModMaker
         public String tags;
         public int ilevel;
         public int damageReduc;
+        public String type;
 
         public byte[] qb;
         public byte[] qbf;
@@ -1373,7 +1396,7 @@ namespace SHModMaker
         public byte[] qbiICON;
 
         public Armor()
-            : this("", "", 0, 0, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
+            : this("", "", 0, 0, "", File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
                   File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
                   File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
                   File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
@@ -1382,8 +1405,8 @@ namespace SHModMaker
                   File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
         { }
 
-        public Armor(String nam, String des, int ilvl, int dam, float rea)
-            : this(nam, des, ilvl, dam, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), 
+        public Armor(String nam, String des, int ilvl, int dam, String typ)
+            : this(nam, des, ilvl, dam, typ, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), 
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), 
@@ -1392,13 +1415,14 @@ namespace SHModMaker
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
         { }
 
-        public Armor(String nam, String des, int ilvl, int dam, Byte[] q, Byte[] qf, Byte[] qi, Byte[] p, Byte[] qbIC, Byte[] qbfIC, Byte[] qbiIC)
+        public Armor(String nam, String des, int ilvl, int dam, String t, Byte[] q, Byte[] qf, Byte[] qi, Byte[] p, Byte[] qbIC, Byte[] qbfIC, Byte[] qbiIC)
         {
             name = nam;
             iname = utils.LowerNoSpaces(nam);
             desc = des;
             ilevel = ilvl;
             damageReduc = dam;
+            type = t;
             qb = q;
             qbf = qf;
             qbi = qi;
@@ -1411,7 +1435,7 @@ namespace SHModMaker
         public void WriteArmorFile(String modPath)
         {
             string localPath = System.IO.Directory.GetCurrentDirectory();
-            String[] filesAll;
+            String[] filesAll = new String[] { "" };
             List<String[]> filesJsonLua = new List<string[]>();
             //Build Parse List
             List<String[]> refList = new List<string[]>();
@@ -1423,8 +1447,15 @@ namespace SHModMaker
             refList.Add(new String[] { "damage", damageReduc.ToString() });
 
             //Get JSONs and LUA files
-            //FIX can probably make a utils for this utils.GetJsonLua(String path)??
-            filesAll = System.IO.Directory.GetFiles(localPath + "\\JSONs\\Armor\\");
+            if (type == "Shield")
+            {
+                filesAll = System.IO.Directory.GetFiles(localPath + "\\JSONs\\Shield\\");
+            }
+            else //if it's not a shield, it must be armor.
+            {
+                filesAll = System.IO.Directory.GetFiles(localPath + "\\JSONs\\Armor\\");
+            }
+
             foreach (String str in filesAll)
             {
                 if (str.EndsWith(".json") || str.EndsWith(".lua") || str.EndsWith(".luac"))
@@ -1447,16 +1478,17 @@ namespace SHModMaker
             foreach (String[] str in filesJsonLua)
             {
                 String fileName = str[0];
-                if (fileName.ToLower().Contains("armor"))
+                if (fileName.ToLower().Contains("armor") || fileName.ToLower().Contains("shield"))
                 {
                     fileName = fileName.ToLower().Replace("armor", iname);
+                    fileName = fileName.ToLower().Replace("shield", iname);
                 }
                 System.IO.File.WriteAllText(modPath + "\\entities\\armor\\" + iname + "\\" + fileName, str[1], Encoding.ASCII);
             }
 
             //write qbs and png to new path
             System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + ".qb", qb);
-            System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + "_female.qb", qbf);
+            if(type == "Armor") { System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + "_female.qb", qbf);}
             System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + "_iconic.qb", qbi);
             System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + ".png", png);
         }
@@ -1688,6 +1720,7 @@ namespace SHModMaker
             manifest.apiVersion = apiVersion;
 
             //Add Armors to manifest
+            manifest.aliases.Clear();
             foreach (Armor armr in armors)
             {
                 manifest.AddAlias("armor:" + armr.iname, "file(entities/armor/" + armr.iname + ")");
@@ -1699,6 +1732,7 @@ namespace SHModMaker
             }
 
             //add recipes to manifest
+            manifest.mixintos.Clear();
             foreach (Recipe recp in recipes)
             {
                 manifest.AddMixinto("stonehearth/jobs/" + recp.crafter.Remove(0,recp.crafter.IndexOf(":")+1) + "/recipes/recipes.json", 

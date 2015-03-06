@@ -37,3 +37,5 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Recipe\ite
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Recipe\item_recipe.json
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Armor\armor.json
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Armor\armor_iconic.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Shield\shield.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Shield\shield_iconic.json
