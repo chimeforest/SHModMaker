@@ -44,6 +44,7 @@
             this.recipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.armorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogSHMM = new System.Windows.Forms.OpenFileDialog();
@@ -65,12 +66,15 @@
             this.btn_weapon = new System.Windows.Forms.Button();
             this.tab_MOD = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.lst_armor = new System.Windows.Forms.ListBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lst_flow = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pic_mod_flow = new System.Windows.Forms.PictureBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lst_armor = new System.Windows.Forms.ListBox();
             this.pic_mod_armor = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lst_recipe = new System.Windows.Forms.ListBox();
@@ -128,36 +132,36 @@
             this.txt_armor_desc = new System.Windows.Forms.TextBox();
             this.txt_armor_name = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.tab_flower = new System.Windows.Forms.TabPage();
+            this.btn_flower = new System.Windows.Forms.Button();
+            this.txt_flower_habit = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.nud_flower_min = new System.Windows.Forms.NumericUpDown();
+            this.nud_flower_max = new System.Windows.Forms.NumericUpDown();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.nud_flower_length = new System.Windows.Forms.NumericUpDown();
+            this.label28 = new System.Windows.Forms.Label();
+            this.nud_flower_width = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txt_flower_tag = new System.Windows.Forms.TextBox();
+            this.pic_flower_png = new System.Windows.Forms.PictureBox();
+            this.pic_flower_qbi = new System.Windows.Forms.PictureBox();
+            this.pic_flower_qb = new System.Windows.Forms.PictureBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.nud_flower_weight = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txt_flower_desc = new System.Windows.Forms.TextBox();
+            this.txt_flower_name = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lbl_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialogQB = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogPNG = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.tab_flowers = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tab_weapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_weap_png)).BeginInit();
@@ -168,8 +172,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_damage)).BeginInit();
             this.tab_MOD.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_mod_flow)).BeginInit();
+            this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_armor)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_recipe)).BeginInit();
@@ -191,18 +197,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_ilevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_dmgRed)).BeginInit();
-            this.statusStrip1.SuspendLayout();
-            this.tab_flowers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            this.groupBox6.SuspendLayout();
+            this.tab_flower.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_min)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_max)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_length)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_flower_png)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_flower_qbi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_flower_qb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_weight)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -299,6 +305,7 @@
             this.recipeToolStripMenuItem,
             this.toolStripSeparator3,
             this.armorToolStripMenuItem,
+            this.flowerToolStripMenuItem,
             this.weaponToolStripMenuItem});
             this.AddToolStripMenuItem2.Name = "AddToolStripMenuItem2";
             this.AddToolStripMenuItem2.Size = new System.Drawing.Size(123, 22);
@@ -320,6 +327,12 @@
             this.armorToolStripMenuItem.Name = "armorToolStripMenuItem";
             this.armorToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.armorToolStripMenuItem.Text = "Armor";
+            // 
+            // flowerToolStripMenuItem
+            // 
+            this.flowerToolStripMenuItem.Name = "flowerToolStripMenuItem";
+            this.flowerToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.flowerToolStripMenuItem.Text = "Flower";
             // 
             // weaponToolStripMenuItem
             // 
@@ -534,6 +547,8 @@
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupBox8);
             this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
@@ -542,28 +557,28 @@
             this.panel1.Size = new System.Drawing.Size(491, 292);
             this.panel1.TabIndex = 11;
             // 
-            // groupBox5
+            // groupBox8
             // 
-            this.groupBox5.Controls.Add(this.lst_armor);
-            this.groupBox5.Controls.Add(this.pic_mod_armor);
-            this.groupBox5.Location = new System.Drawing.Point(6, 130);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(221, 121);
-            this.groupBox5.TabIndex = 11;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Armors";
+            this.groupBox8.Controls.Add(this.lst_flow);
+            this.groupBox8.Controls.Add(this.pic_mod_flow);
+            this.groupBox8.Location = new System.Drawing.Point(233, 130);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(221, 121);
+            this.groupBox8.TabIndex = 12;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Flowers";
             // 
-            // lst_armor
+            // lst_flow
             // 
-            this.lst_armor.BackColor = System.Drawing.Color.Wheat;
-            this.lst_armor.ContextMenuStrip = this.contextMenuStrip1;
-            this.lst_armor.FormattingEnabled = true;
-            this.lst_armor.Location = new System.Drawing.Point(6, 19);
-            this.lst_armor.Name = "lst_armor";
-            this.lst_armor.Size = new System.Drawing.Size(100, 95);
-            this.lst_armor.TabIndex = 6;
-            this.lst_armor.SelectedIndexChanged += new System.EventHandler(this.lst_armor_SelectedIndexChanged);
-            this.lst_armor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_armor_MouseDown);
+            this.lst_flow.BackColor = System.Drawing.Color.Wheat;
+            this.lst_flow.ContextMenuStrip = this.contextMenuStrip1;
+            this.lst_flow.FormattingEnabled = true;
+            this.lst_flow.Location = new System.Drawing.Point(6, 19);
+            this.lst_flow.Name = "lst_flow";
+            this.lst_flow.Size = new System.Drawing.Size(100, 95);
+            this.lst_flow.TabIndex = 6;
+            this.lst_flow.SelectedIndexChanged += new System.EventHandler(this.lst_flower_SelectedIndexChanged);
+            this.lst_flow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_flower_MouseDown);
             // 
             // contextMenuStrip1
             // 
@@ -594,6 +609,39 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // pic_mod_flow
+            // 
+            this.pic_mod_flow.BackColor = System.Drawing.Color.BurlyWood;
+            this.pic_mod_flow.Location = new System.Drawing.Point(112, 19);
+            this.pic_mod_flow.Name = "pic_mod_flow";
+            this.pic_mod_flow.Size = new System.Drawing.Size(100, 95);
+            this.pic_mod_flow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_mod_flow.TabIndex = 7;
+            this.pic_mod_flow.TabStop = false;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.lst_armor);
+            this.groupBox5.Controls.Add(this.pic_mod_armor);
+            this.groupBox5.Location = new System.Drawing.Point(6, 130);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(221, 121);
+            this.groupBox5.TabIndex = 11;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Armors";
+            // 
+            // lst_armor
+            // 
+            this.lst_armor.BackColor = System.Drawing.Color.Wheat;
+            this.lst_armor.ContextMenuStrip = this.contextMenuStrip1;
+            this.lst_armor.FormattingEnabled = true;
+            this.lst_armor.Location = new System.Drawing.Point(6, 19);
+            this.lst_armor.Name = "lst_armor";
+            this.lst_armor.Size = new System.Drawing.Size(100, 95);
+            this.lst_armor.TabIndex = 6;
+            this.lst_armor.SelectedIndexChanged += new System.EventHandler(this.lst_armor_SelectedIndexChanged);
+            this.lst_armor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_armor_MouseDown);
             // 
             // pic_mod_armor
             // 
@@ -642,7 +690,7 @@
             // 
             this.groupBox1.Controls.Add(this.lst_weap);
             this.groupBox1.Controls.Add(this.pic_mod_weapon);
-            this.groupBox1.Location = new System.Drawing.Point(233, 130);
+            this.groupBox1.Location = new System.Drawing.Point(6, 257);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(221, 121);
             this.groupBox1.TabIndex = 9;
@@ -731,7 +779,7 @@
             this.tabControl.Controls.Add(this.tab_MOD);
             this.tabControl.Controls.Add(this.tab_recipe);
             this.tabControl.Controls.Add(this.tab_armor);
-            this.tabControl.Controls.Add(this.tab_flowers);
+            this.tabControl.Controls.Add(this.tab_flower);
             this.tabControl.Controls.Add(this.tab_weapon);
             this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl.ItemSize = new System.Drawing.Size(20, 50);
@@ -1050,7 +1098,7 @@
             this.grp_armor_type.Location = new System.Drawing.Point(9, 136);
             this.grp_armor_type.Name = "grp_armor_type";
             this.grp_armor_type.Size = new System.Drawing.Size(98, 69);
-            this.grp_armor_type.TabIndex = 44;
+            this.grp_armor_type.TabIndex = 35;
             this.grp_armor_type.TabStop = false;
             this.grp_armor_type.Text = "Type";
             // 
@@ -1235,6 +1283,276 @@
             this.label19.TabIndex = 27;
             this.label19.Text = "Name:";
             // 
+            // tab_flower
+            // 
+            this.tab_flower.BackColor = System.Drawing.SystemColors.Control;
+            this.tab_flower.Controls.Add(this.btn_flower);
+            this.tab_flower.Controls.Add(this.txt_flower_habit);
+            this.tab_flower.Controls.Add(this.groupBox7);
+            this.tab_flower.Controls.Add(this.groupBox6);
+            this.tab_flower.Controls.Add(this.label26);
+            this.tab_flower.Controls.Add(this.label25);
+            this.tab_flower.Controls.Add(this.txt_flower_tag);
+            this.tab_flower.Controls.Add(this.pic_flower_png);
+            this.tab_flower.Controls.Add(this.pic_flower_qbi);
+            this.tab_flower.Controls.Add(this.pic_flower_qb);
+            this.tab_flower.Controls.Add(this.label20);
+            this.tab_flower.Controls.Add(this.nud_flower_weight);
+            this.tab_flower.Controls.Add(this.label23);
+            this.tab_flower.Controls.Add(this.txt_flower_desc);
+            this.tab_flower.Controls.Add(this.txt_flower_name);
+            this.tab_flower.Controls.Add(this.label24);
+            this.tab_flower.Location = new System.Drawing.Point(54, 4);
+            this.tab_flower.Name = "tab_flower";
+            this.tab_flower.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_flower.Size = new System.Drawing.Size(487, 324);
+            this.tab_flower.TabIndex = 7;
+            this.tab_flower.Text = "Flower";
+            this.tab_flower.Enter += new System.EventHandler(this.tab_flower_Enter);
+            // 
+            // btn_flower
+            // 
+            this.btn_flower.Location = new System.Drawing.Point(6, 295);
+            this.btn_flower.Name = "btn_flower";
+            this.btn_flower.Size = new System.Drawing.Size(473, 23);
+            this.btn_flower.TabIndex = 53;
+            this.btn_flower.Text = "Save Flower";
+            this.btn_flower.UseVisualStyleBackColor = true;
+            this.btn_flower.Click += new System.EventHandler(this.btn_flower_Click);
+            // 
+            // txt_flower_habit
+            // 
+            this.txt_flower_habit.Location = new System.Drawing.Point(56, 84);
+            this.txt_flower_habit.Name = "txt_flower_habit";
+            this.txt_flower_habit.Size = new System.Drawing.Size(156, 20);
+            this.txt_flower_habit.TabIndex = 18;
+            this.txt_flower_habit.TextChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label22);
+            this.groupBox7.Controls.Add(this.label21);
+            this.groupBox7.Controls.Add(this.nud_flower_min);
+            this.groupBox7.Controls.Add(this.nud_flower_max);
+            this.groupBox7.Location = new System.Drawing.Point(6, 215);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(120, 73);
+            this.groupBox7.TabIndex = 31;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Flowers per Field";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 19);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(37, 13);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "Min #:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 45);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(40, 13);
+            this.label21.TabIndex = 33;
+            this.label21.Text = "Max #:";
+            // 
+            // nud_flower_min
+            // 
+            this.nud_flower_min.Location = new System.Drawing.Point(50, 17);
+            this.nud_flower_min.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nud_flower_min.Name = "nud_flower_min";
+            this.nud_flower_min.Size = new System.Drawing.Size(57, 20);
+            this.nud_flower_min.TabIndex = 34;
+            this.nud_flower_min.ValueChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // nud_flower_max
+            // 
+            this.nud_flower_max.Location = new System.Drawing.Point(50, 43);
+            this.nud_flower_max.Name = "nud_flower_max";
+            this.nud_flower_max.Size = new System.Drawing.Size(57, 20);
+            this.nud_flower_max.TabIndex = 35;
+            this.nud_flower_max.ValueChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.nud_flower_length);
+            this.groupBox6.Controls.Add(this.label28);
+            this.groupBox6.Controls.Add(this.nud_flower_width);
+            this.groupBox6.Controls.Add(this.label27);
+            this.groupBox6.Location = new System.Drawing.Point(6, 136);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(120, 73);
+            this.groupBox6.TabIndex = 21;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Field Size";
+            // 
+            // nud_flower_length
+            // 
+            this.nud_flower_length.Location = new System.Drawing.Point(50, 43);
+            this.nud_flower_length.Name = "nud_flower_length";
+            this.nud_flower_length.Size = new System.Drawing.Size(57, 20);
+            this.nud_flower_length.TabIndex = 30;
+            this.nud_flower_length.ValueChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 19);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(38, 13);
+            this.label28.TabIndex = 46;
+            this.label28.Text = "Width:";
+            // 
+            // nud_flower_width
+            // 
+            this.nud_flower_width.Location = new System.Drawing.Point(50, 17);
+            this.nud_flower_width.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nud_flower_width.Name = "nud_flower_width";
+            this.nud_flower_width.Size = new System.Drawing.Size(57, 20);
+            this.nud_flower_width.TabIndex = 25;
+            this.nud_flower_width.ValueChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 45);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(43, 13);
+            this.label27.TabIndex = 47;
+            this.label27.Text = "Length:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 87);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(49, 13);
+            this.label26.TabIndex = 45;
+            this.label26.Text = "Habitats:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 61);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(34, 13);
+            this.label25.TabIndex = 44;
+            this.label25.Text = "Tags:";
+            // 
+            // txt_flower_tag
+            // 
+            this.txt_flower_tag.Location = new System.Drawing.Point(50, 58);
+            this.txt_flower_tag.Name = "txt_flower_tag";
+            this.txt_flower_tag.Size = new System.Drawing.Size(429, 20);
+            this.txt_flower_tag.TabIndex = 15;
+            this.txt_flower_tag.TextChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // pic_flower_png
+            // 
+            this.pic_flower_png.BackColor = System.Drawing.Color.LightGray;
+            this.pic_flower_png.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
+            this.pic_flower_png.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_flower_png.Location = new System.Drawing.Point(407, 84);
+            this.pic_flower_png.Name = "pic_flower_png";
+            this.pic_flower_png.Size = new System.Drawing.Size(72, 72);
+            this.pic_flower_png.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_flower_png.TabIndex = 39;
+            this.pic_flower_png.TabStop = false;
+            this.pic_flower_png.Click += new System.EventHandler(this.pic_flower_png_Click);
+            // 
+            // pic_flower_qbi
+            // 
+            this.pic_flower_qbi.BackColor = System.Drawing.Color.LightGray;
+            this.pic_flower_qbi.BackgroundImage = global::SHModMaker.Properties.Resources.QB_iconic;
+            this.pic_flower_qbi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_flower_qbi.Location = new System.Drawing.Point(313, 84);
+            this.pic_flower_qbi.Name = "pic_flower_qbi";
+            this.pic_flower_qbi.Size = new System.Drawing.Size(72, 72);
+            this.pic_flower_qbi.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_flower_qbi.TabIndex = 38;
+            this.pic_flower_qbi.TabStop = false;
+            this.pic_flower_qbi.Click += new System.EventHandler(this.pic_flower_qbi_Click);
+            // 
+            // pic_flower_qb
+            // 
+            this.pic_flower_qb.BackColor = System.Drawing.Color.LightGray;
+            this.pic_flower_qb.BackgroundImage = global::SHModMaker.Properties.Resources.QB;
+            this.pic_flower_qb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_flower_qb.Location = new System.Drawing.Point(218, 84);
+            this.pic_flower_qb.Name = "pic_flower_qb";
+            this.pic_flower_qb.Size = new System.Drawing.Size(72, 72);
+            this.pic_flower_qb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_flower_qb.TabIndex = 37;
+            this.pic_flower_qb.TabStop = false;
+            this.pic_flower_qb.Click += new System.EventHandler(this.pic_flower_qb_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 112);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(44, 13);
+            this.label20.TabIndex = 36;
+            this.label20.Text = "Weight:";
+            // 
+            // nud_flower_weight
+            // 
+            this.nud_flower_weight.Location = new System.Drawing.Point(56, 110);
+            this.nud_flower_weight.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nud_flower_weight.Name = "nud_flower_weight";
+            this.nud_flower_weight.Size = new System.Drawing.Size(57, 20);
+            this.nud_flower_weight.TabIndex = 20;
+            this.nud_flower_weight.ValueChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 35);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(35, 13);
+            this.label23.TabIndex = 31;
+            this.label23.Text = "Desc:";
+            // 
+            // txt_flower_desc
+            // 
+            this.txt_flower_desc.Location = new System.Drawing.Point(50, 32);
+            this.txt_flower_desc.Name = "txt_flower_desc";
+            this.txt_flower_desc.Size = new System.Drawing.Size(429, 20);
+            this.txt_flower_desc.TabIndex = 10;
+            this.txt_flower_desc.TextChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // txt_flower_name
+            // 
+            this.txt_flower_name.Location = new System.Drawing.Point(50, 6);
+            this.txt_flower_name.Name = "txt_flower_name";
+            this.txt_flower_name.Size = new System.Drawing.Size(429, 20);
+            this.txt_flower_name.TabIndex = 5;
+            this.txt_flower_name.TextChanged += new System.EventHandler(this.txt_flower_changed);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 9);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(38, 13);
+            this.label24.TabIndex = 27;
+            this.label24.Text = "Name:";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1260,262 +1578,6 @@
             // openFileDialogPNG
             // 
             this.openFileDialogPNG.Filter = "PNG|*.png";
-            // 
-            // tab_flowers
-            // 
-            this.tab_flowers.BackColor = System.Drawing.SystemColors.Control;
-            this.tab_flowers.Controls.Add(this.button1);
-            this.tab_flowers.Controls.Add(this.textBox4);
-            this.tab_flowers.Controls.Add(this.groupBox7);
-            this.tab_flowers.Controls.Add(this.groupBox6);
-            this.tab_flowers.Controls.Add(this.label26);
-            this.tab_flowers.Controls.Add(this.label25);
-            this.tab_flowers.Controls.Add(this.textBox3);
-            this.tab_flowers.Controls.Add(this.pictureBox1);
-            this.tab_flowers.Controls.Add(this.pictureBox2);
-            this.tab_flowers.Controls.Add(this.pictureBox3);
-            this.tab_flowers.Controls.Add(this.label20);
-            this.tab_flowers.Controls.Add(this.numericUpDown1);
-            this.tab_flowers.Controls.Add(this.label23);
-            this.tab_flowers.Controls.Add(this.textBox1);
-            this.tab_flowers.Controls.Add(this.textBox2);
-            this.tab_flowers.Controls.Add(this.label24);
-            this.tab_flowers.Location = new System.Drawing.Point(54, 4);
-            this.tab_flowers.Name = "tab_flowers";
-            this.tab_flowers.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_flowers.Size = new System.Drawing.Size(487, 324);
-            this.tab_flowers.TabIndex = 7;
-            this.tab_flowers.Text = "Flowers";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.LightGray;
-            this.pictureBox1.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(407, 84);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(72, 72);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 39;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.LightGray;
-            this.pictureBox2.BackgroundImage = global::SHModMaker.Properties.Resources.QB_iconic;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(313, 84);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(72, 72);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.LightGray;
-            this.pictureBox3.BackgroundImage = global::SHModMaker.Properties.Resources.QB;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(218, 84);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(72, 72);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 37;
-            this.pictureBox3.TabStop = false;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(6, 112);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(44, 13);
-            this.label20.TabIndex = 36;
-            this.label20.Text = "Weight:";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(56, 110);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(57, 20);
-            this.numericUpDown1.TabIndex = 30;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(50, 43);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(57, 20);
-            this.numericUpDown2.TabIndex = 35;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Location = new System.Drawing.Point(50, 17);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(57, 20);
-            this.numericUpDown3.TabIndex = 34;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 45);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(40, 13);
-            this.label21.TabIndex = 33;
-            this.label21.Text = "Max #:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 19);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(37, 13);
-            this.label22.TabIndex = 32;
-            this.label22.Text = "Min #:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(6, 35);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(35, 13);
-            this.label23.TabIndex = 31;
-            this.label23.Text = "Desc:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(50, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(429, 20);
-            this.textBox1.TabIndex = 29;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(50, 6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(429, 20);
-            this.textBox2.TabIndex = 28;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(6, 9);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(38, 13);
-            this.label24.TabIndex = 27;
-            this.label24.Text = "Name:";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(6, 61);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(34, 13);
-            this.label25.TabIndex = 44;
-            this.label25.Text = "Tags:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(50, 58);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(429, 20);
-            this.textBox3.TabIndex = 43;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(6, 87);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(49, 13);
-            this.label26.TabIndex = 45;
-            this.label26.Text = "Habitats:";
-            // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.Location = new System.Drawing.Point(50, 43);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(57, 20);
-            this.numericUpDown4.TabIndex = 49;
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.Location = new System.Drawing.Point(50, 17);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(57, 20);
-            this.numericUpDown5.TabIndex = 48;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 45);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(43, 13);
-            this.label27.TabIndex = 47;
-            this.label27.Text = "Length:";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(6, 19);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(38, 13);
-            this.label28.TabIndex = 46;
-            this.label28.Text = "Width:";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.numericUpDown4);
-            this.groupBox6.Controls.Add(this.label28);
-            this.groupBox6.Controls.Add(this.numericUpDown5);
-            this.groupBox6.Controls.Add(this.label27);
-            this.groupBox6.Location = new System.Drawing.Point(6, 136);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(120, 73);
-            this.groupBox6.TabIndex = 50;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Field Size";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.label22);
-            this.groupBox7.Controls.Add(this.label21);
-            this.groupBox7.Controls.Add(this.numericUpDown3);
-            this.groupBox7.Controls.Add(this.numericUpDown2);
-            this.groupBox7.Location = new System.Drawing.Point(6, 215);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(120, 73);
-            this.groupBox7.TabIndex = 51;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Flowers per Field";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(56, 84);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(156, 20);
-            this.textBox4.TabIndex = 52;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 295);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(473, 23);
-            this.button1.TabIndex = 53;
-            this.button1.Text = "Save Flower";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1548,8 +1610,10 @@
             this.tab_MOD.ResumeLayout(false);
             this.tab_MOD.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_mod_flow)).EndInit();
+            this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_armor)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_recipe)).EndInit();
@@ -1576,22 +1640,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_ilevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_dmgRed)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.tab_flowers.ResumeLayout(false);
-            this.tab_flowers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.tab_flower.ResumeLayout(false);
+            this.tab_flower.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_min)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_max)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_length)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_flower_png)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_flower_qbi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_flower_qb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_flower_weight)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1702,31 +1766,35 @@
         private System.Windows.Forms.GroupBox grp_armor_type;
         private System.Windows.Forms.RadioButton rdo_armor_shield;
         private System.Windows.Forms.RadioButton rdo_armor_armor;
-        private System.Windows.Forms.TabPage tab_flowers;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TabPage tab_flower;
+        private System.Windows.Forms.TextBox txt_flower_habit;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown nud_flower_min;
+        private System.Windows.Forms.NumericUpDown nud_flower_max;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown nud_flower_length;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.NumericUpDown nud_flower_width;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.TextBox txt_flower_tag;
+        private System.Windows.Forms.PictureBox pic_flower_png;
+        private System.Windows.Forms.PictureBox pic_flower_qbi;
+        private System.Windows.Forms.PictureBox pic_flower_qb;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nud_flower_weight;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_flower_desc;
+        private System.Windows.Forms.TextBox txt_flower_name;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_flower;
+        private System.Windows.Forms.ToolStripMenuItem flowerToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.ListBox lst_flow;
+        private System.Windows.Forms.PictureBox pic_mod_flow;
     }
 }
 

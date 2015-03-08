@@ -39,3 +39,9 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Armor\armo
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Armor\armor_iconic.json
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Shield\shield.json
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Shield\shield_iconic.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower_field.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower_ghost.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower_iconic.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower_index.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower_wild.json

@@ -32,6 +32,7 @@ namespace SHModMaker
         public static MOD mod = new MOD();
         public static Recipe currentRecipe = new Recipe();
         public static Armor currentArmor = new Armor();
+        public static Flower currentFlower = new Flower();
         public static Weapon currentWeapon = new Weapon();
 
         private static bool TabLoading = false;
@@ -197,6 +198,10 @@ namespace SHModMaker
                 {
                     lst_armor.SelectedIndex = 0;
                 }
+                if (lst_flow.Items.Count > 0)
+                {
+                    lst_flow.SelectedIndex = 0;
+                }
                 if (lst_weap.Items.Count > 0)
                 {
                     lst_weap.SelectedIndex = 0;
@@ -205,6 +210,8 @@ namespace SHModMaker
                 update_recipe_crafters();
                 update_recipe_igredients();
                 update_recipe_products();
+
+                tabControl.SelectedIndex = 0;
             }
         }
         private void exportsmodToolStripMenuItem_Click(object sender, EventArgs e)
@@ -269,7 +276,11 @@ namespace SHModMaker
             {
                 lst_armor.Items.Add(armr.name);
             }
-
+            lst_flow.Items.Clear();
+            foreach (Flower flow in mod.flowers)
+            {
+                lst_flow.Items.Add(flow.name);
+            }
             lst_weap.Items.Clear();
             foreach (Weapon weap in mod.weapons)
             {
@@ -317,7 +328,7 @@ namespace SHModMaker
             }
         }
 
-        //lst_weapon stuff
+        //lst_armor stuff
         private void lst_armor_MouseDown(object sender, MouseEventArgs e)
         {
             lst_armor.SelectedIndex = lst_armor.IndexFromPoint(e.X, e.Y);
@@ -341,6 +352,33 @@ namespace SHModMaker
             {
                 pic_mod_armor.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
                 pic_mod_armor.Refresh();
+            }
+        }
+
+        //lst_flower stuff
+        private void lst_flower_MouseDown(object sender, MouseEventArgs e)
+        {
+            lst_flow.SelectedIndex = lst_flow.IndexFromPoint(e.X, e.Y);
+            currentListBox = "flowers";
+        }
+        private void lst_flower_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lst_flow.SelectedItem != null)
+            {
+                foreach (Flower flow in mod.flowers)
+                {
+                    if (flow.name == lst_flow.SelectedItem.ToString())
+                    {
+                        pic_mod_flow.Image = Image.FromStream(new MemoryStream(flow.png));
+                        pic_mod_flow.Refresh();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pic_mod_flow.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
+                pic_mod_flow.Refresh();
             }
         }
 
@@ -384,6 +422,11 @@ namespace SHModMaker
                 currentArmor = new Armor();
                 tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_armor");
             }
+            if (currentListBox == "flowers")
+            {
+                currentFlower = new Flower();
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_flower");
+            }
             if (currentListBox == "weapons")
             {
                 currentWeapon = new Weapon();
@@ -415,6 +458,18 @@ namespace SHModMaker
                     }
                 }
                 tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_armor");
+            }
+            if (currentListBox == "flowers")
+            {
+                foreach (Flower flow in mod.flowers)
+                {
+                    if (flow.name == lst_flow.SelectedItem.ToString())
+                    {
+                        currentFlower = flow;
+                        break;
+                    }
+                }
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_flower");
             }
             if (currentListBox == "weapons")
             {
@@ -450,6 +505,18 @@ namespace SHModMaker
                     if (armr.name == lst_armor.SelectedItem.ToString())
                     {
                         mod.armors.Remove(armr);
+                        break;
+                    }
+                }
+                updateMODtab();
+            }
+            if (currentListBox == "flowers")
+            {
+                foreach (Flower flow in mod.flowers)
+                {
+                    if (flow.name == lst_flow.SelectedItem.ToString())
+                    {
+                        mod.flowers.Remove(flow);
                         break;
                     }
                 }
@@ -570,8 +637,6 @@ namespace SHModMaker
                 //if pic checkbox is not checked, change pic
                 if (!chk_recipe_lockimg.Checked)
                 {
-                    Console.WriteLine(cmb_recipe_prod.Text);
-                    Console.WriteLine(cmb_recipe_prod.SelectedItem.ToString());
                     //if it has ':weapon:' in the text then it must be a weapon
                     if (cmb_recipe_prod.SelectedItem.ToString().Contains(":weapon:"))
                     {
@@ -588,19 +653,33 @@ namespace SHModMaker
                         }
                     }
                     
-                    Console.WriteLine(cmb_recipe_prod.Text);
-                    Console.WriteLine(cmb_recipe_prod.SelectedItem.ToString());
                     //if it has ':armor:' in the text then it must be an armor
                     if (cmb_recipe_prod.SelectedItem.ToString().Contains(":armor:"))
                     {
                         foreach (Armor armr in mod.armors)
                         {
-                            Console.WriteLine("armor: " + armr.iname);
+                            //Console.WriteLine("armor: " + armr.iname);
                             //MessageBox.Show(armr.iname + " - " + cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":armor:".Length));
-                            //Why is this code +0 while the other one was -1????
                             if (armr.iname == cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":armor:".Length))
                             {
                                 currentRecipe.png = armr.png;
+                                pic_recipe.Image = Image.FromStream(new MemoryStream(currentRecipe.png));
+                                pic_recipe.Refresh();
+                                break;
+                            }
+                        }
+                    }
+                    //if it has ':flower:' in the text then it must be an armor
+                    if (cmb_recipe_prod.SelectedItem.ToString().Contains(":flower:"))
+                    {
+                        foreach (Flower flow in mod.flowers)
+                        {
+                            //Console.WriteLine("flower: " + armr.iname);
+                            //MessageBox.Show(armr.iname + " - " + cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":armor:".Length));
+                            //Why is this code +0 while the other one was -1????
+                            if (flow.iname == cmb_recipe_prod.SelectedItem.ToString().Remove(0, mod.name.Length + ":flower:".Length))
+                            {
+                                currentRecipe.png = flow.png;
                                 pic_recipe.Image = Image.FromStream(new MemoryStream(currentRecipe.png));
                                 pic_recipe.Refresh();
                                 break;
@@ -830,6 +909,132 @@ namespace SHModMaker
             else
             {
                 lbl_status.Text = "Armor has no name! Could not add/update weapon.";
+            }
+            update_recipe_igredients();
+            update_recipe_products();
+
+
+        }
+
+        //__________Flower Tab Stuff__________
+        private void tab_flower_Enter(object sender, EventArgs e)
+        {
+            TabLoading = true;
+            txt_flower_name.Text = currentFlower.name;
+            txt_flower_desc.Text = currentFlower.desc;
+            txt_flower_tag.Text = currentFlower.tags;
+            //build habitat string
+            txt_flower_habit.Clear();
+            foreach (String hab in currentFlower.habitats)
+            {
+                txt_flower_habit.AppendText(hab + " ");
+            }
+
+            pic_flower_qb.Image = Image.FromStream(new MemoryStream(currentFlower.qbICON));
+            pic_flower_qb.Refresh();
+
+            pic_flower_qbi.Image = Image.FromStream(new MemoryStream(currentFlower.qbiICON));
+            pic_flower_qbi.Refresh();
+
+            pic_flower_png.Image = Image.FromStream(new MemoryStream(currentFlower.png));
+            pic_flower_png.Refresh();
+
+            nud_flower_weight.Value = currentFlower.weight;
+            nud_flower_width.Value = currentFlower.width;
+            nud_flower_length.Value = currentFlower.length;
+            nud_flower_min.Value = currentFlower.min;
+            nud_flower_max.Value = currentFlower.max;
+
+            TabLoading = false;
+        }
+
+        private void pic_flower_qb_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentFlower.qb = File.ReadAllBytes(openFileDialogQB.FileName);
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentFlower.qb))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentFlower.qbICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_flower_qb.Image = Image.FromStream(new MemoryStream(currentFlower.qbICON));
+                pic_flower_qb.Refresh();
+            }
+        }
+        private void pic_flower_qbi_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentFlower.qbi = File.ReadAllBytes(openFileDialogQB.FileName);
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentFlower.qbi))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentFlower.qbiICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_flower_qbi.Image = Image.FromStream(new MemoryStream(currentFlower.qbiICON));
+                pic_flower_qbi.Refresh();
+            }
+        }
+        private void pic_flower_png_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogPNG.ShowDialog() == DialogResult.OK)
+            {
+                currentFlower.png = File.ReadAllBytes(openFileDialogPNG.FileName);
+                pic_flower_png.Image = Image.FromStream(new MemoryStream(currentFlower.png));
+                pic_flower_png.Refresh();
+            }
+        }
+        private void txt_flower_changed(object sender, EventArgs e)
+        {
+            if (!TabLoading)
+            {
+                currentFlower.name = txt_flower_name.Text;
+                currentFlower.iname = utils.LowerNoSpaces(currentFlower.name);
+                currentFlower.desc = txt_flower_desc.Text;
+                currentFlower.tags = txt_flower_tag.Text;
+                currentFlower.habitats.Clear();
+                if (txt_flower_habit.Text.Contains(' '))
+                {
+                    foreach (String str in txt_flower_habit.Text.Split(' '))
+                    {
+                        currentFlower.habitats.Add(str);
+                    }
+                } else if (txt_flower_habit.Text !="")
+                {
+                    currentFlower.habitats.Add(txt_flower_habit.Text);
+                }
+                currentFlower.weight = (int)nud_flower_weight.Value;
+                currentFlower.width = (int)nud_flower_width.Value;
+                currentFlower.length = (int)nud_flower_length.Value;
+                currentFlower.min = (int)nud_flower_min.Value;
+                currentFlower.max = (int)nud_flower_max.Value;
+            }
+        }
+        private void btn_flower_Click(object sender, EventArgs e)
+        {
+            //Add weapon to MOD
+            if (currentFlower.name != "")
+            {
+                mod.AddFlower(currentFlower);
+                tabControl.SelectedIndex = 0;
+                lbl_status.Text = "Flower " + currentFlower.name + " has been added/updated.";
+            }
+            else
+            {
+                lbl_status.Text = "Flower has no name! Could not add/update.";
             }
             update_recipe_igredients();
             update_recipe_products();
@@ -1494,6 +1699,137 @@ namespace SHModMaker
         }
     }
 
+    public class Flower
+    {
+        public String name;
+        public String iname;
+        public String desc;
+        public String tags;
+        public List<String> habitats;
+
+        public byte[] qb;
+        public byte[] qbi;
+        public byte[] png;
+        public byte[] qbICON;
+        public byte[] qbiICON;
+
+        public int weight;
+        public int width;
+        public int length;
+        public int min;
+        public int max;
+
+        public Flower()
+        {
+            name = "";
+            iname = utils.LowerNoSpaces(name);
+            desc = "";
+            tags = "";
+            habitats = new List<string>();
+
+            qb = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb");
+            qbi = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb");
+            png = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+            qbICON = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+            qbiICON = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+
+            weight = 10;
+            width = 4;
+            length = 4;
+            min = 2;
+            max = 5;
+        }
+
+        public void AddHabitat(String str)
+        {
+            bool changed = false;
+            //Search for an item of the same name, if one exsists then it updates the information, else it adds it to the list.
+            for (int i = 0; i < habitats.Count; i++)
+            {
+                if (habitats[i] == str)
+                {
+                    changed = true;
+                    habitats[i] = str;
+                    break;
+                }
+            }
+            if (changed == false)
+            {
+                habitats.Add(str);
+            }
+        }
+        public void RemoveHabitat(String str)
+        {
+            habitats.Remove(str);
+        }
+
+        public void WriteFlowerFile(String modPath)
+        {
+            string localPath = System.IO.Directory.GetCurrentDirectory();
+            String[] filesAll;
+            List<String[]> filesJsonLua = new List<string[]>();
+
+            String habitatSTR = "[";
+
+            //Build Parse List
+            List <String[]> refList = new List<string[]>();
+            refList.Add(new String[] { "mname", Form1.mod.name });
+            refList.Add(new String[] { "name", name });
+            refList.Add(new String[] { "iname", iname });
+            refList.Add(new String[] { "desc", desc });
+            refList.Add(new String[] { "tag", tags });
+            //make habitat str
+            for(int i = 0; i < habitats.Count; i++)
+            {
+                habitatSTR = habitatSTR + "\"" + habitats[i] + "\"";
+                if (i != habitats.Count-1) { habitatSTR = habitatSTR + ","; } else { habitatSTR = habitatSTR + "]"; }
+            }
+            refList.Add(new String[] { "habitat", habitatSTR });
+            refList.Add(new String[] { "weight", weight.ToString() });
+            refList.Add(new String[] { "width", width.ToString() });
+            refList.Add(new String[] { "length", length.ToString() });
+            refList.Add(new String[] { "min", min.ToString() });
+            refList.Add(new String[] { "max", max.ToString() });
+
+            //Get JSONs and LUA files
+            //FIX can probably make a utils for this utils.GetJsonLua(String path)??
+            filesAll = System.IO.Directory.GetFiles(localPath + "\\JSONs\\WildFlower\\");
+            foreach (String str in filesAll)
+            {
+                if (str.EndsWith(".json") || str.EndsWith(".lua") || str.EndsWith(".luac"))
+                {
+                    //Parse files
+                    System.IO.StreamReader filepath = new System.IO.StreamReader(str);
+                    filesJsonLua.Add(new String[] { System.IO.Path.GetFileName(str), utils.Parse(filepath.ReadToEnd(), refList) });
+                    filepath.Close();
+                }
+            }
+
+            //make folder if needed
+            if (!System.IO.Directory.Exists(modPath + "\\entities\\flowers\\" + iname))
+            {
+                System.IO.Directory.CreateDirectory(modPath + "\\entities\\flowers\\" + iname);
+                Console.WriteLine(modPath + "\\entities\\flowers\\" + iname);
+            }
+
+            //write them to new path
+            foreach (String[] str in filesJsonLua)
+            {
+                String fileName = str[0];
+                if (fileName.ToLower().Contains("flower"))
+                {
+                    fileName = fileName.ToLower().Replace("flower", iname);
+                }
+                System.IO.File.WriteAllText(modPath + "\\entities\\flowers\\" + iname + "\\" + fileName, str[1], Encoding.ASCII);
+            }
+
+            //write qbs and png to new path
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\flowers\\" + iname + "\\" + iname + ".qb", qb);
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\flowers\\" + iname + "\\" + iname + "_iconic.qb", qbi);
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\flowers\\" + iname + "\\" + iname + ".png", png);
+        }
+    }
+
     public class Weapon
     {
         public String name;
@@ -1604,6 +1940,7 @@ namespace SHModMaker
         public List<Crafter> crafters;
         public List<Recipe> recipes;
         public List<Armor> armors;
+        public List<Flower> flowers;
         public List<Weapon> weapons;
 
         public MOD()
@@ -1614,6 +1951,7 @@ namespace SHModMaker
             crafters = new List<Crafter>();
             recipes = new List<Recipe>();
             armors = new List<Armor>();
+            flowers = new List<Flower>();
             weapons = new List<Weapon>();
         }
         public MOD(string nam)
@@ -1624,6 +1962,7 @@ namespace SHModMaker
             crafters = new List<Crafter>();
             recipes = new List<Recipe>();
             armors = new List<Armor>();
+            flowers = new List<Flower>();
             weapons = new List<Weapon>();
         }
 
@@ -1647,6 +1986,28 @@ namespace SHModMaker
         public void RemoveArmor(Armor armr)
         {
             armors.Remove(armr);
+        }
+
+        public void AddFlower(Flower flow)
+        {
+            bool changed = false;
+            //Search for an item of the same name, if one exsists then it updates the information, else it adds it to the list.
+            for (int i = 0; i < armors.Count; i++)
+            {
+                if (armors[i].iname == flow.iname)
+                {
+                    changed = true;
+                    flowers[i] = flow;
+                }
+            }
+            if (changed == false)
+            {
+                flowers.Add(flow);
+            }
+        }
+        public void RemoveFlower(Flower flow)
+        {
+            flowers.Remove(flow);
         }
 
         public void AddWeapon(Weapon weap)
@@ -1704,6 +2065,12 @@ namespace SHModMaker
             }
 
             //Get aliases from weapons
+            foreach (Flower flow in flowers)
+            {
+                items.Add(name + ":" + "flower:" + flow.iname);
+            }
+
+            //Get aliases from weapons
             foreach (Weapon weap in weapons)
             {
                 items.Add(name + ":" + "weapon:" + weap.iname);
@@ -1719,11 +2086,20 @@ namespace SHModMaker
             manifest.name = name;
             manifest.apiVersion = apiVersion;
 
-            //Add Armors to manifest
             manifest.aliases.Clear();
+            manifest.mixintos.Clear();
+
+            //Add Armors to manifest
             foreach (Armor armr in armors)
             {
                 manifest.AddAlias("armor:" + armr.iname, "file(entities/armor/" + armr.iname + ")");
+            }
+            //Add wildflowers to manifest
+            foreach (Flower flow in flowers)
+            {
+                manifest.AddAlias("flower:" + flow.iname, "file(entities/flowers/" + flow.iname + ")");
+                manifest.AddAlias("flower:" + flow.iname + ":wild", "file(entities/flowers/" + flow.iname + "/" + flow.iname + "_wild.json)");
+                manifest.AddMixinto("stonehearth/scenarios/scenario_index.json", "file(entities/flowers/" + flow.iname + "/" + flow.iname + "_index.json)");
             }
             //Add weapons to manifest
             foreach (Weapon weap in weapons)
@@ -1732,7 +2108,6 @@ namespace SHModMaker
             }
 
             //add recipes to manifest
-            manifest.mixintos.Clear();
             foreach (Recipe recp in recipes)
             {
                 manifest.AddMixinto("stonehearth/jobs/" + recp.crafter.Remove(0,recp.crafter.IndexOf(":")+1) + "/recipes/recipes.json", 
@@ -1761,6 +2136,10 @@ namespace SHModMaker
             foreach (Armor armr in armors)
             {
                 armr.WriteArmorFile(modPath + name);
+            }
+            foreach (Flower flow in flowers)
+            {
+                flow.WriteFlowerFile(modPath + name);
             }
             foreach (Weapon weap in weapons)
             {

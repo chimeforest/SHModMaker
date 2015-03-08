@@ -1,0 +1,19 @@
+{
+   "mixins" : "/stonehearth/scenarios/static/entity_cluster",
+   "name" : "~iname~_field",
+   "category" : "terrain", 
+   "habitat_types" : ~habitat~,
+   "weight" : ~weight~,
+   "size" : {
+      "width" : ~width~,
+      "length" : ~length~
+   },
+   "data" : {
+      "entity_type" : [ "~mname~:flower:~iname~:wild" ],
+      "entity_footprint_length" : 2,
+      "quantity" : {
+         "min" : ~min~,
+         "max" : ~max~
+      }
+   }
+}

@@ -1,0 +1,18 @@
+{
+   "type" : "entity",
+   "mixins" : "file(~iname~_ghost.json)",
+
+   "components" : {
+      "stonehearth:entity_forms" : {
+         "iconic_form" : "file(~iname~_iconic.json)",
+         "ghost_form" : "file(~iname~_ghost.json)",
+         "placeable_on_ground" : true
+      },      
+      "stonehearth:material" : {
+         "tags" :  "~tag~"
+      },     
+      "mob" : {
+         "model_origin" : { "x": 0, "y": 0, "z": 0 }
+      }
+	}
+}

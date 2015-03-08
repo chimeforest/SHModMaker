@@ -6,8 +6,13 @@ MOD tab
 	context menu.. add 'add recipe' function
 	maybe make it go away on recipe list? if not, then it will make a new blank recipe
 
+	!!! check for null on lines 495 505 517 529
+
+Flower
+	mininto not getting added to the manifest!!?
+
 Armor
-	Have Breeze take qb thumnail from the shield.
+	Have Breeze take qb thumnail for the shield from the side.
 	On export if it's a shield, don't export qbf
 
 Weapons
@@ -20,6 +25,7 @@ Config
 Open and Save Mod data
 	Add option to import other .shmm files into the current mod.
 	Export options not displaying 'exported to' message in the window.
+	!!Crashes is smod is opened by anouther program during export.. need to let user know that the file can't be saved
 	//Evantually import .smods?? maybe??
 	//eventually set qb setting and force qbs to comply.
 

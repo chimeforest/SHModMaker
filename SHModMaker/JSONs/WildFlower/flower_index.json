@@ -1,0 +1,7 @@
+{
+   "static" : {
+      "scenarios" : [
+         "~mname~/entities/flowers/~iname~/~iname~_field.json"
+      ]
+	}
+}
