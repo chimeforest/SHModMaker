@@ -45,3 +45,17 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower_iconic.json
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower_index.json
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\WildFlower\flower_wild.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Column\column.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Column\part.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Curb\curb.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Curb\part.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Floor\floor.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Floor\part.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Road\part.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Road\road.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Roof\part.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Roof\roof.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Slab\part.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Slab\slab.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Wall\part.json
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\JSONs\Wall\wall.json

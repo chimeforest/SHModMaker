@@ -44,9 +44,23 @@
             this.recipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.armorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.armorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.shieldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.constructionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.columnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.curbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.floorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roofToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.slabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.plantStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.howToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogSHMM = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialogSHMM = new System.Windows.Forms.SaveFileDialog();
             this.tab_weapon = new System.Windows.Forms.TabPage();
@@ -66,12 +80,15 @@
             this.btn_weapon = new System.Windows.Forms.Button();
             this.tab_MOD = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.lst_flow = new System.Windows.Forms.ListBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.lst_constr = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pic_mod_constr = new System.Windows.Forms.PictureBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lst_flow = new System.Windows.Forms.ListBox();
             this.pic_mod_flow = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lst_armor = new System.Windows.Forms.ListBox();
@@ -132,6 +149,28 @@
             this.txt_armor_desc = new System.Windows.Forms.TextBox();
             this.txt_armor_name = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.tab_constr = new System.Windows.Forms.TabPage();
+            this.nud_constr_speed = new System.Windows.Forms.NumericUpDown();
+            this.label33 = new System.Windows.Forms.Label();
+            this.btn_constr = new System.Windows.Forms.Button();
+            this.cmb_constr_cat = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.cmb_constr_mat = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.grp_constr_type = new System.Windows.Forms.GroupBox();
+            this.rdo_constr_wall = new System.Windows.Forms.RadioButton();
+            this.rdo_constr_slab = new System.Windows.Forms.RadioButton();
+            this.rdo_constr_roof = new System.Windows.Forms.RadioButton();
+            this.rdo_constr_road = new System.Windows.Forms.RadioButton();
+            this.rdo_constr_floor = new System.Windows.Forms.RadioButton();
+            this.rdo_constr_curb = new System.Windows.Forms.RadioButton();
+            this.rdo_constr_column = new System.Windows.Forms.RadioButton();
+            this.pic_constr_qb = new System.Windows.Forms.PictureBox();
+            this.pic_constr_png = new System.Windows.Forms.PictureBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txt_constr_desc = new System.Windows.Forms.TextBox();
+            this.txt_constr_name = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.tab_flower = new System.Windows.Forms.TabPage();
             this.btn_flower = new System.Windows.Forms.Button();
             this.txt_flower_habit = new System.Windows.Forms.TextBox();
@@ -172,8 +211,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_weap_damage)).BeginInit();
             this.tab_MOD.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox8.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_mod_constr)).BeginInit();
+            this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_flow)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_armor)).BeginInit();
@@ -197,6 +238,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_ilevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_dmgRed)).BeginInit();
+            this.tab_constr.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_constr_speed)).BeginInit();
+            this.grp_constr_type.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_constr_qb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_constr_png)).BeginInit();
             this.tab_flower.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_flower_min)).BeginInit();
@@ -216,10 +262,11 @@
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(545, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(570, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -305,7 +352,8 @@
             this.recipeToolStripMenuItem,
             this.toolStripSeparator3,
             this.armorToolStripMenuItem,
-            this.flowerToolStripMenuItem,
+            this.constructionToolStripMenuItem,
+            this.plantStripMenuItem,
             this.weaponToolStripMenuItem});
             this.AddToolStripMenuItem2.Name = "AddToolStripMenuItem2";
             this.AddToolStripMenuItem2.Size = new System.Drawing.Size(123, 22);
@@ -314,30 +362,109 @@
             // recipeToolStripMenuItem
             // 
             this.recipeToolStripMenuItem.Name = "recipeToolStripMenuItem";
-            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.recipeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.recipeToolStripMenuItem.Text = "Recipe";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(115, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(140, 6);
             // 
             // armorToolStripMenuItem
             // 
+            this.armorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.armorToolStripMenuItem1,
+            this.shieldToolStripMenuItem});
             this.armorToolStripMenuItem.Name = "armorToolStripMenuItem";
-            this.armorToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.armorToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.armorToolStripMenuItem.Text = "Armor";
+            // 
+            // armorToolStripMenuItem1
+            // 
+            this.armorToolStripMenuItem1.Name = "armorToolStripMenuItem1";
+            this.armorToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
+            this.armorToolStripMenuItem1.Text = "Armor";
+            // 
+            // shieldToolStripMenuItem
+            // 
+            this.shieldToolStripMenuItem.Name = "shieldToolStripMenuItem";
+            this.shieldToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.shieldToolStripMenuItem.Text = "Shield";
+            // 
+            // constructionToolStripMenuItem
+            // 
+            this.constructionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.columnToolStripMenuItem,
+            this.curbToolStripMenuItem,
+            this.floorToolStripMenuItem,
+            this.roadToolStripMenuItem,
+            this.roofToolStripMenuItem,
+            this.slabToolStripMenuItem,
+            this.wallToolStripMenuItem});
+            this.constructionToolStripMenuItem.Name = "constructionToolStripMenuItem";
+            this.constructionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.constructionToolStripMenuItem.Text = "Construction";
+            // 
+            // columnToolStripMenuItem
+            // 
+            this.columnToolStripMenuItem.Name = "columnToolStripMenuItem";
+            this.columnToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.columnToolStripMenuItem.Text = "Column";
+            // 
+            // curbToolStripMenuItem
+            // 
+            this.curbToolStripMenuItem.Name = "curbToolStripMenuItem";
+            this.curbToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.curbToolStripMenuItem.Text = "Curb";
+            // 
+            // floorToolStripMenuItem
+            // 
+            this.floorToolStripMenuItem.Name = "floorToolStripMenuItem";
+            this.floorToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.floorToolStripMenuItem.Text = "Floor";
+            // 
+            // roadToolStripMenuItem
+            // 
+            this.roadToolStripMenuItem.Name = "roadToolStripMenuItem";
+            this.roadToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.roadToolStripMenuItem.Text = "Road";
+            // 
+            // roofToolStripMenuItem
+            // 
+            this.roofToolStripMenuItem.Name = "roofToolStripMenuItem";
+            this.roofToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.roofToolStripMenuItem.Text = "Roof";
+            // 
+            // slabToolStripMenuItem
+            // 
+            this.slabToolStripMenuItem.Name = "slabToolStripMenuItem";
+            this.slabToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.slabToolStripMenuItem.Text = "Slab";
+            // 
+            // wallToolStripMenuItem
+            // 
+            this.wallToolStripMenuItem.Name = "wallToolStripMenuItem";
+            this.wallToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.wallToolStripMenuItem.Text = "Wall";
+            // 
+            // plantStripMenuItem
+            // 
+            this.plantStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.flowerToolStripMenuItem});
+            this.plantStripMenuItem.Name = "plantStripMenuItem";
+            this.plantStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.plantStripMenuItem.Text = "Plant";
             // 
             // flowerToolStripMenuItem
             // 
             this.flowerToolStripMenuItem.Name = "flowerToolStripMenuItem";
-            this.flowerToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.flowerToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.flowerToolStripMenuItem.Text = "Flower";
             // 
             // weaponToolStripMenuItem
             // 
             this.weaponToolStripMenuItem.Name = "weaponToolStripMenuItem";
-            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.weaponToolStripMenuItem.Text = "Weapon";
             // 
             // optionsToolStripMenuItem
@@ -346,6 +473,27 @@
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.optionsToolStripMenuItem.Text = "Config";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.howToToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // howToToolStripMenuItem
+            // 
+            this.howToToolStripMenuItem.Name = "howToToolStripMenuItem";
+            this.howToToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.howToToolStripMenuItem.Text = "How-To";
             // 
             // openFileDialogSHMM
             // 
@@ -372,7 +520,7 @@
             this.tab_weapon.Controls.Add(this.txt_weap_name);
             this.tab_weapon.Controls.Add(this.label3);
             this.tab_weapon.Controls.Add(this.btn_weapon);
-            this.tab_weapon.Location = new System.Drawing.Point(54, 4);
+            this.tab_weapon.Location = new System.Drawing.Point(79, 4);
             this.tab_weapon.Name = "tab_weapon";
             this.tab_weapon.Padding = new System.Windows.Forms.Padding(3);
             this.tab_weapon.Size = new System.Drawing.Size(487, 324);
@@ -524,7 +672,7 @@
             this.btn_weapon.Name = "btn_weapon";
             this.btn_weapon.Size = new System.Drawing.Size(475, 23);
             this.btn_weapon.TabIndex = 50;
-            this.btn_weapon.Text = "Save Weapon";
+            this.btn_weapon.Text = "Add/Update Weapon";
             this.btn_weapon.UseVisualStyleBackColor = true;
             this.btn_weapon.Click += new System.EventHandler(this.btn_weapon_Click);
             // 
@@ -537,7 +685,7 @@
             this.tab_MOD.Controls.Add(this.txt_api_version);
             this.tab_MOD.Controls.Add(this.txt_mod_name);
             this.tab_MOD.Controls.Add(this.label1);
-            this.tab_MOD.Location = new System.Drawing.Point(54, 4);
+            this.tab_MOD.Location = new System.Drawing.Point(79, 4);
             this.tab_MOD.Name = "tab_MOD";
             this.tab_MOD.Padding = new System.Windows.Forms.Padding(3);
             this.tab_MOD.Size = new System.Drawing.Size(487, 324);
@@ -548,6 +696,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupBox10);
             this.panel1.Controls.Add(this.groupBox8);
             this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox2);
@@ -557,28 +706,28 @@
             this.panel1.Size = new System.Drawing.Size(491, 292);
             this.panel1.TabIndex = 11;
             // 
-            // groupBox8
+            // groupBox10
             // 
-            this.groupBox8.Controls.Add(this.lst_flow);
-            this.groupBox8.Controls.Add(this.pic_mod_flow);
-            this.groupBox8.Location = new System.Drawing.Point(233, 130);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(221, 121);
-            this.groupBox8.TabIndex = 12;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Flowers";
+            this.groupBox10.Controls.Add(this.lst_constr);
+            this.groupBox10.Controls.Add(this.pic_mod_constr);
+            this.groupBox10.Location = new System.Drawing.Point(233, 130);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(221, 121);
+            this.groupBox10.TabIndex = 13;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Construction";
             // 
-            // lst_flow
+            // lst_constr
             // 
-            this.lst_flow.BackColor = System.Drawing.Color.Wheat;
-            this.lst_flow.ContextMenuStrip = this.contextMenuStrip1;
-            this.lst_flow.FormattingEnabled = true;
-            this.lst_flow.Location = new System.Drawing.Point(6, 19);
-            this.lst_flow.Name = "lst_flow";
-            this.lst_flow.Size = new System.Drawing.Size(100, 95);
-            this.lst_flow.TabIndex = 6;
-            this.lst_flow.SelectedIndexChanged += new System.EventHandler(this.lst_flower_SelectedIndexChanged);
-            this.lst_flow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_flower_MouseDown);
+            this.lst_constr.BackColor = System.Drawing.Color.Wheat;
+            this.lst_constr.ContextMenuStrip = this.contextMenuStrip1;
+            this.lst_constr.FormattingEnabled = true;
+            this.lst_constr.Location = new System.Drawing.Point(6, 19);
+            this.lst_constr.Name = "lst_constr";
+            this.lst_constr.Size = new System.Drawing.Size(100, 95);
+            this.lst_constr.TabIndex = 6;
+            this.lst_constr.SelectedIndexChanged += new System.EventHandler(this.lst_constr_SelectedIndexChanged);
+            this.lst_constr.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_constr_MouseDown);
             // 
             // contextMenuStrip1
             // 
@@ -609,6 +758,39 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // pic_mod_constr
+            // 
+            this.pic_mod_constr.BackColor = System.Drawing.Color.BurlyWood;
+            this.pic_mod_constr.Location = new System.Drawing.Point(112, 19);
+            this.pic_mod_constr.Name = "pic_mod_constr";
+            this.pic_mod_constr.Size = new System.Drawing.Size(100, 95);
+            this.pic_mod_constr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_mod_constr.TabIndex = 7;
+            this.pic_mod_constr.TabStop = false;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.lst_flow);
+            this.groupBox8.Controls.Add(this.pic_mod_flow);
+            this.groupBox8.Location = new System.Drawing.Point(6, 257);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(221, 121);
+            this.groupBox8.TabIndex = 12;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Flowers";
+            // 
+            // lst_flow
+            // 
+            this.lst_flow.BackColor = System.Drawing.Color.Wheat;
+            this.lst_flow.ContextMenuStrip = this.contextMenuStrip1;
+            this.lst_flow.FormattingEnabled = true;
+            this.lst_flow.Location = new System.Drawing.Point(6, 19);
+            this.lst_flow.Name = "lst_flow";
+            this.lst_flow.Size = new System.Drawing.Size(100, 95);
+            this.lst_flow.TabIndex = 6;
+            this.lst_flow.SelectedIndexChanged += new System.EventHandler(this.lst_flower_SelectedIndexChanged);
+            this.lst_flow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_flower_MouseDown);
             // 
             // pic_mod_flow
             // 
@@ -690,7 +872,7 @@
             // 
             this.groupBox1.Controls.Add(this.lst_weap);
             this.groupBox1.Controls.Add(this.pic_mod_weapon);
-            this.groupBox1.Location = new System.Drawing.Point(6, 257);
+            this.groupBox1.Location = new System.Drawing.Point(233, 257);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(221, 121);
             this.groupBox1.TabIndex = 9;
@@ -779,16 +961,17 @@
             this.tabControl.Controls.Add(this.tab_MOD);
             this.tabControl.Controls.Add(this.tab_recipe);
             this.tabControl.Controls.Add(this.tab_armor);
+            this.tabControl.Controls.Add(this.tab_constr);
             this.tabControl.Controls.Add(this.tab_flower);
             this.tabControl.Controls.Add(this.tab_weapon);
             this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl.ItemSize = new System.Drawing.Size(20, 50);
+            this.tabControl.ItemSize = new System.Drawing.Size(20, 75);
             this.tabControl.Location = new System.Drawing.Point(0, 27);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(545, 332);
+            this.tabControl.Size = new System.Drawing.Size(570, 332);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
             // 
@@ -812,7 +995,7 @@
             this.tab_recipe.Controls.Add(this.btn_recipe);
             this.tab_recipe.Controls.Add(this.label4);
             this.tab_recipe.Controls.Add(this.cmb_recipe_Crafters);
-            this.tab_recipe.Location = new System.Drawing.Point(54, 4);
+            this.tab_recipe.Location = new System.Drawing.Point(79, 4);
             this.tab_recipe.Name = "tab_recipe";
             this.tab_recipe.Padding = new System.Windows.Forms.Padding(3);
             this.tab_recipe.Size = new System.Drawing.Size(487, 324);
@@ -1040,7 +1223,7 @@
             this.btn_recipe.Name = "btn_recipe";
             this.btn_recipe.Size = new System.Drawing.Size(475, 23);
             this.btn_recipe.TabIndex = 50;
-            this.btn_recipe.Text = "Save Recipe";
+            this.btn_recipe.Text = "Add/Update Recipe";
             this.btn_recipe.UseVisualStyleBackColor = true;
             this.btn_recipe.Click += new System.EventHandler(this.btn_recipe_Click);
             // 
@@ -1083,7 +1266,7 @@
             this.tab_armor.Controls.Add(this.txt_armor_desc);
             this.tab_armor.Controls.Add(this.txt_armor_name);
             this.tab_armor.Controls.Add(this.label19);
-            this.tab_armor.Location = new System.Drawing.Point(54, 4);
+            this.tab_armor.Location = new System.Drawing.Point(79, 4);
             this.tab_armor.Name = "tab_armor";
             this.tab_armor.Padding = new System.Windows.Forms.Padding(3);
             this.tab_armor.Size = new System.Drawing.Size(487, 324);
@@ -1132,7 +1315,7 @@
             this.btn_armor.Name = "btn_armor";
             this.btn_armor.Size = new System.Drawing.Size(475, 23);
             this.btn_armor.TabIndex = 43;
-            this.btn_armor.Text = "Save Armor";
+            this.btn_armor.Text = "Add/Update Armor";
             this.btn_armor.UseVisualStyleBackColor = true;
             this.btn_armor.Click += new System.EventHandler(this.btn_armor_Click);
             // 
@@ -1283,6 +1466,260 @@
             this.label19.TabIndex = 27;
             this.label19.Text = "Name:";
             // 
+            // tab_constr
+            // 
+            this.tab_constr.BackColor = System.Drawing.SystemColors.Control;
+            this.tab_constr.Controls.Add(this.nud_constr_speed);
+            this.tab_constr.Controls.Add(this.label33);
+            this.tab_constr.Controls.Add(this.btn_constr);
+            this.tab_constr.Controls.Add(this.cmb_constr_cat);
+            this.tab_constr.Controls.Add(this.label32);
+            this.tab_constr.Controls.Add(this.cmb_constr_mat);
+            this.tab_constr.Controls.Add(this.label31);
+            this.tab_constr.Controls.Add(this.grp_constr_type);
+            this.tab_constr.Controls.Add(this.pic_constr_qb);
+            this.tab_constr.Controls.Add(this.pic_constr_png);
+            this.tab_constr.Controls.Add(this.label29);
+            this.tab_constr.Controls.Add(this.txt_constr_desc);
+            this.tab_constr.Controls.Add(this.txt_constr_name);
+            this.tab_constr.Controls.Add(this.label30);
+            this.tab_constr.Location = new System.Drawing.Point(79, 4);
+            this.tab_constr.Name = "tab_constr";
+            this.tab_constr.Size = new System.Drawing.Size(487, 324);
+            this.tab_constr.TabIndex = 8;
+            this.tab_constr.Text = "Construction";
+            this.tab_constr.Enter += new System.EventHandler(this.tab_constr_Enter);
+            // 
+            // nud_constr_speed
+            // 
+            this.nud_constr_speed.DecimalPlaces = 2;
+            this.nud_constr_speed.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.nud_constr_speed.Location = new System.Drawing.Point(254, 131);
+            this.nud_constr_speed.Name = "nud_constr_speed";
+            this.nud_constr_speed.Size = new System.Drawing.Size(66, 20);
+            this.nud_constr_speed.TabIndex = 75;
+            this.nud_constr_speed.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
+            this.nud_constr_speed.ValueChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(251, 112);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(69, 13);
+            this.label33.TabIndex = 55;
+            this.label33.Text = "Walk Speed:";
+            // 
+            // btn_constr
+            // 
+            this.btn_constr.Location = new System.Drawing.Point(6, 295);
+            this.btn_constr.Name = "btn_constr";
+            this.btn_constr.Size = new System.Drawing.Size(473, 23);
+            this.btn_constr.TabIndex = 100;
+            this.btn_constr.Text = "Add/Update Construction";
+            this.btn_constr.UseVisualStyleBackColor = true;
+            this.btn_constr.Click += new System.EventHandler(this.btn_constr_Click);
+            // 
+            // cmb_constr_cat
+            // 
+            this.cmb_constr_cat.FormattingEnabled = true;
+            this.cmb_constr_cat.Items.AddRange(new object[] {
+            "Wooden Materials",
+            "Stone Materials"});
+            this.cmb_constr_cat.Location = new System.Drawing.Point(64, 85);
+            this.cmb_constr_cat.Name = "cmb_constr_cat";
+            this.cmb_constr_cat.Size = new System.Drawing.Size(259, 21);
+            this.cmb_constr_cat.TabIndex = 49;
+            this.cmb_constr_cat.TextChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(6, 88);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(52, 13);
+            this.label32.TabIndex = 51;
+            this.label32.Text = "Category:";
+            // 
+            // cmb_constr_mat
+            // 
+            this.cmb_constr_mat.FormattingEnabled = true;
+            this.cmb_constr_mat.Location = new System.Drawing.Point(64, 58);
+            this.cmb_constr_mat.Name = "cmb_constr_mat";
+            this.cmb_constr_mat.Size = new System.Drawing.Size(259, 21);
+            this.cmb_constr_mat.TabIndex = 48;
+            this.cmb_constr_mat.TextChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 61);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(47, 13);
+            this.label31.TabIndex = 50;
+            this.label31.Text = "Material:";
+            // 
+            // grp_constr_type
+            // 
+            this.grp_constr_type.Controls.Add(this.rdo_constr_wall);
+            this.grp_constr_type.Controls.Add(this.rdo_constr_slab);
+            this.grp_constr_type.Controls.Add(this.rdo_constr_roof);
+            this.grp_constr_type.Controls.Add(this.rdo_constr_road);
+            this.grp_constr_type.Controls.Add(this.rdo_constr_floor);
+            this.grp_constr_type.Controls.Add(this.rdo_constr_curb);
+            this.grp_constr_type.Controls.Add(this.rdo_constr_column);
+            this.grp_constr_type.Location = new System.Drawing.Point(9, 112);
+            this.grp_constr_type.Name = "grp_constr_type";
+            this.grp_constr_type.Size = new System.Drawing.Size(236, 64);
+            this.grp_constr_type.TabIndex = 50;
+            this.grp_constr_type.TabStop = false;
+            this.grp_constr_type.Text = "Type";
+            // 
+            // rdo_constr_wall
+            // 
+            this.rdo_constr_wall.AutoSize = true;
+            this.rdo_constr_wall.Location = new System.Drawing.Point(117, 42);
+            this.rdo_constr_wall.Name = "rdo_constr_wall";
+            this.rdo_constr_wall.Size = new System.Drawing.Size(46, 17);
+            this.rdo_constr_wall.TabIndex = 85;
+            this.rdo_constr_wall.Text = "Wall";
+            this.rdo_constr_wall.UseVisualStyleBackColor = true;
+            this.rdo_constr_wall.CheckedChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // rdo_constr_slab
+            // 
+            this.rdo_constr_slab.AutoSize = true;
+            this.rdo_constr_slab.Location = new System.Drawing.Point(63, 42);
+            this.rdo_constr_slab.Name = "rdo_constr_slab";
+            this.rdo_constr_slab.Size = new System.Drawing.Size(46, 17);
+            this.rdo_constr_slab.TabIndex = 75;
+            this.rdo_constr_slab.Text = "Slab";
+            this.rdo_constr_slab.UseVisualStyleBackColor = true;
+            this.rdo_constr_slab.CheckedChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // rdo_constr_roof
+            // 
+            this.rdo_constr_roof.AutoSize = true;
+            this.rdo_constr_roof.Location = new System.Drawing.Point(183, 19);
+            this.rdo_constr_roof.Name = "rdo_constr_roof";
+            this.rdo_constr_roof.Size = new System.Drawing.Size(48, 17);
+            this.rdo_constr_roof.TabIndex = 90;
+            this.rdo_constr_roof.Text = "Roof";
+            this.rdo_constr_roof.UseVisualStyleBackColor = true;
+            this.rdo_constr_roof.CheckedChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // rdo_constr_road
+            // 
+            this.rdo_constr_road.AutoSize = true;
+            this.rdo_constr_road.Location = new System.Drawing.Point(6, 42);
+            this.rdo_constr_road.Name = "rdo_constr_road";
+            this.rdo_constr_road.Size = new System.Drawing.Size(51, 17);
+            this.rdo_constr_road.TabIndex = 65;
+            this.rdo_constr_road.Text = "Road";
+            this.rdo_constr_road.UseVisualStyleBackColor = true;
+            this.rdo_constr_road.CheckedChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // rdo_constr_floor
+            // 
+            this.rdo_constr_floor.AutoSize = true;
+            this.rdo_constr_floor.Location = new System.Drawing.Point(63, 19);
+            this.rdo_constr_floor.Name = "rdo_constr_floor";
+            this.rdo_constr_floor.Size = new System.Drawing.Size(48, 17);
+            this.rdo_constr_floor.TabIndex = 70;
+            this.rdo_constr_floor.Text = "Floor";
+            this.rdo_constr_floor.UseVisualStyleBackColor = true;
+            this.rdo_constr_floor.CheckedChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // rdo_constr_curb
+            // 
+            this.rdo_constr_curb.AutoSize = true;
+            this.rdo_constr_curb.Location = new System.Drawing.Point(6, 19);
+            this.rdo_constr_curb.Name = "rdo_constr_curb";
+            this.rdo_constr_curb.Size = new System.Drawing.Size(47, 17);
+            this.rdo_constr_curb.TabIndex = 50;
+            this.rdo_constr_curb.Text = "Curb";
+            this.rdo_constr_curb.UseVisualStyleBackColor = true;
+            this.rdo_constr_curb.CheckedChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // rdo_constr_column
+            // 
+            this.rdo_constr_column.AutoSize = true;
+            this.rdo_constr_column.Location = new System.Drawing.Point(117, 19);
+            this.rdo_constr_column.Name = "rdo_constr_column";
+            this.rdo_constr_column.Size = new System.Drawing.Size(60, 17);
+            this.rdo_constr_column.TabIndex = 80;
+            this.rdo_constr_column.Text = "Column";
+            this.rdo_constr_column.UseVisualStyleBackColor = true;
+            this.rdo_constr_column.CheckedChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // pic_constr_qb
+            // 
+            this.pic_constr_qb.BackColor = System.Drawing.Color.LightGray;
+            this.pic_constr_qb.BackgroundImage = global::SHModMaker.Properties.Resources.QB;
+            this.pic_constr_qb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_constr_qb.Location = new System.Drawing.Point(329, 58);
+            this.pic_constr_qb.Name = "pic_constr_qb";
+            this.pic_constr_qb.Size = new System.Drawing.Size(72, 72);
+            this.pic_constr_qb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_constr_qb.TabIndex = 47;
+            this.pic_constr_qb.TabStop = false;
+            this.pic_constr_qb.Click += new System.EventHandler(this.pic_constr_qb_Click);
+            // 
+            // pic_constr_png
+            // 
+            this.pic_constr_png.BackColor = System.Drawing.Color.LightGray;
+            this.pic_constr_png.BackgroundImage = global::SHModMaker.Properties.Resources.PNG;
+            this.pic_constr_png.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_constr_png.Location = new System.Drawing.Point(407, 58);
+            this.pic_constr_png.Name = "pic_constr_png";
+            this.pic_constr_png.Size = new System.Drawing.Size(72, 72);
+            this.pic_constr_png.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_constr_png.TabIndex = 46;
+            this.pic_constr_png.TabStop = false;
+            this.pic_constr_png.Click += new System.EventHandler(this.pic_constr_png_Click);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(6, 35);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(35, 13);
+            this.label29.TabIndex = 44;
+            this.label29.Text = "Desc:";
+            // 
+            // txt_constr_desc
+            // 
+            this.txt_constr_desc.Location = new System.Drawing.Point(50, 32);
+            this.txt_constr_desc.Name = "txt_constr_desc";
+            this.txt_constr_desc.Size = new System.Drawing.Size(429, 20);
+            this.txt_constr_desc.TabIndex = 43;
+            this.txt_constr_desc.TextChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // txt_constr_name
+            // 
+            this.txt_constr_name.Location = new System.Drawing.Point(50, 6);
+            this.txt_constr_name.Name = "txt_constr_name";
+            this.txt_constr_name.Size = new System.Drawing.Size(429, 20);
+            this.txt_constr_name.TabIndex = 42;
+            this.txt_constr_name.TextChanged += new System.EventHandler(this.txt_constr_changed);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 9);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(38, 13);
+            this.label30.TabIndex = 41;
+            this.label30.Text = "Name:";
+            // 
             // tab_flower
             // 
             this.tab_flower.BackColor = System.Drawing.SystemColors.Control;
@@ -1302,7 +1739,7 @@
             this.tab_flower.Controls.Add(this.txt_flower_desc);
             this.tab_flower.Controls.Add(this.txt_flower_name);
             this.tab_flower.Controls.Add(this.label24);
-            this.tab_flower.Location = new System.Drawing.Point(54, 4);
+            this.tab_flower.Location = new System.Drawing.Point(79, 4);
             this.tab_flower.Name = "tab_flower";
             this.tab_flower.Padding = new System.Windows.Forms.Padding(3);
             this.tab_flower.Size = new System.Drawing.Size(487, 324);
@@ -1316,7 +1753,7 @@
             this.btn_flower.Name = "btn_flower";
             this.btn_flower.Size = new System.Drawing.Size(473, 23);
             this.btn_flower.TabIndex = 53;
-            this.btn_flower.Text = "Save Flower";
+            this.btn_flower.Text = "Add/Update Flower";
             this.btn_flower.UseVisualStyleBackColor = true;
             this.btn_flower.Click += new System.EventHandler(this.btn_flower_Click);
             // 
@@ -1559,7 +1996,7 @@
             this.lbl_status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 362);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(545, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(570, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1584,7 +2021,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(545, 384);
+            this.ClientSize = new System.Drawing.Size(570, 384);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
@@ -1610,8 +2047,10 @@
             this.tab_MOD.ResumeLayout(false);
             this.tab_MOD.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.groupBox8.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_mod_constr)).EndInit();
+            this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_flow)).EndInit();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_mod_armor)).EndInit();
@@ -1640,6 +2079,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_armor_qbf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_ilevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_armor_dmgRed)).EndInit();
+            this.tab_constr.ResumeLayout(false);
+            this.tab_constr.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_constr_speed)).EndInit();
+            this.grp_constr_type.ResumeLayout(false);
+            this.grp_constr_type.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_constr_qb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_constr_png)).EndInit();
             this.tab_flower.ResumeLayout(false);
             this.tab_flower.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -1791,10 +2237,49 @@
         private System.Windows.Forms.TextBox txt_flower_name;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btn_flower;
-        private System.Windows.Forms.ToolStripMenuItem flowerToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.ListBox lst_flow;
         private System.Windows.Forms.PictureBox pic_mod_flow;
+        private System.Windows.Forms.TabPage tab_constr;
+        private System.Windows.Forms.ToolStripMenuItem plantStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem constructionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem floorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roofToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wallToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem flowerToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cmb_constr_cat;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.ComboBox cmb_constr_mat;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.GroupBox grp_constr_type;
+        private System.Windows.Forms.RadioButton rdo_constr_wall;
+        private System.Windows.Forms.RadioButton rdo_constr_slab;
+        private System.Windows.Forms.RadioButton rdo_constr_roof;
+        private System.Windows.Forms.RadioButton rdo_constr_road;
+        private System.Windows.Forms.RadioButton rdo_constr_floor;
+        private System.Windows.Forms.RadioButton rdo_constr_curb;
+        private System.Windows.Forms.RadioButton rdo_constr_column;
+        private System.Windows.Forms.PictureBox pic_constr_qb;
+        private System.Windows.Forms.PictureBox pic_constr_png;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox txt_constr_desc;
+        private System.Windows.Forms.TextBox txt_constr_name;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button btn_constr;
+        private System.Windows.Forms.ToolStripMenuItem armorToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem shieldToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem columnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem curbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem slabToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem howToToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.ListBox lst_constr;
+        private System.Windows.Forms.PictureBox pic_mod_constr;
+        private System.Windows.Forms.NumericUpDown nud_constr_speed;
+        private System.Windows.Forms.Label label33;
     }
 }
 

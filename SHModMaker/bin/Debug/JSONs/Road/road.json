@@ -1,0 +1,21 @@
+{
+   "mixins": "stonehearth:mixins:align_to_grid",   
+   "components": {
+      "unit_info": {
+         "icon": "...", 
+         "name": "~name~", 
+         "description": "~desc~"
+      },
+      "stonehearth:construction_data" : {
+         "type" : "~type~",
+         "brush" : "file(~iname~.qb)",
+         "needs_scaffolding" : false,
+         "allow_crouching_construction" : true,
+         "paint_through_blueprint" : true,
+         "material": "~mat~"
+      },
+      "movement_modifier_shape" : {
+         "modifier" : ~speed~
+      }
+   }
+}

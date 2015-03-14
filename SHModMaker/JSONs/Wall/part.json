@@ -1,0 +1,10 @@
+{ 
+   "~type~Patterns" : [
+      {
+         "category" : "~cat~",
+         "items" : [
+            { "id": "~iname~", "name": "~name~",    "portrait": "/~mod~/entities/build/~type~/~iname~/~iname~.png", "brush":"~mod~:~type~:~iname~" }
+         ]         
+      }            
+   ]
+}

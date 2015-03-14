@@ -32,6 +32,7 @@ namespace SHModMaker
         public static MOD mod = new MOD();
         public static Recipe currentRecipe = new Recipe();
         public static Armor currentArmor = new Armor();
+        public static Construction currentConsturction = new Construction();
         public static Flower currentFlower = new Flower();
         public static Weapon currentWeapon = new Weapon();
 
@@ -64,7 +65,7 @@ namespace SHModMaker
             }
             else
             {
-                
+
                 _textBrush = new System.Drawing.SolidBrush(e.ForeColor);
                 e.DrawBackground();
             }
@@ -90,8 +91,7 @@ namespace SHModMaker
             }
 
             update_recipe_crafters();
-            update_recipe_igredients();
-            update_recipe_products();
+            update_cmb();
 
             folderBrowserDialog1.SelectedPath = config.SHsmodPath.Remove(config.SHsmodPath.Length - 16);
 
@@ -116,10 +116,19 @@ namespace SHModMaker
             if (configJustUpdated)
             {
                 update_recipe_crafters();
-                update_recipe_igredients();
-                folderBrowserDialog1.SelectedPath = config.SHsmodPath.Remove(config.SHsmodPath.Length-16);
+                update_cmb();
+
+                folderBrowserDialog1.SelectedPath = config.SHsmodPath.Remove(config.SHsmodPath.Length - 16);
                 configJustUpdated = false;
             }
+        }
+
+        //updates most of the comboboxes in the form, It does not update the crafters.
+        private void update_cmb()
+        {
+            update_recipe_igredients();
+            update_recipe_products();
+            update_constr_mat();
         }
 
         //restricts characters for name fields.
@@ -176,7 +185,7 @@ namespace SHModMaker
             {
                 lbl_status.Text = "CAN NOT SAVE! MOD HAS NO NAME!!";
             }
-            
+
         }
         private void loadModToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -198,6 +207,10 @@ namespace SHModMaker
                 {
                     lst_armor.SelectedIndex = 0;
                 }
+                if (lst_constr.Items.Count > 0)
+                {
+                    lst_constr.SelectedIndex = 0;
+                }
                 if (lst_flow.Items.Count > 0)
                 {
                     lst_flow.SelectedIndex = 0;
@@ -208,8 +221,7 @@ namespace SHModMaker
                 }
 
                 update_recipe_crafters();
-                update_recipe_igredients();
-                update_recipe_products();
+                update_cmb();
 
                 tabControl.SelectedIndex = 0;
             }
@@ -276,6 +288,11 @@ namespace SHModMaker
             {
                 lst_armor.Items.Add(armr.name);
             }
+            lst_constr.Items.Clear();
+            foreach (Construction constr in mod.constructions)
+            {
+                lst_constr.Items.Add(constr.name);
+            }
             lst_flow.Items.Clear();
             foreach (Flower flow in mod.flowers)
             {
@@ -289,12 +306,13 @@ namespace SHModMaker
         }
         private void txt_mod_name_TextChanged(object sender, EventArgs e)
         {
+            txt_mod_name.Text = utils.LowerNoSpaces(txt_mod_name.Text);
+            txt_mod_name.Select(txt_mod_name.Text.Length, 0);
             mod.name = txt_mod_name.Text;
             mod.manifest.name = txt_mod_name.Text;
-
+            
             update_recipe_crafters();
-            update_recipe_igredients();
-            update_recipe_products();
+            update_cmb();
         }
         private void txt_api_version_TextChanged(object sender, EventArgs e)
         {
@@ -352,6 +370,33 @@ namespace SHModMaker
             {
                 pic_mod_armor.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
                 pic_mod_armor.Refresh();
+            }
+        }
+
+        //lst_constr stuff
+        private void lst_constr_MouseDown(object sender, MouseEventArgs e)
+        {
+            lst_constr.SelectedIndex = lst_constr.IndexFromPoint(e.X, e.Y);
+            currentListBox = "constructions";
+        }
+        private void lst_constr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lst_constr.SelectedItem != null)
+            {
+                foreach (Construction constr in mod.constructions)
+                {
+                    if (constr.name == lst_constr.SelectedItem.ToString())
+                    {
+                        pic_mod_constr.Image = Image.FromStream(new MemoryStream(constr.png));
+                        pic_mod_constr.Refresh();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pic_mod_constr.Image = Image.FromFile(localPath + "\\Configs\\blank.png");
+                pic_mod_constr.Refresh();
             }
         }
 
@@ -422,6 +467,11 @@ namespace SHModMaker
                 currentArmor = new Armor();
                 tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_armor");
             }
+            if (currentListBox == "constructions")
+            {
+                currentConsturction = new Construction();
+                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_constr");
+            }
             if (currentListBox == "flowers")
             {
                 currentFlower = new Flower();
@@ -435,53 +485,72 @@ namespace SHModMaker
         }
         private void editToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (currentListBox == "recipes")
+            try
             {
-                foreach (Recipe recp in mod.recipes)
+                if (currentListBox == "recipes")
                 {
-                    if (recp.name == lst_recipe.SelectedItem.ToString())
+                    foreach (Recipe recp in mod.recipes)
                     {
-                        currentRecipe = recp;
-                        break;
+                        if (recp.name == lst_recipe.SelectedItem.ToString())
+                        {
+                            currentRecipe = recp;
+                            break;
+                        }
                     }
+                    tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_recipe");
                 }
-                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_recipe");
+                if (currentListBox == "armors")
+                {
+                    foreach (Armor armr in mod.armors)
+                    {
+                        if (armr.name == lst_armor.SelectedItem.ToString())
+                        {
+                            currentArmor = armr;
+                            break;
+                        }
+                    }
+                    tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_armor");
+                }
+                if (currentListBox == "constructions")
+                {
+                    foreach (Construction constr in mod.constructions)
+                    {
+                        if (constr.name == lst_constr.SelectedItem.ToString())
+                        {
+                            currentConsturction = constr;
+                            break;
+                        }
+                    }
+                    tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_constr");
+                }
+                if (currentListBox == "flowers")
+                {
+                    foreach (Flower flow in mod.flowers)
+                    {
+                        if (flow.name == lst_flow.SelectedItem.ToString())
+                        {
+                            currentFlower = flow;
+                            break;
+                        }
+                    }
+                    tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_flower");
+                }
+                if (currentListBox == "weapons")
+                {
+                    foreach (Weapon weap in mod.weapons)
+                    {
+                        if (weap.name == lst_weap.SelectedItem.ToString())
+                        {
+                            currentWeapon = weap;
+                            break;
+                        }
+                    }
+                    tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_weapon");
+                }
             }
-            if (currentListBox == "armors")
+            catch(NullReferenceException ex)
             {
-                foreach (Armor armr in mod.armors)
-                {
-                    if (armr.name == lst_armor.SelectedItem.ToString())
-                    {
-                        currentArmor = armr;
-                        break;
-                    }
-                }
-                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_armor");
-            }
-            if (currentListBox == "flowers")
-            {
-                foreach (Flower flow in mod.flowers)
-                {
-                    if (flow.name == lst_flow.SelectedItem.ToString())
-                    {
-                        currentFlower = flow;
-                        break;
-                    }
-                }
-                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_flower");
-            }
-            if (currentListBox == "weapons")
-            {
-                foreach (Weapon weap in mod.weapons)
-                {
-                    if (weap.name == lst_weap.SelectedItem.ToString())
-                    {
-                        currentWeapon = weap;
-                        break;
-                    }
-                }
-                tabControl.SelectedIndex = tabControl.TabPages.IndexOfKey("tab_weapon");
+                Debug.WriteLine(ex.Message);
             }
         }
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -505,6 +574,18 @@ namespace SHModMaker
                     if (armr.name == lst_armor.SelectedItem.ToString())
                     {
                         mod.armors.Remove(armr);
+                        break;
+                    }
+                }
+                updateMODtab();
+            }
+            if (currentListBox == "constructions")
+            {
+                foreach (Construction constr in mod.constructions)
+                {
+                    if (constr.name == lst_constr.SelectedItem.ToString())
+                    {
+                        mod.constructions.Remove(constr);
                         break;
                     }
                 }
@@ -606,7 +687,7 @@ namespace SHModMaker
             cmb_recipe_Crafters.Items.Clear();
             foreach (String str in utils.GetCrafters())
             {
-                
+
                 cmb_recipe_Crafters.Items.Add(str);
             }
         }
@@ -621,7 +702,7 @@ namespace SHModMaker
         private void update_recipe_products()
         {
             cmb_recipe_prod.Items.Clear();
-            foreach (string str in mod.GetAllItemAliases())
+            foreach (string str in mod.GetItemAliasesForRecipe())
             {
                 cmb_recipe_prod.Items.Add(str);
             }
@@ -652,7 +733,7 @@ namespace SHModMaker
                             }
                         }
                     }
-                    
+
                     //if it has ':armor:' in the text then it must be an armor
                     if (cmb_recipe_prod.SelectedItem.ToString().Contains(":armor:"))
                     {
@@ -724,7 +805,7 @@ namespace SHModMaker
             {
                 lbl_status.Text = "Recipe has no name! Could not add/update weapon.";
             }
-            else if(txt_recp_ingr.Text == "")
+            else if (txt_recp_ingr.Text == "")
             {
                 lbl_status.Text = "Recipe has no ingredients! Could not add/update weapon.";
             }
@@ -866,6 +947,21 @@ namespace SHModMaker
                 currentArmor.tags = txt_armor_tags.Text;
                 currentArmor.ilevel = (int)nud_armor_ilevel.Value;
                 currentArmor.damageReduc = (int)nud_armor_dmgRed.Value;
+
+                //change the text of the button
+                //bool button_update = false;
+                //foreach (Armor item in mod.armors)
+                //{
+                //    if (currentArmor.name == item.name) { button_update = true;}
+                //}
+                //if (button_update)
+                //{
+                //    btn_armor.Text = "Update Armor";
+                //}
+                //else
+                //{
+                //    btn_armor.Text = "Add Armor";
+                //}
             }
         }
 
@@ -910,10 +1006,147 @@ namespace SHModMaker
             {
                 lbl_status.Text = "Armor has no name! Could not add/update weapon.";
             }
-            update_recipe_igredients();
-            update_recipe_products();
+            update_cmb();
 
+        }
 
+        //__________Construction Tab Stuff__________
+        private void tab_constr_Enter(object sender, EventArgs e)
+        {
+            TabLoading = true;
+
+            txt_constr_name.Text = currentConsturction.name;
+            txt_constr_desc.Text = currentConsturction.desc;
+
+            pic_constr_qb.Image = Image.FromStream(new MemoryStream(currentConsturction.qbICON));
+            pic_constr_qb.Refresh();
+
+            pic_constr_png.Image = Image.FromStream(new MemoryStream(currentConsturction.png));
+            pic_constr_png.Refresh();
+
+            cmb_constr_cat.Text = currentConsturction.category;
+            cmb_constr_mat.Text = currentConsturction.material;
+            if (currentConsturction.type == "Curb" || currentConsturction.type == "Road")
+            {
+                nud_constr_speed.Enabled = true;
+            }
+            else
+            {
+                nud_constr_speed.Enabled = false;
+            }
+            nud_constr_speed.Value = (decimal)currentConsturction.road_speed;
+
+            if (currentConsturction.type == "") { currentConsturction.type = "Curb"; }
+            if (currentConsturction.type == "Curb") { rdo_constr_curb.Checked = true; }
+            if (currentConsturction.type == "Road") { rdo_constr_road.Checked = true; }
+            if (currentConsturction.type == "Column") { rdo_constr_column.Checked = true; }
+            if (currentConsturction.type == "Wall") { rdo_constr_wall.Checked = true; }
+            if (currentConsturction.type == "Floor") { rdo_constr_floor.Checked = true; }
+            if (currentConsturction.type == "Slab") { rdo_constr_slab.Checked = true; }
+            if (currentConsturction.type == "Roof") { rdo_constr_roof.Checked = true; }
+
+            if (rdo_constr_curb.Checked == true || rdo_constr_road.Checked == true)
+            {
+                nud_constr_speed.Enabled = true;
+            }
+            else
+            {
+                nud_constr_speed.Enabled = false;
+            }
+
+            TabLoading = false;
+        }
+
+        private void update_constr_mat()
+        {
+            cmb_constr_mat.Items.Clear();
+            foreach (string str in utils.GetIngredients())
+            {
+                cmb_constr_mat.Items.Add(str);
+            }
+        }
+
+        private void pic_constr_qb_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogQB.ShowDialog() == DialogResult.OK)
+            {
+                currentConsturction.qb = File.ReadAllBytes(openFileDialogQB.FileName);
+                if (canRenderQB)
+                {
+                    using (Bitmap thumbnail = Breeze.GetThumbnail(currentConsturction.qb))
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            currentConsturction.qbICON = stream.ToArray();
+                        }
+                    }
+                }
+                pic_constr_qb.Image = Image.FromStream(new MemoryStream(currentConsturction.qbICON));
+                pic_constr_qb.Refresh();
+            }
+        }
+        private void pic_constr_png_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogPNG.ShowDialog() == DialogResult.OK)
+            {
+                currentConsturction.png = File.ReadAllBytes(openFileDialogPNG.FileName);
+                pic_constr_png.Image = Image.FromStream(new MemoryStream(currentConsturction.png));
+                pic_constr_png.Refresh();
+            }
+        }
+        private void txt_constr_changed(object sender, EventArgs e)
+        {
+            if (!TabLoading)
+            {
+                currentConsturction.name = txt_constr_name.Text;
+                currentConsturction.iname = utils.LowerNoSpaces(currentConsturction.name);
+                currentConsturction.desc = txt_constr_desc.Text;
+
+                currentConsturction.category = cmb_constr_cat.Text;
+                currentConsturction.material = cmb_constr_mat.Text;
+                if (rdo_constr_curb.Checked == true || rdo_constr_road.Checked == true)
+                {
+                    nud_constr_speed.Enabled = true;
+                }
+                else
+                {
+                    nud_constr_speed.Enabled = false;
+                }
+                currentConsturction.road_speed = (float)nud_constr_speed.Value;
+
+                foreach (RadioButton rdo in grp_constr_type.Controls.OfType<RadioButton>())
+                {
+                    if (rdo.Checked == true)
+                    {
+                        currentConsturction.type = rdo.Text;
+                        break;
+                    }
+                }
+            }
+        }
+        private void btn_constr_Click(object sender, EventArgs e)
+        {
+            //Add constr to MOD
+
+            if (currentConsturction.name == "")
+            {
+                lbl_status.Text = "Construction has no Name! Could not add/update weapon.";
+            }
+            else if (currentConsturction.material == "")
+            {
+                lbl_status.Text = "Construction has no Category! Could not add/update weapon.";
+            }
+            else if (currentConsturction.material == "")
+            {
+                lbl_status.Text = "Construction has no Material! Could not add/update weapon.";
+            }
+            else
+            {
+                mod.AddConstruction(currentConsturction);
+                tabControl.SelectedIndex = 0;
+                lbl_status.Text = currentConsturction.type + " " + currentConsturction.name + " has been added/updated.";
+            }
         }
 
         //__________Flower Tab Stuff__________
@@ -1012,7 +1245,7 @@ namespace SHModMaker
                     {
                         currentFlower.habitats.Add(str);
                     }
-                } else if (txt_flower_habit.Text !="")
+                } else if (txt_flower_habit.Text != "")
                 {
                     currentFlower.habitats.Add(txt_flower_habit.Text);
                 }
@@ -1036,8 +1269,7 @@ namespace SHModMaker
             {
                 lbl_status.Text = "Flower has no name! Could not add/update.";
             }
-            update_recipe_igredients();
-            update_recipe_products();
+            update_cmb();
 
 
         }
@@ -1137,9 +1369,7 @@ namespace SHModMaker
             {
                 lbl_status.Text = "Weapon has no name! Could not add/update weapon.";
             }
-            update_recipe_igredients();
-            update_recipe_products();
-
+            update_cmb();
 
         }
     }
@@ -1216,7 +1446,7 @@ namespace SHModMaker
             List<String> ingredients = new List<string>();
 
             //add common resources
-            foreach(String str in Form1.config.CommonMaterialTags)
+            foreach (String str in Form1.config.CommonMaterialTags)
             {
                 ingredients.Add(str);
             }
@@ -1252,7 +1482,7 @@ namespace SHModMaker
                             //Console.WriteLine("CURRENT STR :" + str);
                             //check for the end of alias section
                             if (inAliasSection && str.Contains("},")) { inAliasSection = false; break; }
-                            
+
                             // process aliases
                             if (inAliasSection)
                             {
@@ -1266,7 +1496,7 @@ namespace SHModMaker
                                         if (str.Contains(word))
                                         {
                                             containsSkipWord = true;
-                                            break; 
+                                            break;
                                         }
                                     }
 
@@ -1274,7 +1504,7 @@ namespace SHModMaker
                                     {
                                         String alias = str.Remove(str.LastIndexOf(':'));
                                         alias = alias.Remove(alias.LastIndexOf('"'));
-                                        alias = alias.Remove(0,alias.IndexOf('"')+1);
+                                        alias = alias.Remove(0, alias.IndexOf('"') + 1);
                                         ingredients.Add("stonehearth:" + alias);
                                         //Console.WriteLine("stonehearth:" + alias);
                                     }
@@ -1294,7 +1524,7 @@ namespace SHModMaker
             }
 
             //Get items from this mod
-            foreach (String str in Form1.mod.GetAllItemAliases())
+            foreach (String str in Form1.mod.GetItemAliasesForRecipe())
             {
                 ingredients.Add(str);
             }
@@ -1457,7 +1687,7 @@ namespace SHModMaker
             string localPath = System.IO.Directory.GetCurrentDirectory();
             String[] filesAll;
             List<String[]> filesJsonLua = new List<string[]>();
-            String craftr = crafter.Remove(0,crafter.IndexOf(":") + 1);
+            String craftr = crafter.Remove(0, crafter.IndexOf(":") + 1);
 
             //Build Parse List
             List<String[]> refList = new List<string[]>();
@@ -1478,7 +1708,7 @@ namespace SHModMaker
                 {
                     ingr = ingr + ",\n";
                 }
-                ingr = ingr + "\t\t{\n"+
+                ingr = ingr + "\t\t{\n" +
                                "\t\t\t\"" + MorU + "\" : \"" + item.name + "\",\n" +
                                "\t\t\t\"count\" : " + item.amount.ToString() + "\n" +
                                "\t\t}";
@@ -1578,7 +1808,7 @@ namespace SHModMaker
         }
         public AmountOfItem FromString(String str)
         {
-            return new AmountOfItem(str.Split(',')[1],int.Parse(str.Split(',')[0]));
+            return new AmountOfItem(str.Split(',')[1], int.Parse(str.Split(',')[0]));
         }
     }
 
@@ -1611,10 +1841,10 @@ namespace SHModMaker
         { }
 
         public Armor(String nam, String des, int ilvl, int dam, String typ)
-            : this(nam, des, ilvl, dam, typ, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), 
+            : this(nam, des, ilvl, dam, typ, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
-                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), 
+                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
                                         File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
@@ -1693,9 +1923,94 @@ namespace SHModMaker
 
             //write qbs and png to new path
             System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + ".qb", qb);
-            if(type == "Armor") { System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + "_female.qb", qbf);}
+            if (type == "Armor") { System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + "_female.qb", qbf); }
             System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + "_iconic.qb", qbi);
             System.IO.File.WriteAllBytes(modPath + "\\entities\\armor\\" + iname + "\\" + iname + ".png", png);
+        }
+    }
+
+    public class Construction
+    {
+        public String name;
+        public String iname;
+        public String desc;
+
+        public String material;
+        public String category;
+        public String type;
+        public float road_speed;
+
+        public byte[] qb;
+        public byte[] png;
+        public byte[] qbICON;
+
+        public Construction()
+        {
+            name = "";
+            iname = utils.LowerNoSpaces(name);
+            desc = "";
+
+            material = "";
+            category = "";
+            type = "";
+            road_speed = 0.25f;
+
+            qb = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb");
+            png = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+            qbICON = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+        }
+
+        public void WriteConstructionFile(String modPath)
+        {
+            string localPath = System.IO.Directory.GetCurrentDirectory();
+            String[] filesAll;
+            List<String[]> filesJsonLua = new List<string[]>();
+            //Build Parse List
+            List<String[]> refList = new List<string[]>();
+            refList.Add(new String[] { "name", name });
+            refList.Add(new String[] { "iname", iname });
+            refList.Add(new String[] { "desc", desc });
+            refList.Add(new String[] { "mat", material });
+            refList.Add(new String[] { "cat", category });
+            refList.Add(new String[] { "type", type.ToLower() });
+            refList.Add(new String[] { "speed", road_speed.ToString() });
+            refList.Add(new String[] { "mod", utils.LowerNoSpaces(Form1.mod.name) });
+
+            //Get JSONs and LUA files
+            //FIX can probably make a utils for this utils.GetJsonLua(String path)??
+            filesAll = System.IO.Directory.GetFiles(localPath + "\\JSONs\\" + type + "\\");
+            foreach (String str in filesAll)
+            {
+                if (str.EndsWith(".json") || str.EndsWith(".lua") || str.EndsWith(".luac"))
+                {
+                    //Parse files
+                    System.IO.StreamReader filepath = new System.IO.StreamReader(str);
+                    filesJsonLua.Add(new String[] { System.IO.Path.GetFileName(str), utils.Parse(filepath.ReadToEnd(), refList) });
+                    filepath.Close();
+                }
+            }
+
+            //make folder if needed
+            if (!System.IO.Directory.Exists(modPath + "\\entities\\build\\" + type.ToLower() + "\\" + iname))
+            {
+                System.IO.Directory.CreateDirectory(modPath + "\\entities\\build\\" + type.ToLower() + "\\" + iname);
+                //Console.WriteLine(modPath + "\\entities\\build\\" + iname);
+            }
+
+            //write them to new path
+            foreach (String[] str in filesJsonLua)
+            {
+                String fileName = str[0];
+                if (fileName.ToLower().Contains(type.ToLower()))
+                {
+                    fileName = fileName.ToLower().Replace(type.ToLower(), iname);
+                }
+                System.IO.File.WriteAllText(modPath + "\\entities\\build\\" + type.ToLower() + "\\" + iname + "\\" + fileName, str[1], Encoding.ASCII);
+            }
+
+            //write qbs and png to new path
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\build\\" + type.ToLower() + "\\" + iname + "\\" + iname + ".qb", qb);
+            System.IO.File.WriteAllBytes(modPath + "\\entities\\build\\" + type.ToLower() + "\\" + iname + "\\" + iname + ".png", png);
         }
     }
 
@@ -1940,6 +2255,7 @@ namespace SHModMaker
         public List<Crafter> crafters;
         public List<Recipe> recipes;
         public List<Armor> armors;
+        public List<Construction> constructions;
         public List<Flower> flowers;
         public List<Weapon> weapons;
 
@@ -1951,6 +2267,7 @@ namespace SHModMaker
             crafters = new List<Crafter>();
             recipes = new List<Recipe>();
             armors = new List<Armor>();
+            constructions = new List<Construction>();
             flowers = new List<Flower>();
             weapons = new List<Weapon>();
         }
@@ -1962,6 +2279,7 @@ namespace SHModMaker
             crafters = new List<Crafter>();
             recipes = new List<Recipe>();
             armors = new List<Armor>();
+            constructions = new List<Construction>();
             flowers = new List<Flower>();
             weapons = new List<Weapon>();
         }
@@ -1988,13 +2306,35 @@ namespace SHModMaker
             armors.Remove(armr);
         }
 
+        public void AddConstruction(Construction constr)
+        {
+            bool changed = false;
+            //Search for an item of the same name, if one exsists then it updates the information, else it adds it to the list.
+            for (int i = 0; i < constructions.Count; i++)
+            {
+                if (constructions[i].iname == constr.iname)
+                {
+                    changed = true;
+                    constructions[i] = constr;
+                }
+            }
+            if (changed == false)
+            {
+                constructions.Add(constr);
+            }
+        }
+        public void RemoveConstruction(Construction constr)
+        {
+            constructions.Remove(constr);
+        }
+
         public void AddFlower(Flower flow)
         {
             bool changed = false;
             //Search for an item of the same name, if one exsists then it updates the information, else it adds it to the list.
-            for (int i = 0; i < armors.Count; i++)
+            for (int i = 0; i < flowers.Count; i++)
             {
-                if (armors[i].iname == flow.iname)
+                if (flowers[i].iname == flow.iname)
                 {
                     changed = true;
                     flowers[i] = flow;
@@ -2054,7 +2394,7 @@ namespace SHModMaker
             recipes.Remove(recp);
         }
 
-        public List<String> GetAllItemAliases()
+        public List<String> GetItemAliasesForRecipe()
         {
             List<String> items = new List<String>();
 
@@ -2094,6 +2434,12 @@ namespace SHModMaker
             {
                 manifest.AddAlias("armor:" + armr.iname, "file(entities/armor/" + armr.iname + ")");
             }
+            //Add Constructables to manifest
+            foreach (Construction constr in constructions)
+            {
+                manifest.AddAlias(constr.type.ToLower() + ":" + constr.iname, "file(entities/build/" + constr.type.ToLower() + "/" + constr.iname + ")");
+                manifest.AddMixinto("stonehearth/data/build/building_parts.json", "file(entities/build/" + constr.type.ToLower() + "/" + constr.iname + "/part.json)");
+            }
             //Add wildflowers to manifest
             foreach (Flower flow in flowers)
             {
@@ -2113,8 +2459,6 @@ namespace SHModMaker
                 manifest.AddMixinto("stonehearth/jobs/" + recp.crafter.Remove(0,recp.crafter.IndexOf(":")+1) + "/recipes/recipes.json", 
                                     "file(recipes/" + recp.crafter.Remove(0, recp.crafter.IndexOf(":") + 1) + "/" + utils.LowerNoSpaces(recp.name) +"_mixinto.json)");
             }
-
-            //Add blah to maifest
         }
         public void BuildMod(String modPath)
         {
@@ -2136,6 +2480,10 @@ namespace SHModMaker
             foreach (Armor armr in armors)
             {
                 armr.WriteArmorFile(modPath + name);
+            }
+            foreach (Construction constr in constructions)
+            {
+                constr.WriteConstructionFile(modPath + name);
             }
             foreach (Flower flow in flowers)
             {

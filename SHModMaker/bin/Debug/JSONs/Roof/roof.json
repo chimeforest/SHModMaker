@@ -1,0 +1,18 @@
+{
+   "mixins": "stonehearth:mixins:align_to_grid",   
+   "components": {
+      "unit_info": {
+         "icon": "...", 
+         "name": "~desc~", 
+         "description": "~desc~"
+      },
+      "stonehearth:construction_data" : {
+         "type": "~iname~",
+         "brush": "file(~iname~.qb)",
+         "use_nine_grid" : true,
+         "allow_crouching_construction" : true,
+         "needs_ladder" : true,
+         "material": "~mat~"
+      }
+   }
+}

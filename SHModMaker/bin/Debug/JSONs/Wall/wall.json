@@ -1,0 +1,18 @@
+{
+   "mixins": "stonehearth:mixins:align_to_grid",   
+   "components": {
+      "unit_info": {
+         "icon": "...", 
+         "name": "~name~", 
+         "description": "~desc~"
+      },
+      "stonehearth:construction_data" : {
+         "type": "~type~",
+         "brush": "file(~iname~.qb)",
+         "needs_scaffolding" : true,
+         "allow_diagonal_adjacency" : true,
+         "max_workers": 3, 
+         "material": "~mat~"
+      }
+   }
+}
