@@ -1,40 +1,43 @@
 {
-   "type": "entity",
-   "mixins" : "stonehearth:mixins:item_properties",
-   "components" : {
-      "unit_info" : {
-         "name": "~name~",
-         "description": "~desc~",
-         "icon" : "file(~iname~.png)"         
-      },
-      "model_variants": {
-         "default": {
-            "layer": "clothing",
-            "models": [
-               "file(~iname~.qb)"
-            ]
-         },
-         "female" : {
-            "layer": "clothing",
-            "models": [
-               "file(~iname~_female.qb)"
-            ]
-         }
-      },
-      "stonehearth:material" : {
-         "tags" : "~tags~"
-      },
-      "stonehearth:entity_forms" : {
-         "iconic_form" : "file(~iname~_iconic.json)"
-      },
-      "stonehearth:equipment_piece" : {
-         "slot" : "torso",
-         "render_type" : "merge_with_model",
-         "ilevel" : ~ilevel~,
-         "roles" : "combat",
-         "equip_effect" : "/stonehearth/data/effects/level_up"
-      }
-   },
+    "type": "entity",
+    "mixins": "stonehearth:mixins:item_properties",
+    "components": {
+        "item": {
+            "category" : "armor"
+        },
+        "unit_info": {
+            "name": "~name~",
+            "description": "~desc~",
+            "icon": "file(~iname~.png)"
+        },
+        "model_variants": {
+            "default": {
+                "layer": "clothing",
+                "models": [
+                    "file(~iname~.qb)"
+                ]
+            },
+            "female": {
+                "layer": "clothing",
+                "models": [
+                    "file(~iname~_female.qb)"
+                ]
+            }
+        },
+        "stonehearth:material": {
+            "tags": "~tags~"
+        },
+        "stonehearth:entity_forms": {
+            "iconic_form": "file(~iname~_iconic.json)"
+        },
+        "stonehearth:equipment_piece": {
+            "slot": "torso",
+            "render_type": "merge_with_model",
+            "ilevel": ~ilevel~,
+            "roles": "combat",
+            "equip_effect": "/stonehearth/data/effects/level_up"
+        }
+    },
    "entity_data" : {
       "stonehearth:combat:armor_data" : {
          "base_damage_reduction" : ~damage~

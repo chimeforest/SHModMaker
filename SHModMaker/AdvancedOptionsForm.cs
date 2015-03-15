@@ -65,7 +65,7 @@ namespace SHModMaker
 
         private void btn_help_Click(object sender, EventArgs e)
         {
-            HowToForm how = new HowToForm("adv");
+            HowToForm how = new HowToForm("Advanced");
             how.Show();
         }
 

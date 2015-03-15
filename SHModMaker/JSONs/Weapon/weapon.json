@@ -1,35 +1,38 @@
 {
-   "mixins": "stonehearth:mixins:item_properties",
-   "type": "entity",
-   "components": {
-       "model_variants": {
-         "default" : {
-            "models": [
-               "file(~iname~.qb)"
-            ]
-         }
-      },
-      "stonehearth:entity_forms" : {
-         "iconic_form" : "file(~iname~_iconic.json)"
-      },
-      "stonehearth:equipment_piece" : {
-         "slot" : "mainhand",
-         "render_type" : "attach_to_bone",
-         "postures" : [ "stonehearth:combat", "stonehearth:patrol" ],
-         "ilevel" : ~ilevel~,
-         "roles" : "combat",
-         "equip_effect" : "/stonehearth/data/effects/weapon_level_up"
-      },
+    "mixins": "stonehearth:mixins:item_properties",
+    "type": "entity",
+    "components": {
+        "item": {
+            "category" : "weapons"
+        },
+        "model_variants": {
+            "default": {
+                "models": [
+                    "file(~iname~.qb)"
+                ]
+            }
+        },
+        "stonehearth:entity_forms": {
+            "iconic_form": "file(~iname~_iconic.json)"
+        },
+        "stonehearth:equipment_piece": {
+            "slot": "mainhand",
+            "render_type": "attach_to_bone",
+            "postures": [ "stonehearth:combat", "stonehearth:patrol" ],
+            "ilevel": ~ilevel~,
+            "roles": "combat",
+            "equip_effect": "/stonehearth/data/effects/weapon_level_up"
+        },
 
-      "unit_info": {
-         "name": "~name~",
-         "description": "~desc~",
-         "icon" : "file(~iname~.png)"
-      },
-      "stonehearth:material" : {
-         "tags" : "short melee_weapon"
-      }
-   },
+        "unit_info": {
+            "name": "~name~",
+            "description": "~desc~",
+            "icon": "file(~iname~.png)"
+        },
+        "stonehearth:material": {
+            "tags": "short melee_weapon"
+        }
+    },
    "entity_data" : {
       "stonehearth:combat:weapon_data" : {
          "base_damage" : ~damage~,

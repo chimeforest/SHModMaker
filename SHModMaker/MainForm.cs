@@ -19,6 +19,9 @@ namespace SHModMaker
 {
     public partial class MainForm : Form
     {
+        //Version of this Program
+        public String version = "0.14.0";
+
         //Directory variables
         public static String localPath = System.IO.Directory.GetCurrentDirectory();
         public static String SHMMPath = "";
@@ -1079,7 +1082,7 @@ namespace SHModMaker
         private void update_constr_mat()
         {
             cmb_constr_mat.Items.Clear();
-            foreach (string str in utils.GetIngredients())
+            foreach (string str in utils.GetCommonMaterials())
             {
                 cmb_constr_mat.Items.Add(str);
             }
@@ -1553,6 +1556,18 @@ namespace SHModMaker
 
             ////Get items from other mods??
 
+            return ingredients;
+        }
+
+        public static List<String> GetCommonMaterials()
+        {
+            List<String> ingredients = new List<string>();
+
+            //add common resources
+            foreach (String str in MainForm.config.CommonMaterialTags)
+            {
+                ingredients.Add(str);
+            }
             return ingredients;
         }
     }

@@ -62,3 +62,5 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.Advan
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.AboutForm.resources
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.HowToForm.resources
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.MainForm.resources
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Help\Help.html
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Help\Advanced.html

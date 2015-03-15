@@ -6,6 +6,11 @@ MOD tab
 	context menu.. add 'add recipe' function
 	maybe make it go away on recipe list? if not, then it will make a new blank recipe
 
+	scroll wheel does nothing
+
+Recipe Tab
+	When the mod is renamed.. all the recipes in the mod need updated!!!! or chage the code somehow so that is not nessicerry
+
 Armor
 	Have Breeze take qb thumnail for the shield from the side.
 	On export if it's a shield, don't export qbf
@@ -24,9 +29,7 @@ Open and Save Mod data
 	//Evantually import .smods?? maybe??
 	//eventually set qb setting and force qbs to comply.
 
-Help Manu
-	Add about window
-	Add how-to window
+Help Menu
 	//?Add Help/how-to button to each tab?
 
 ADVANCED MODDING
