@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace SHModMaker
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         //Directory variables
         public static String localPath = System.IO.Directory.GetCurrentDirectory();
@@ -40,7 +40,7 @@ namespace SHModMaker
         private static String currentListBox = "";
 
         //__________Form and FormLoad stuff__________
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             tabControl.DrawItem += new DrawItemEventHandler(tabControl1_DrawItem);
@@ -112,6 +112,7 @@ namespace SHModMaker
         }
         private void Form1_Activated(object sender, EventArgs e)
         {
+            //used after the config window is closed
             //Console.WriteLine("Activated");
             if (configJustUpdated)
             {
@@ -240,6 +241,7 @@ namespace SHModMaker
             {
                 lbl_status.Text = "CAN NOT EXPORT! MOD HAS NO NAME!!";
             }
+
         }
         private void exportFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -247,7 +249,7 @@ namespace SHModMaker
             {
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    mod.BuildMod(folderBrowserDialog1.SelectedPath + "\\");
+                    mod.BuildModFolder(folderBrowserDialog1.SelectedPath + "\\");
                     lbl_status.Text = mod.name + " exported to: " + folderBrowserDialog1.SelectedPath + "\\" + mod.name;
                 }
             }
@@ -263,6 +265,23 @@ namespace SHModMaker
         {
             ConfigForm con = new ConfigForm();
             con.ShowDialog();
+        }
+        private void advancedOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdvancedOptionsForm adv = new AdvancedOptionsForm();
+            adv.Show();
+        }
+
+        //__________HELP MENU ITEMS__________
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm abt = new AboutForm();
+            abt.Show();
+        }
+        private void howToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HowToForm how = new HowToForm();
+            how.Show();
         }
 
         //__________MOD TAB__________
@@ -978,8 +997,8 @@ namespace SHModMaker
             {
                 pic_armor_qbf.BackgroundImage = SHModMaker.Properties.Resources.QB_female_bw;
                 pic_armor_qbf.Enabled = false;
-                currentArmor.qbf = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb");
-                currentArmor.qbfICON = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+                currentArmor.qbf = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb");
+                currentArmor.qbfICON = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png");
                 pic_armor_qbf.Image = Image.FromStream(new MemoryStream(currentArmor.qbfICON));
                 pic_armor_qbf.Refresh();
 
@@ -1372,6 +1391,8 @@ namespace SHModMaker
             update_cmb();
 
         }
+
+        
     }
 
     // __________Other Classes__________
@@ -1426,15 +1447,15 @@ namespace SHModMaker
             List<String> crafters = new List<String>();
 
             //Get crafters from stonehearth
-            foreach (Crafter crft in Form1.config.SHCrafters)
+            foreach (Crafter crft in MainForm.config.SHCrafters)
             {
                 crafters.Add(crft.GetString());
             }
 
             //Get crafters from current mod
-            foreach (Crafter crft in Form1.mod.crafters)
+            foreach (Crafter crft in MainForm.mod.crafters)
             {
-                crafters.Add(Form1.mod.name + ":" + crft.name);
+                crafters.Add(MainForm.mod.name + ":" + crft.name);
             }
 
             ////Get crafters from other mods?
@@ -1446,13 +1467,13 @@ namespace SHModMaker
             List<String> ingredients = new List<string>();
 
             //add common resources
-            foreach (String str in Form1.config.CommonMaterialTags)
+            foreach (String str in MainForm.config.CommonMaterialTags)
             {
                 ingredients.Add(str);
             }
 
             //Read stonehearth.smod and get ingredients from the manifest return alias as string
-            using (ZipFile zip = ZipFile.Read(Form1.config.SHsmodPath))
+            using (ZipFile zip = ZipFile.Read(MainForm.config.SHsmodPath))
             {
                 foreach (ZipEntry e in zip)
                 {
@@ -1491,7 +1512,7 @@ namespace SHModMaker
                                 if (str.Contains('\"'))
                                 {
                                     //Console.WriteLine(str + " contains a \"");
-                                    foreach (String word in Form1.config.AliasSkipWords)
+                                    foreach (String word in MainForm.config.AliasSkipWords)
                                     {
                                         if (str.Contains(word))
                                         {
@@ -1524,7 +1545,7 @@ namespace SHModMaker
             }
 
             //Get items from this mod
-            foreach (String str in Form1.mod.GetItemAliasesForRecipe())
+            foreach (String str in MainForm.mod.GetItemAliasesForRecipe())
             {
                 ingredients.Add(str);
             }
@@ -1542,6 +1563,7 @@ namespace SHModMaker
         public String apiVersion;
         public List<String[]> aliases = new List<string[]>();
         public List<String[]> mixintos = new List<string[]>();
+        public List<String[]> overrides = new List<string[]>();
 
         public ManifestJSON()
         {
@@ -1584,6 +1606,21 @@ namespace SHModMaker
                 {
                     maniFile = maniFile + "\n\t\t\"" + mixintos[i][0] + "\" : \"" + mixintos[i][1] + "\"";
                     if (i != mixintos.Count - 1)
+                    {
+                        maniFile = maniFile + ",";
+                    }
+                }
+                maniFile = maniFile + "\n\t}";
+            }
+
+            //Add overrides
+            if (overrides.Count != 0)
+            {
+                maniFile = maniFile + ",\n\n\t\"overrides\" : {";
+                for (int i = 0; i < overrides.Count; i++)
+                {
+                    maniFile = maniFile + "\n\t\t\"" + overrides[i][0] + "\" : \"" + overrides[i][1] + "\"";
+                    if (i != overrides.Count - 1)
                     {
                         maniFile = maniFile + ",";
                     }
@@ -1652,6 +1689,12 @@ namespace SHModMaker
         {
             mixintos.Add(new String[] { mixinto, data });
         }
+
+        public void AddOverride(String ovrRid, string data)
+        //Adds Mixin to mixins List. 
+        {
+            overrides.Add(new String[] { ovrRid, data });
+        }
     }
 
     public class Recipe
@@ -1676,7 +1719,7 @@ namespace SHModMaker
             desc = "";
             flavor = "";
             category = "";
-            png = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+            png = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png");
             ingredients = new List<AmountOfItem>();
             product = "";
         }
@@ -1831,23 +1874,23 @@ namespace SHModMaker
         public byte[] qbiICON;
 
         public Armor()
-            : this("", "", 0, 0, "", File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+            : this("", "", 0, 0, "", File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"),
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"),
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"),
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"),
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"),
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"),
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"))
         { }
 
         public Armor(String nam, String des, int ilvl, int dam, String typ)
-            : this(nam, des, ilvl, dam, typ, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
-                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
-                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"),
-                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
-                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
-                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"),
-                                        File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+            : this(nam, des, ilvl, dam, typ, File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"),
+                                        File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"),
+                                        File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"),
+                                        File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"),
+                                        File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"),
+                                        File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"),
+                                        File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"))
         { }
 
         public Armor(String nam, String des, int ilvl, int dam, String t, Byte[] q, Byte[] qf, Byte[] qi, Byte[] p, Byte[] qbIC, Byte[] qbfIC, Byte[] qbiIC)
@@ -1955,9 +1998,9 @@ namespace SHModMaker
             type = "";
             road_speed = 0.25f;
 
-            qb = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb");
-            png = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
-            qbICON = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+            qb = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb");
+            png = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png");
+            qbICON = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png");
         }
 
         public void WriteConstructionFile(String modPath)
@@ -1974,7 +2017,7 @@ namespace SHModMaker
             refList.Add(new String[] { "cat", category });
             refList.Add(new String[] { "type", type.ToLower() });
             refList.Add(new String[] { "speed", road_speed.ToString() });
-            refList.Add(new String[] { "mod", utils.LowerNoSpaces(Form1.mod.name) });
+            refList.Add(new String[] { "mod", utils.LowerNoSpaces(MainForm.mod.name) });
 
             //Get JSONs and LUA files
             //FIX can probably make a utils for this utils.GetJsonLua(String path)??
@@ -2042,11 +2085,11 @@ namespace SHModMaker
             tags = "";
             habitats = new List<string>();
 
-            qb = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb");
-            qbi = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb");
-            png = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
-            qbICON = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
-            qbiICON = File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png");
+            qb = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb");
+            qbi = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb");
+            png = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png");
+            qbICON = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png");
+            qbiICON = File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png");
 
             weight = 10;
             width = 4;
@@ -2088,7 +2131,7 @@ namespace SHModMaker
 
             //Build Parse List
             List <String[]> refList = new List<string[]>();
-            refList.Add(new String[] { "mname", Form1.mod.name });
+            refList.Add(new String[] { "mname", MainForm.mod.name });
             refList.Add(new String[] { "name", name });
             refList.Add(new String[] { "iname", iname });
             refList.Add(new String[] { "desc", desc });
@@ -2165,15 +2208,15 @@ namespace SHModMaker
         public String custom3;
 
         public Weapon()
-            : this("", "", 0, 0, 0.0f, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), 
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), 
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), 
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), 
-                  File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+            : this("", "", 0, 0, 0.0f, File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"), 
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"), 
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"), 
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"), 
+                  File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"))
         { }
 
         public Weapon(String nam, String des, int ilvl, int dam, float rea)
-            : this(nam, des, ilvl, dam, rea, File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(Form1.localPath + "\\Configs\\blank.png"))
+            : this(nam, des, ilvl, dam, rea, File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.qb"), File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"), File.ReadAllBytes(MainForm.localPath + "\\Configs\\blank.png"))
         { }
 
         public Weapon(String nam, String des, int ilvl, int dam, float rea, Byte[] q, Byte[] qi, Byte[] p, Byte[] qbIC, Byte[] qbiIC)
@@ -2252,12 +2295,19 @@ namespace SHModMaker
         public String name;
         public String apiVersion;
         public ManifestJSON manifest;
+
         public List<Crafter> crafters;
+
         public List<Recipe> recipes;
         public List<Armor> armors;
         public List<Construction> constructions;
         public List<Flower> flowers;
         public List<Weapon> weapons;
+
+        public List<String[]> extraAliases = new List<string[]>();
+        public List<String[]> extraMixintos = new List<string[]>();
+        public List<String[]> extraOverrides = new List<string[]>();
+        public String OutsideFolderPath = "";
 
         public MOD()
         {
@@ -2428,6 +2478,7 @@ namespace SHModMaker
 
             manifest.aliases.Clear();
             manifest.mixintos.Clear();
+            manifest.overrides.Clear();
 
             //Add Armors to manifest
             foreach (Armor armr in armors)
@@ -2459,8 +2510,22 @@ namespace SHModMaker
                 manifest.AddMixinto("stonehearth/jobs/" + recp.crafter.Remove(0,recp.crafter.IndexOf(":")+1) + "/recipes/recipes.json", 
                                     "file(recipes/" + recp.crafter.Remove(0, recp.crafter.IndexOf(":") + 1) + "/" + utils.LowerNoSpaces(recp.name) +"_mixinto.json)");
             }
+
+            //add Extra/Additional Aliases/Mixintos/Overrides
+            foreach (String[] str in extraAliases)
+            {
+                manifest.AddAlias(str[0],str[1]);
+            }
+            foreach (String[] str in extraMixintos)
+            {
+                manifest.AddMixinto(str[0], str[1]);
+            }
+            foreach (String[] str in extraOverrides)
+            {
+                manifest.AddOverride(str[0], str[1]);
+            }
         }
-        public void BuildMod(String modPath)
+        public void BuildModFolder(String modPath)
         {
             BuildManifest();
 
@@ -2497,18 +2562,45 @@ namespace SHModMaker
             //write manifest
             manifest.Write(modPath + name + "\\");
 
+            //Copy External Folder
+            if (System.IO.Directory.Exists(OutsideFolderPath) && OutsideFolderPath != "")
+            {
+                //Now Create all of the directories
+                foreach (string dirPath in Directory.GetDirectories(OutsideFolderPath, "*",
+                    SearchOption.AllDirectories))
+                { 
+                    Directory.CreateDirectory(dirPath.Replace(OutsideFolderPath, modPath + name));
+                }
+
+                //Copy all the files & Replaces any files with the same name
+                foreach (string newPath in Directory.GetFiles(OutsideFolderPath, "*.*",
+                    SearchOption.AllDirectories))
+                {
+                    File.Copy(newPath, newPath.Replace(OutsideFolderPath, modPath + name), true);
+                }
+            }
+
         }
         public void SaveSMOD(String smodPath)
         {
-            BuildMod(Form1.localPath + "\\");
+            BuildModFolder(MainForm.localPath + "\\");
 
-            using (ZipFile zip = new ZipFile())
+            try
             {
-                zip.AddDirectory(Form1.localPath + "\\" + name, name);
-                zip.Save(smodPath);
+                using (ZipFile zip = new ZipFile())
+                {
+                    zip.AddDirectory(MainForm.localPath + "\\" + name, name);
+                    zip.Save(smodPath);
+                }
             }
+            catch(IOException e)
+            {
+                //FIX need to tell the user that It didn't save the smod and why
+                Debug.WriteLine("IOExceotion: " + e.Message);
+            }
+            
 
-            System.IO.Directory.Delete(Form1.localPath + "\\" + name, true);
+            System.IO.Directory.Delete(MainForm.localPath + "\\" + name, true);
         }
         public void SaveMod(String filePath)
         {
@@ -2550,18 +2642,18 @@ namespace SHModMaker
             //{
             //    file.Write(json);
             //}
-            System.IO.File.WriteAllText(Form1.localPath + "\\Configs\\config.json", json, Encoding.ASCII);
+            System.IO.File.WriteAllText(MainForm.localPath + "\\Configs\\config.json", json, Encoding.ASCII);
         }
         public CONFIG LOADCONFIG()
         {
-            return JsonConvert.DeserializeObject<CONFIG>(System.IO.File.ReadAllText(Form1.localPath + "\\Configs\\config.json"));
+            return JsonConvert.DeserializeObject<CONFIG>(System.IO.File.ReadAllText(MainForm.localPath + "\\Configs\\config.json"));
         }
 
         public void GetSHCrafters()
         {
             SHCrafters.Clear();
             //Read stonehearth.smod and get everybody who has a recipe.json
-            using (ZipFile zip = ZipFile.Read(Form1.config.SHsmodPath))
+            using (ZipFile zip = ZipFile.Read(MainForm.config.SHsmodPath))
             {
                 foreach (ZipEntry e in zip)
                 {

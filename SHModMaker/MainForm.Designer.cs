@@ -1,6 +1,6 @@
 ﻿namespace SHModMaker
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -58,6 +58,7 @@
             this.flowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advancedOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.howToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -201,6 +202,7 @@
             this.openFileDialogQB = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogPNG = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.tab_weapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_weap_png)).BeginInit();
@@ -341,6 +343,8 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddToolStripMenuItem2,
+            this.toolStripSeparator4,
+            this.advancedOptionsToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
@@ -356,7 +360,7 @@
             this.plantStripMenuItem,
             this.weaponToolStripMenuItem});
             this.AddToolStripMenuItem2.Name = "AddToolStripMenuItem2";
-            this.AddToolStripMenuItem2.Size = new System.Drawing.Size(123, 22);
+            this.AddToolStripMenuItem2.Size = new System.Drawing.Size(172, 22);
             this.AddToolStripMenuItem2.Text = "Add New";
             // 
             // recipeToolStripMenuItem
@@ -470,9 +474,16 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.optionsToolStripMenuItem.Text = "Config";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+            // 
+            // advancedOptionsToolStripMenuItem
+            // 
+            this.advancedOptionsToolStripMenuItem.Name = "advancedOptionsToolStripMenuItem";
+            this.advancedOptionsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.advancedOptionsToolStripMenuItem.Text = "Advanced Options";
+            this.advancedOptionsToolStripMenuItem.Click += new System.EventHandler(this.advancedOptionsToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -486,14 +497,16 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // howToToolStripMenuItem
             // 
             this.howToToolStripMenuItem.Name = "howToToolStripMenuItem";
-            this.howToToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.howToToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.howToToolStripMenuItem.Text = "How-To";
+            this.howToToolStripMenuItem.Click += new System.EventHandler(this.howToToolStripMenuItem_Click);
             // 
             // openFileDialogSHMM
             // 
@@ -2016,7 +2029,12 @@
             // 
             this.openFileDialogPNG.Filter = "PNG|*.png";
             // 
-            // Form1
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2028,7 +2046,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SHModMaker";
             this.Activated += new System.EventHandler(this.Form1_Activated);
@@ -2280,6 +2298,8 @@
         private System.Windows.Forms.PictureBox pic_mod_constr;
         private System.Windows.Forms.NumericUpDown nud_constr_speed;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ToolStripMenuItem advancedOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

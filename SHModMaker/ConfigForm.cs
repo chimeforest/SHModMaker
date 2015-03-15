@@ -19,7 +19,7 @@ namespace SHModMaker
         }
         private void ConfigForm_Load(object sender, EventArgs e)
         {
-            currentConfig = Form1.config;
+            currentConfig = MainForm.config;
             updateForm();
         }
 
@@ -40,19 +40,19 @@ namespace SHModMaker
             }
 
             //tell form1 that the config was just updated
-            Form1.configJustUpdated = true;
+            MainForm.configJustUpdated = true;
 
             //change folderdialog path
             //Form1.folderBrowserDialog1.SelectedPath = currentConfig.SHsmodPath;
 
             //save config
-            Form1.config = currentConfig;
-            Form1.config.SAVECONFIG();
+            MainForm.config = currentConfig;
+            MainForm.config.SAVECONFIG();
             this.Close();
         }
         private void btn_load_Click(object sender, EventArgs e)
         {
-            currentConfig = Form1.config;
+            currentConfig = MainForm.config;
             updateForm();
         }
         private void btn_default_Click(object sender, EventArgs e)
