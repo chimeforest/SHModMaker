@@ -9,7 +9,7 @@ MOD tab
 	scroll wheel does nothing
 
 Recipe Tab
-	When the mod is renamed.. all the recipes in the mod need updated!!!! or chage the code somehow so that is not nessicerry
+	When the mod is renamed.. all the recipes in the mod need updated!!!! or chage the code somehow so that is not needed
 
 Armor
 	Have Breeze take qb thumnail for the shield from the side.
@@ -33,6 +33,4 @@ Help Menu
 	//?Add Help/how-to button to each tab?
 
 ADVANCED MODDING
-	//eventually let people add their own lua files.
-	//also add stuff to the manifest
 	//Let people make their own JSON/LUA templates

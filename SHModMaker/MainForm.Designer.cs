@@ -57,8 +57,9 @@
             this.plantStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.advancedOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.howToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -197,12 +198,15 @@
             this.txt_flower_desc = new System.Windows.Forms.TextBox();
             this.txt_flower_name = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.tab_tree = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lbl_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialogQB = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogPNG = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.tab_weapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_weap_png)).BeginInit();
@@ -256,6 +260,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_flower_qbi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_flower_qb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_flower_weight)).BeginInit();
+            this.tab_tree.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -471,12 +477,10 @@
             this.weaponToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.weaponToolStripMenuItem.Text = "Weapon";
             // 
-            // optionsToolStripMenuItem
+            // toolStripSeparator4
             // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.optionsToolStripMenuItem.Text = "Config";
-            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
             // 
             // advancedOptionsToolStripMenuItem
             // 
@@ -484,6 +488,13 @@
             this.advancedOptionsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.advancedOptionsToolStripMenuItem.Text = "Advanced Options";
             this.advancedOptionsToolStripMenuItem.Click += new System.EventHandler(this.advancedOptionsToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.optionsToolStripMenuItem.Text = "Config";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -497,14 +508,14 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // howToToolStripMenuItem
             // 
             this.howToToolStripMenuItem.Name = "howToToolStripMenuItem";
-            this.howToToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.howToToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.howToToolStripMenuItem.Text = "How-To";
             this.howToToolStripMenuItem.Click += new System.EventHandler(this.howToToolStripMenuItem_Click);
             // 
@@ -976,6 +987,7 @@
             this.tabControl.Controls.Add(this.tab_armor);
             this.tabControl.Controls.Add(this.tab_constr);
             this.tabControl.Controls.Add(this.tab_flower);
+            this.tabControl.Controls.Add(this.tab_tree);
             this.tabControl.Controls.Add(this.tab_weapon);
             this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl.ItemSize = new System.Drawing.Size(20, 75);
@@ -2003,6 +2015,50 @@
             this.label24.TabIndex = 27;
             this.label24.Text = "Name:";
             // 
+            // tab_tree
+            // 
+            this.tab_tree.BackColor = System.Drawing.SystemColors.Control;
+            this.tab_tree.Controls.Add(this.groupBox9);
+            this.tab_tree.Location = new System.Drawing.Point(79, 4);
+            this.tab_tree.Name = "tab_tree";
+            this.tab_tree.Size = new System.Drawing.Size(487, 324);
+            this.tab_tree.TabIndex = 9;
+            this.tab_tree.Text = "Tree";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.radioButton2);
+            this.groupBox9.Controls.Add(this.radioButton1);
+            this.groupBox9.Location = new System.Drawing.Point(3, 253);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(127, 68);
+            this.groupBox9.TabIndex = 0;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Impelmentation";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Enabled = false;
+            this.radioButton2.Location = new System.Drawing.Point(7, 44);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(53, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "SHEL";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(7, 20);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(116, 17);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Jelly by RepeatPan";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2028,11 +2084,6 @@
             // openFileDialogPNG
             // 
             this.openFileDialogPNG.Filter = "PNG|*.png";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
             // 
             // MainForm
             // 
@@ -2118,6 +2169,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_flower_qbi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_flower_qb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_flower_weight)).EndInit();
+            this.tab_tree.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -2300,6 +2354,10 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.ToolStripMenuItem advancedOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.TabPage tab_tree;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 
