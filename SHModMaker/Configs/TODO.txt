@@ -1,5 +1,15 @@
 ﻿TODO
 
+UPDATE TO A9
+	add ~gold~ and shop to:
+		tab armor, shield
+
+
+
+
+
+
+
 Change Save Item buttons to Add or Update depending on wether the item exsists yet in the mod
 
 MOD tab
@@ -9,7 +19,8 @@ MOD tab
 	scroll wheel does nothing
 
 Recipe Tab
-	When the mod is renamed.. all the recipes in the mod need updated!!!! or chage the code somehow so that is not needed
+	When the mod is renamed.. all the recipes in the mod need updated!!!! or chage the code somehow so that is not needed.
+	produces does not put mod_name infront of the product when it is from this mod...
 
 Armor
 	Have Breeze take qb thumnail for the shield from the side.
@@ -34,3 +45,7 @@ Help Menu
 
 ADVANCED MODDING
 	//Let people make their own JSON/LUA templates
+
+BUGS: 
+	Searches for SHsmod too much, causes errors if not in the default path.
+	Can't create just recipes.

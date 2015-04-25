@@ -36,6 +36,24 @@
    "entity_data" : {
       "stonehearth:combat:armor_data" : {
          "base_damage_reduction" : ~damage~
+      },
+      "stonehearth:combat:melee_defenses" : [
+         {
+            "name" : "combat_1h_shield_block",
+            "active_frame" : 4,
+            "cooldown" : 10000,
+            "priority" : 0
+         }
+      ],
+      "stonehearth:net_worth" : {
+         "value_in_gold" : ~gold~,
+         "rarity" : "common",
+         "shop_info" : {
+            "buyable" : true,   
+            "sellable" : true,
+            "shopkeeper_level" : 1,
+            "shopkeeper_type" : "caravan"
+         }
       }
    }
 }

@@ -1,3 +1,83 @@
 {
-  "SHsmodPath": "C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod"
+  "SHsmodPath": "C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod",
+  "SHCrafters": [
+    {
+      "mod": "stonehearth",
+      "name": "blacksmith",
+      "categories": [
+        "smelt",
+        "tools",
+        "weapons",
+        "armor"
+      ]
+    },
+    {
+      "mod": "stonehearth",
+      "name": "carpenter",
+      "categories": [
+        "tools_weapons",
+        "building_parts",
+        "furniture",
+        "signage_decoration"
+      ]
+    },
+    {
+      "mod": "stonehearth",
+      "name": "mason",
+      "categories": [
+        "tools",
+        "weapons",
+        "building_parts",
+        "furniture",
+        "signage_decoration"
+      ]
+    },
+    {
+      "mod": "stonehearth",
+      "name": "weaver",
+      "categories": [
+        "crafting_materials",
+        "clothing_armor",
+        "decorations",
+        "toys"
+      ]
+    }
+  ],
+  "CommonMaterialTags": [
+    "cloth resource",
+    "fiber resource",
+    "leather resource",
+    "pelt resource",
+    "stone resource",
+    "thread resource",
+    "wood resource"
+  ],
+  "AliasSkipWords": [
+    "cursors/",
+    "mixins/",
+    "data/",
+    "/generic/",
+    "build/",
+    "services/",
+    "critters/",
+    "jobs/",
+    "mining_zone",
+    "construction/",
+    "crafting/",
+    "humans/",
+    "monsters/",
+    "boulders/",
+    "terrain",
+    "crops/",
+    "tree/",
+    "berry_bush",
+    "tester",
+    "gizmos/",
+    "buffs/",
+    "ai/",
+    "class_info",
+    "scenarios/",
+    "bulletins",
+    "wooden_sword_talisman"
+  ]
 }

@@ -20,14 +20,14 @@ namespace SHModMaker
     public partial class MainForm : Form
     {
         //Version of this Program
-        public String version = "0.14.0";
+        public String version = "0.15.0";
 
         //Directory variables
         public static String localPath = System.IO.Directory.GetCurrentDirectory();
         public static String SHMMPath = "";
 
         //Config Variable
-        public static CONFIG config = new CONFIG();
+        public static CONFIG config = new CONFIG(false);
         public static bool canRenderQB = false;
         public static bool configJustUpdated = false;
 
@@ -87,8 +87,20 @@ namespace SHModMaker
             mod.manifest = new ManifestJSON();
             lbl_status.Text = "Welcome to the Stonehearth Mod Maker by Chimeforest";
 
-            config = config.LOADCONFIG();
-            if (config == new CONFIG())
+            if (System.IO.File.Exists(MainForm.localPath + "\\Configs\\config.json"))
+            {
+                config = config.LOADCONFIG();
+                if (!System.IO.File.Exists(config.SHsmodPath))
+                {
+                    config.GetSHsmodPath();
+                }
+            }
+            else
+            {
+                config = new CONFIG(true);
+            }
+            
+            if (config.SHCrafters.Count < 0)
             {
                 config.GetSHCrafters();
             }
@@ -2636,19 +2648,15 @@ namespace SHModMaker
         public List<String> CommonMaterialTags;
         public List<String> AliasSkipWords;
 
-        public CONFIG()
+        public CONFIG( bool getSHsmodPath)
         {
-            if (System.IO.Directory.Exists("C:\\Program Files (x86)"))
-            {
-                SHsmodPath = "C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod";
-            }
-            else
-            {
-                SHsmodPath = "C:\\Program Files\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod";
-            }
+            if(getSHsmodPath)
+                GetSHsmodPath();
             SHCrafters = new List<Crafter>();
             CommonMaterialTags = new List<string>();
             AliasSkipWords = new List<string>();
+
+            //SAVECONFIG();
         }
         public void SAVECONFIG()
         {
@@ -2705,6 +2713,39 @@ namespace SHModMaker
                     }
                 }
             }
+        }
+        public void GetSHsmodPath()
+        {
+            String path = "";
+            if (System.IO.Directory.Exists("C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Stonehearth"))
+            {
+                path = "C:\\Program Files (x86)\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod";
+            }
+            else if (System.IO.Directory.Exists("C:\\Program Files\\Steam\\SteamApps\\common\\Stonehearth"))
+            {
+                path = "C:\\Program Files\\Steam\\SteamApps\\common\\Stonehearth\\mods\\stonehearth.smod";
+            }
+            else
+            {
+                bool foundSMOD = false;
+                OpenFileDialog filedialog = new OpenFileDialog();
+                filedialog.Filter = "stonehearth.smod|stonehearth.smod";
+                filedialog.FilterIndex = 1;
+                filedialog.Multiselect = false;
+
+                while (foundSMOD == false)
+                {
+                    if (filedialog.ShowDialog() == DialogResult.OK)
+                    {
+                        if (filedialog.FileName != "")
+                        {
+                            foundSMOD = true;
+                        }
+                    }
+                }
+                path = filedialog.FileName;
+            }
+            SHsmodPath = path;
         }
     }
 }

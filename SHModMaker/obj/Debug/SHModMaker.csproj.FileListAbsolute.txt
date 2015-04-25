@@ -24,7 +24,6 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Configs\blank.pn
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Ionic.Zip.dll
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Ionic.Zip.xml
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Configs\blank.qb
-C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Configs\config.json
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\OpenTK.dll
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\QbBreeze.pdb
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\obj\Debug\SHModMaker.ConfigForm.resources
@@ -64,3 +63,4 @@ C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Help\Advanced.ht
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\QbBreeze.dll
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\OpenTK.pdb
 C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\OpenTK.xml
+C:\Users\David\Documents\GitHub\SHModMaker\SHModMaker\bin\Debug\Configs\config.json

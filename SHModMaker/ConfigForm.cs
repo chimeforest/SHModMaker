@@ -12,7 +12,7 @@ namespace SHModMaker
 {
     public partial class ConfigForm : Form
     {
-        CONFIG currentConfig = new CONFIG();
+        CONFIG currentConfig = new CONFIG(false);
         public ConfigForm()
         {
             InitializeComponent();
@@ -57,7 +57,7 @@ namespace SHModMaker
         }
         private void btn_default_Click(object sender, EventArgs e)
         {
-            currentConfig = new CONFIG();
+            currentConfig = new CONFIG(true);
             updateForm();
         }
         private void btn_cancel_Click(object sender, EventArgs e)
