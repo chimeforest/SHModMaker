@@ -20,7 +20,7 @@ namespace SHModMaker
     public partial class MainForm : Form
     {
         //Version of this Program
-        public String version = "0.15.0";
+        public String version = "0.15.1";
 
         //Directory variables
         public static String localPath = System.IO.Directory.GetCurrentDirectory();
@@ -104,6 +104,8 @@ namespace SHModMaker
             {
                 config.GetSHCrafters();
             }
+
+            config.SAVECONFIG();
 
             update_recipe_crafters();
             update_cmb();
@@ -2729,6 +2731,7 @@ namespace SHModMaker
             {
                 bool foundSMOD = false;
                 OpenFileDialog filedialog = new OpenFileDialog();
+                filedialog.Title = "Please locate your stonhearth.smod file.";
                 filedialog.Filter = "stonehearth.smod|stonehearth.smod";
                 filedialog.FilterIndex = 1;
                 filedialog.Multiselect = false;
@@ -2742,6 +2745,7 @@ namespace SHModMaker
                             foundSMOD = true;
                         }
                     }
+                    else { Application.Exit(); }
                 }
                 path = filedialog.FileName;
             }
