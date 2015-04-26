@@ -25,6 +25,9 @@ namespace SHModMaker
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            //add sh smod path
+            currentConfig.SHsmodPath = txt_shsmod.Text;
+
             //add materials
             currentConfig.CommonMaterialTags.Clear();
             foreach (String str in txt_material_tags.Lines)
@@ -120,6 +123,20 @@ namespace SHModMaker
                         txt_crafter_cat.AppendText(cat);
                     }
                 }
+            }
+        }
+
+        private void btn_shsmod_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog filedialog = new OpenFileDialog();
+            filedialog.Title = "Please locate your stonhearth.smod file.";
+            filedialog.Filter = "stonehearth.smod|stonehearth.smod";
+            filedialog.FilterIndex = 1;
+            filedialog.Multiselect = false;
+
+            if (filedialog.ShowDialog() == DialogResult.OK)
+            {
+                txt_shsmod.Text = filedialog.FileName;
             }
         }
     }

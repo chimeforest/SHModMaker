@@ -45,6 +45,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txt_crafter_cat = new System.Windows.Forms.TextBox();
             this.lst_SHcrafters = new System.Windows.Forms.ListBox();
+            this.btn_shsmod = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_default
@@ -85,9 +86,10 @@
             // 
             this.txt_shsmod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_shsmod.Enabled = false;
             this.txt_shsmod.Location = new System.Drawing.Point(12, 25);
             this.txt_shsmod.Name = "txt_shsmod";
-            this.txt_shsmod.Size = new System.Drawing.Size(339, 20);
+            this.txt_shsmod.Size = new System.Drawing.Size(253, 20);
             this.txt_shsmod.TabIndex = 4;
             // 
             // label1
@@ -201,12 +203,23 @@
             this.lst_SHcrafters.TabIndex = 20;
             this.lst_SHcrafters.SelectedIndexChanged += new System.EventHandler(this.lst_SHcrafters_SelectedIndexChanged);
             // 
+            // btn_shsmod
+            // 
+            this.btn_shsmod.Location = new System.Drawing.Point(271, 23);
+            this.btn_shsmod.Name = "btn_shsmod";
+            this.btn_shsmod.Size = new System.Drawing.Size(79, 23);
+            this.btn_shsmod.TabIndex = 21;
+            this.btn_shsmod.Text = "Browse";
+            this.btn_shsmod.UseVisualStyleBackColor = true;
+            this.btn_shsmod.Click += new System.EventHandler(this.btn_shsmod_Click);
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_cancel;
             this.ClientSize = new System.Drawing.Size(363, 309);
+            this.Controls.Add(this.btn_shsmod);
             this.Controls.Add(this.lst_SHcrafters);
             this.Controls.Add(this.txt_crafter_cat);
             this.Controls.Add(this.label5);
@@ -252,5 +265,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_crafter_cat;
         private System.Windows.Forms.ListBox lst_SHcrafters;
+        private System.Windows.Forms.Button btn_shsmod;
     }
 }
